@@ -1,0 +1,146 @@
+{
+  "project_info": {
+    "project_number": "152052145842",
+    "project_id": "goodlook-43438",
+    "storage_bucket": "goodlook-43438.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152052145842:android:0c71cdefaa3655008333ab",
+        "android_client_info": {
+          "package_name": "uz.goodlook.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152052145842-27tf99k6v103jh201pogbpreh6v240re.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.client",
+            "certificate_hash": "fb993537ca0b1aabfedd9af7f782334969c54386"
+          }
+        },
+        {
+          "client_id": "152052145842-df8mkfoqpg5os5lbs07vbe829lt167hu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.client",
+            "certificate_hash": "dae909e154b67994a4888f1ebacd30e37b6f6978"
+          }
+        },
+        {
+          "client_id": "152052145842-gqt5bkch4fhtgqaqomb3eqamqmt1csl9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.client",
+            "certificate_hash": "8fb8cf1b299fb8db4b3d1fe40d906708750e45de"
+          }
+        },
+        {
+          "client_id": "152052145842-ll3587gmudee8fblaqpsfv4folvdt24n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.client",
+            "certificate_hash": "4fe9f68fc9a5bfb26d557624a50a757287e18a7a"
+          }
+        },
+        {
+          "client_id": "152052145842-m92klsneshg1e0jqn30ukk3o6sh3ich0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.client",
+            "certificate_hash": "27075935d259c1a75c0d9b3700c0abc1d6b4aa51"
+          }
+        },
+        {
+          "client_id": "152052145842-qbtkglf84j6d409oev5p2k8dh2m9iri9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm-tq04NvnFMKxUD51meUowvQ7AvNMeHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152052145842-qbtkglf84j6d409oev5p2k8dh2m9iri9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "152052145842-g4ll6md2gk2mr6299plcg4p9capkm5l9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "uz.goodlook.client"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152052145842:android:c3314dfe4e93a77b8333ab",
+        "android_client_info": {
+          "package_name": "uz.goodlook.salon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152052145842-06dvg1m8lsgje89t4m95cs5urbue3r3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.salon",
+            "certificate_hash": "4fe9f68fc9a5bfb26d557624a50a757287e18a7a"
+          }
+        },
+        {
+          "client_id": "152052145842-6grjrpko4ojekv3696bm5unbqli8d8ft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.salon",
+            "certificate_hash": "dae909e154b67994a4888f1ebacd30e37b6f6978"
+          }
+        },
+        {
+          "client_id": "152052145842-9km11qj3eo064d12rppf9baj7osq0hi0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.goodlook.salon",
+            "certificate_hash": "8fb8cf1b299fb8db4b3d1fe40d906708750e45de"
+          }
+        },
+        {
+          "client_id": "152052145842-qbtkglf84j6d409oev5p2k8dh2m9iri9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm-tq04NvnFMKxUD51meUowvQ7AvNMeHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152052145842-qbtkglf84j6d409oev5p2k8dh2m9iri9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "152052145842-g4ll6md2gk2mr6299plcg4p9capkm5l9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "uz.goodlook.client"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
