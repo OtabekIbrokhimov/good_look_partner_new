@@ -21,8 +21,14 @@ import 'package:cutfx_salon/model/wallet/wallet_statement.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+
+import '../model/otp/otp_request.dart';
+import '../model/otp/otp_responce.dart';
+import '../model/otp/verify_response.dart';
+import '../model/otp/verufy_request.dart';
 
 class ApiService {
   Future<Salon> salonRegistration({
@@ -61,12 +67,70 @@ class ApiService {
     var respStr = await response.stream.bytesToString();
     final responseJson = jsonDecode(respStr);
     sharePref.saveString(AppRes.user, respStr);
-    log('SALON REGISTRATION $respStr');
+    Get.log('SALON REGISTRATION $respStr');
 
     Salon salon = Salon.fromJson(responseJson);
     ConstRes.salonId = salon.data?.id?.toInt() ?? -1;
     return Salon.fromJson(responseJson);
   }
+
+  //my code
+  Future<SendOtpResponce> otpSent({
+    required String phoneNumber,
+
+  }) async {
+    SharePref sharePref = await SharePref().init();
+    SendOtp request = SendOtp(
+      phoneNumber: phoneNumber, userType: "partner",);
+    Get.log(request.toJson().toString());
+    Get.log(ConstRes.sentForOtp.toString());
+    sharePref.getString(ConstRes.deviceToken) ?? 'q';
+
+    var response = await http.post(
+      Uri.parse(ConstRes.sentForOtp),
+      body: request.toJson(),
+      headers: {
+        ConstRes.apiKey: ConstRes.apiKeyValue,
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.log(response.body);
+      AppRes.showSnackBar(response.body, false);
+    }
+    final responseJson = jsonDecode(response.body);
+    Get.log(response.body.toString());
+    return SendOtpResponce.fromJson(responseJson);
+  }
+
+  Future<VerifyResponce> verifyOTP({
+    required String password,
+    required String phoneNumber,
+  }) async {
+    var request = VerifyRequest(phoneNumber: phoneNumber,userType: "partner",otp: password);
+    Get.log(request.toJson().toString());
+    Get.log(ConstRes.verifyOtp.toString());
+    var response = await http.post(
+        Uri.parse(ConstRes.verifyOtp),
+        body: request.toJson(),
+        headers: {
+          "Accept":"application/json",
+          ConstRes.apiKey: ConstRes.apiKeyValue,
+        }
+    );
+    // ignore: prefer_interpolation_to_compose_strings
+    Get.log(response.body.toString()+" kelayotgan body"+ response.statusCode.toString()+'status codi'+response.headers
+        .toString());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.log("ishladi");
+      Get.log(response.body);
+
+    }
+    // Get.to(()=>MainScreen());
+    var s =  verifyResponceFromJson(response.body);
+    Get.log(s.toString()+"bu json");
+    return s;
+  }
+
 
   Future<Setting> fetchGlobalSettings() async {
     final response = await http.post(

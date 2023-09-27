@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:mask_input_formatter/mask_input_formatter.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({Key? key}) : super(key: key);
@@ -70,33 +71,34 @@ class EmailLoginScreen extends StatelessWidget {
                             height: 35,
                           ),
                           TextWithTextFieldWidget(
-                            title: AppLocalizations.of(context)!.emailAddress,
-                            controller: loginBloc.emailAddressController,
+                            isVisible: loginBloc.isVisiblePhone,
+                            title: "Phone number",
+                            controller:
+                            loginBloc.phoneNumberTextController,
+                            changeVisiblity: () {
+                              loginBloc.obuscurePhoneNumber();
+                            },
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          TextWithTextFieldWidget(
-                            title: AppLocalizations.of(context)!.password,
-                            isPassword: true,
-                            controller: loginBloc.passwordController,
-                          ),
+
                           const SizedBox(
                             height: 5,
                           ),
-                          InkWell(
-                            onTap: () {
-                              Get.bottomSheet(
-                                  const ForgotPasswordBottomSheet());
-                            },
-                            child: Align(
-                              alignment: AlignmentDirectional.centerEnd,
-                              child: Text(
-                                AppLocalizations.of(context)!.forgotPassword_,
-                                style: kRegularWhiteTextStyle,
-                              ),
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     Get.bottomSheet(
+                          //         const ForgotPasswordBottomSheet());
+                          //   },
+                          //   child: Align(
+                          //     alignment: AlignmentDirectional.centerEnd,
+                          //     child: Text(
+                          //       AppLocalizations.of(context)!.forgotPassword_,
+                          //       style: kRegularWhiteTextStyle,
+                          //     ),
+                          //   ),
+                          // ),
                           Container(
                             margin: const EdgeInsets.only(top: 20),
                             width: double.infinity,
@@ -150,6 +152,78 @@ class EmailLoginScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class TextWithTextFieldWidget extends StatelessWidget {
+  final String title;
+
+  final TextEditingController? controller;
+  final bool isVisible;
+  final Function changeVisiblity;
+
+  const TextWithTextFieldWidget({
+    Key? key,
+    required this.title,
+    this.controller,
+    this.isVisible = true,
+    required this.changeVisiblity,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: kRegularWhiteTextStyle,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: ColorRes.white.withOpacity(0.1),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+              color: ColorRes.smokeWhite,
+              width: 0.5,
+            ),
+          ),
+          margin: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              const Text(
+                "+998",
+                style: kRegularWhiteTextStyle,
+              ),
+              Flexible(
+                child: TextField(
+                  inputFormatters: [
+                    MaskInputFormatter(mask: '#########'),
+                  ],
+                  keyboardType: TextInputType.phone,
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                  style: kRegularWhiteTextStyle,
+                  textCapitalization: TextCapitalization.characters,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  changeVisiblity();
+                },
+                child: Icon(
+                  isVisible ? Icons.visibility : Icons.visibility_off,
+                  color: ColorRes.white,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

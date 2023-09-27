@@ -1,8 +1,8 @@
 class ConstRes {
   /// api url
 
-  static const String baseUrl = 'http://qutlug.uz/api/';
-  static const String itemBaseUrl = 'http://qutlug.uz/public/storage/';
+  static const String baseUrl = 'http://api.goodlook.uz/v1/';
+  static const String itemBaseUrl = 'http://lk.goodlook.uz/public/storage/';
   static const String salonRegistration = '${baseUrl}salonRegistration';
   static const String updateSalonDetails = '${baseUrl}updateSalonDetails';
   static const String addServiceToSalon = '${baseUrl}addServiceToSalon';
@@ -50,6 +50,10 @@ class ConstRes {
   static const String fetchUserDetails = '${baseUrl}user/fetchUserDetails';
   static const String uploadFileGivePath = '${baseUrl}uploadFileGivePath';
   static const String fetchGlobalSettings = '${baseUrl}fetchGlobalSettings';
+
+  static const String sentForOtp = '${baseUrl}send-otp';
+  static const String verifyOtp = '${baseUrl}verify-otp';
+
   static String termsOfUseUrl = baseUrl.replaceAll('api/', 'termsOfUse');
   static String privacyPolicyUrl = baseUrl.replaceAll('api/', 'privacypolicy');
 

@@ -257,5 +257,16 @@
   "doYouReallyWantToDeleteThisSlot": "Вы действительно хотите удалить этот слот?",
   "deleteSlot": "Удалить слот",
   "editAvailabilitySlots": "Изменить доступность и слоты",
-  "slots": "слоты"
+  "slots": "слоты",
+
+      "phoneNumber":"Номер телефона",
+      "weSentOtp":"Мы отправили код подтверждения в OTP для номера телефона, который вы не вводили",
+      "enterYourOneTimeCode":"Введите свой одноразовый код",
+      "verify":"Проверить",
+      "resendCode":"Отправить код повторно",
+      "master":"Мастер",
+      "pleaseEnterPhoneNumber":"Пожалуйста! Введите номер телефона",
+      "pleaseEnterPhoneNumberCorrectly":"Пожалуйста! Введите номер телефона правильно",
+      "enterYourDetailsAndCompleteProfileForBetterExperience":"Для удобства введите свои данные и заполните профиль",
+      "registrationWithPhoneNumber":"Регистрация по номеру телефона"
 }

@@ -50,23 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBm-tq04NvnFMKxUD51meUowvQ7AvNMeHg',
-    appId: '1:152052145842:android:c3314dfe4e93a77b8333ab',
-    messagingSenderId: '152052145842',
-    projectId: 'goodlook-43438',
-    storageBucket: 'goodlook-43438.appspot.com',
+    apiKey: 'AIzaSyAYzuAgGevtYpHcwU3eM7ctqlF5ZC--4hw',
+    appId: '1:448277654552:android:880b3b2659e6162fa5a76d',
+    messagingSenderId: '448277654552',
+    projectId: 'good-look-23ad9',
+    storageBucket: 'good-look-23ad9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDV_Jpvgc5O_-kYqqLu5GVMPIj2Kv2Xrq8',
-    appId: '1:152052145842:ios:661d1ed1412d646a8333ab',
-    messagingSenderId: '152052145842',
-    projectId: 'goodlook-43438',
-    storageBucket: 'goodlook-43438.appspot.com',
-    androidClientId:
-        '152052145842-06dvg1m8lsgje89t4m95cs5urbue3r3e.apps.googleusercontent.com',
-    iosClientId:
-        '152052145842-j3b9lgrmrmjtma1bcbobhq2p4efp6c6o.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA2EVQD7A2qa3X-8G7Jylv0bA0gfDHqs-o',
+    appId: '1:448277654552:ios:f0c95eec917e2c1fa5a76d',
+    messagingSenderId: '448277654552',
+    projectId: 'good-look-23ad9',
+    storageBucket: 'good-look-23ad9.appspot.com',
     iosBundleId: 'uz.goodlook.salon',
   );
 }

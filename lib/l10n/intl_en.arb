@@ -257,5 +257,17 @@
   "doYouReallyWantToDeleteThisSlot": "Do you really want to delete this slot?",
   "deleteSlot": "Delete Slot",
   "editAvailabilitySlots": "Edit Availability & Slots",
-  "slots": "Slots"
+  "slots": "Slots",
+
+    "phoneNumber":"Phone Number",
+    "weSentOtp":"We have sent a verification code to OTP for a phone number that you did not enter",
+    "enterYourOneTimeCode":"Enter your one-time code",
+    "verify":"Verify",
+    "resendCode":"Resend code",
+    "master":"Master",
+    "pleaseEnterPhoneNumber":"Please! Enter phone Number",
+    "pleaseEnterPhoneNumberCorrectly":"Please! Enter phone Number correctly",
+    "enterYourDetailsAndCompleteProfileForBetterExperience":"Enter your details and complete profile for better experience",
+    "registrationWithPhoneNumber":"Registration with phone number"
+
 }
