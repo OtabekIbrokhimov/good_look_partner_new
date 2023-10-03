@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:cutfx_salon/bloc/login/login_bloc.dart';
-import 'package:cutfx_salon/screens/login/forgot_password.dart';
 import 'package:cutfx_salon/screens/registration/registration_screen.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
@@ -119,7 +118,10 @@ class EmailLoginScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(() => const RegistrationScreen())?.then(
+                              Get.to(() => const RegistrationScreen(
+                                    phoneNumber: '',
+                                    name: '',
+                                  ))?.then(
                                 (value) {
                                   SystemChrome.setSystemUIOverlayStyle(
                                     SystemUiOverlayStyle.light,

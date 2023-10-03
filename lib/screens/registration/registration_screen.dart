@@ -10,7 +10,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+  const RegistrationScreen(
+      {Key? key, required this.phoneNumber, required this.name})
+      : super(key: key);
+  final String phoneNumber;
+  final String name;
 
   @override
   Widget build(BuildContext context) {

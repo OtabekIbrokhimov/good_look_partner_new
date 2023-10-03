@@ -1,19 +1,16 @@
-
+import 'package:cutfx_salon/bloc/login/login_bloc.dart';
+import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:mask_input_formatter/mask_input_formatter.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../bloc/emaillogin/email_login_bloc.dart';
+
 import '../../utils/asset_res.dart';
-import '../../utils/color_res.dart';
-
 import '../../utils/style_res.dart';
-
 
 class SmsCodePage extends StatelessWidget {
   final String phone;
-  final String name;
   final bool isLoading;
   final bool isSuccess;
   final bool needFullName ;
@@ -24,7 +21,7 @@ class SmsCodePage extends StatelessWidget {
       required this.phone,
       this.verifyCode,
       this.isLoading = false,
-      this.isSuccess = false, required this.name,
+      this.isSuccess = false,
       this.needFullName = false})
       : super(key: key);
 
@@ -36,7 +33,7 @@ class SmsCodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EmailLoginBloc(),
+      create: (context) => LoginBloc(),
       child: Scaffold(
         appBar: AppBar(
           systemOverlayStyle: Theme.of(context).appBarTheme.systemOverlayStyle,
@@ -61,17 +58,18 @@ class SmsCodePage extends StatelessWidget {
             ),
           ),
         ),
-        body: BlocBuilder<EmailLoginBloc, EmailLoginState>(
+        body: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
-            EmailLoginBloc emailLoginBloc = context.read<EmailLoginBloc>();
+            LoginBloc emailLoginBloc = context.read<LoginBloc>();
             emailLoginBloc.firstTimeCalculate
                 ? emailLoginBloc.calculateSmsTime()
                 : () {};
-            return SingleChildScrollView( child: SizedBox(
+            return SingleChildScrollView(
+                child: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child:  Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -92,7 +90,7 @@ class SmsCodePage extends StatelessWidget {
                     Center(
                       child: Text(
                         textAlign: TextAlign.center,
-                        phone,
+                        "+$phone",
                         style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 22,
@@ -101,41 +99,20 @@ class SmsCodePage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 50),
-                   Visibility(
-                     visible: needFullName,
-                     child:  TextWithTextFieldSmokeWhiteWidget(
-                      title: "",//AppLocalizations.of(context)!.fullName,
-                      controller:
-                      emailLoginBloc.fullNameTextController,
-                    ),
-                   ),
-                    const SizedBox(height: 15,),
-                    Container(
-                      width: double.infinity,
-                      height: 50,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: ColorRes.smokeWhite,
-                      ),
-                      child: TextField(
-                        inputFormatters: [
-                          MaskInputFormatter(mask: '######'),
-                        ],
-                        controller: emailLoginBloc.smsCodeController,
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        onChanged: emailLoginBloc.onChangedPinCode,
-                        decoration: InputDecoration(
-                            hintText: AppLocalizations.of(context)
-                                ?.enterYourOneTimeCode,
-                            border: InputBorder.none),
+                    Visibility(
+                      visible: needFullName,
+                      child: TextWidget(
+                        emailLoginBloc: emailLoginBloc,
+                        isFullName: true,
                       ),
                     ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    TextWidget(emailLoginBloc: emailLoginBloc),
                     GestureDetector(
                         onTap: () {
-                          emailLoginBloc.getMainPage(phone);
+                          emailLoginBloc.getMainPage(phone, needFullName);
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -183,6 +160,49 @@ class SmsCodePage extends StatelessWidget {
   }
 }
 
+class TextWidget extends StatelessWidget {
+  final bool isFullName;
+
+  const TextWidget({
+    super.key,
+    required this.emailLoginBloc,
+    this.isFullName = false,
+  });
+
+  final LoginBloc emailLoginBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: ColorRes.smokeWhite,
+      ),
+      child: TextField(
+        inputFormatters: isFullName
+            ? []
+            : [
+                MaskInputFormatter(mask: '######'),
+              ],
+        controller: isFullName
+            ? emailLoginBloc.fullNameTextController
+            : emailLoginBloc.smsCodeController,
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        onChanged: emailLoginBloc.onChangedPinCode,
+        decoration: InputDecoration(
+            hintText: isFullName
+                ? "Please! enter your full name "
+                : AppLocalizations.of(context)?.enterYourOneTimeCode,
+            border: InputBorder.none),
+      ),
+    );
+  }
+}
+
 class ResentSmsCodeWidget extends StatelessWidget {
   final int time;
   final Function resend;
@@ -213,59 +233,6 @@ class ResentSmsCodeWidget extends StatelessWidget {
                   fontSize: 16,
                   color: needResend ? ColorRes.themeColor : ColorRes.white)),
         )
-      ],
-    );
-  }
-}
-class TextWithTextFieldSmokeWhiteWidget extends StatelessWidget {
-  final String title;
-  final bool? isPassword;
-  final bool isPhoneNumber;
-  final TextEditingController controller;
-  final TextInputType? textInputType;
-
-  const TextWithTextFieldSmokeWhiteWidget({
-    Key? key,
-    required this.title,
-    this.isPassword,
-    this.isPhoneNumber = false,
-    required this.controller,
-    this.textInputType = TextInputType.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
-
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: ColorRes.smokeWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            border: Border.all(
-              color: ColorRes.smokeWhite,
-              width: 0.5,
-            ),
-          ),
-          height: 55,
-          margin: const EdgeInsets.only(top: 5),
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: TextField(
-            // inputFormatters: isPhoneNumber?[ MaskInputFormatter(mask: '##### ### ## ##')]:[],
-            controller: controller,
-            decoration: const InputDecoration(border: InputBorder.none),
-            style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
-            keyboardType: isPhoneNumber ? TextInputType.phone : textInputType,
-            obscureText: isPassword ?? false,
-            enableSuggestions: isPassword != null ? !isPassword! : true,
-            autocorrect: isPassword != null ? !isPassword! : true,
-          ),
-        ),
       ],
     );
   }

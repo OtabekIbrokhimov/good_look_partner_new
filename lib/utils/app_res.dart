@@ -12,6 +12,8 @@ import 'custom/custom_dialog.dart';
 class AppRes {
   static const String isLogin = 'is_login';
   static const String user = 'user';
+  static const String phoneNumber = 'phone_number';
+  static const String fullName = 'full_name';
   static const String settings = 'settings';
 
   static String commonDateFormat = 'yyyy-MM-ddThh:mm:ssZ';

@@ -2,16 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../model/otp/otp_responce.dart';
-import '../../model/otp/verify_response.dart';
-import '../../screens/main/main_screen.dart';
-import '../../service/api_service.dart';
-import '../../utils/app_res.dart';
 
 part 'email_login_event.dart';
-
 part 'email_login_state.dart';
 
 class EmailLoginBloc extends Bloc<EmailLoginEvent, EmailLoginState> {
@@ -40,8 +34,7 @@ class EmailLoginBloc extends Bloc<EmailLoginEvent, EmailLoginState> {
     });
 
     on<CheckSmsCode>((event, emit)  {
-      getMainPage(phoneNumber);
-
+      // getMainPage(phoneNumber);
     });
 
 
@@ -79,15 +72,15 @@ class EmailLoginBloc extends Bloc<EmailLoginEvent, EmailLoginState> {
     }
   }
 
-   VerifyResponce? verifyResponse;
-  void getMainPage(String phoneNumber) async{
-    if (smsCodeController.text.length != 6) {
-      AppRes.showSnackBar("Please enter sms code", false);
-      return;
-    }else{
-       verifyResponse = await ApiService().verifyOTP(password: smsCodeController.text, phoneNumber: phoneNumber);
-       Get.offAll(() => const MainScreen());
-    }
-
-  }
+//  VerifyResponce? verifyResponse;
+// void getMainPage(String phoneNumber) async{
+//   if (smsCodeController.text.length != 6) {
+//     AppRes.showSnackBar("Please enter sms code", false);
+//     return;
+//   }else{
+//      verifyResponse = await ApiService().verifyOTP(password: smsCodeController.text, phoneNumber: phoneNumber, needName: needVerify);
+//      Get.offAll(() => const MainScreen());
+//   }
+//
+// }
 }

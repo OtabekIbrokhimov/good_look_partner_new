@@ -416,46 +416,15 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
       return null;
     }
-    if (passwordController.text.isEmpty) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseEnterPassword,
-        false,
-      );
-      return null;
-    }
-    if (confirmPasswordController.text.isEmpty) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseEnterConfirmPassword,
-        false,
-      );
-      return null;
-    }
-    if (passwordController.text != confirmPasswordController.text) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.passwordDoesNotMatch,
-        false,
-      );
-      return null;
-    }
-    AppRes.showCustomLoader();
-    firebase_auth.UserCredential userCredential =
-        await _auth.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-    if (userCredential.user != null) {
-      return ApiService().salonRegistration(
-        email: emailController.text,
-        ownerName: ownerNameController.text,
-        ownerPhoto:
-            ownerImage?.path != null ? File(ownerImage?.path ?? '') : null,
-        salonName: salonNameController.text,
-        isRegistration: true,
-      );
-    } else {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.userAlreadyExist,
-        false,
-      );
-    }
+    ApiService().salonRegistration(
+      email: emailController.text,
+      ownerName: ownerNameController.text,
+      ownerPhoto:
+          ownerImage?.path != null ? File(ownerImage?.path ?? '') : null,
+      salonName: salonNameController.text,
+      isRegistration: true,
+    );
+
     return null;
   }
 
@@ -644,6 +613,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     list.add(const SignUpSalonImagesWidget());
     list.add(SignUpSalonBankWidget());
     sharePref = await SharePref().init();
+    ownerNameController.text = sharePref?.getString(AppRes.fullName) ?? "";
+    emailController.text = sharePref?.getString(AppRes.phoneNumber) ?? "";
+
     user = sharePref?.getSalon();
     List.generate(DateFormat().dateSymbols.WEEKDAYS.length, (index) {
       salonSlots[DateFormat().dateSymbols.WEEKDAYS[index]] =

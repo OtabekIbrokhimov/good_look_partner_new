@@ -53,6 +53,10 @@ class ConstRes {
 
   static const String sentForOtp = '${baseUrl}send-otp';
   static const String verifyOtp = '${baseUrl}verify-otp';
+  static const String createEmployee = '${baseUrl}staff/addStaff';
+  static const String editEmployee = '${baseUrl}staff/editStaff';
+  static const String deleteEmployee = '${baseUrl}staff/deleteStaff';
+  static const String getEmployeesList = '${baseUrl}staff/fetchActiveStaffList';
 
   static String termsOfUseUrl = baseUrl.replaceAll('api/', 'termsOfUse');
   static String privacyPolicyUrl = baseUrl.replaceAll('api/', 'privacypolicy');
@@ -63,6 +67,8 @@ class ConstRes {
 
   /// Api body keyword
   static const String email = 'email';
+  static const String phoneNumber = 'phone_number';
+  static const String loginType = 'phone_number';
   static const String slotId = 'slot_id';
   static const String salonName = 'salon_name';
   static const String ownerPhoto = 'owner_photo';

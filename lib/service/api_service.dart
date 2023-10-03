@@ -21,14 +21,15 @@ import 'package:cutfx_salon/model/wallet/wallet_statement.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-
 import '../model/otp/otp_request.dart';
 import '../model/otp/otp_responce.dart';
 import '../model/otp/verify_response.dart';
 import '../model/otp/verufy_request.dart';
+import '../screens/registration/registration_screen.dart';
 
 class ApiService {
   Future<Salon> salonRegistration({
@@ -42,14 +43,13 @@ class ApiService {
       ConstRes.aPost,
       Uri.parse(ConstRes.salonRegistration),
     );
-
+    Get.log("qani" * 100);
     SharePref sharePref = await SharePref().init();
     request.headers.addAll({ConstRes.apiKey: ConstRes.apiKeyValue});
-    request.fields[ConstRes.email] = email;
+    request.fields[ConstRes.phoneNumber] = "email";
     request.fields[ConstRes.salonName] = salonName ?? '';
     request.fields[ConstRes.ownerName] = ownerName ?? '';
     request.fields[ConstRes.type] = isRegistration ? '0' : '1';
-
     request.fields[ConstRes.deviceToken] =
         sharePref.getString(ConstRes.deviceToken) ?? 'q';
     request.fields[ConstRes.deviceType] = Platform.isAndroid ? '1' : '2';
@@ -62,11 +62,20 @@ class ApiService {
           filename: ownerPhoto.path.split("/").last,
         ),
       );
+    } else {
+      Get.log("mana muammo");
     }
+    Get.log("yudke");
+    Get.log(Uri.parse(ConstRes.salonRegistration).toString());
+
+    Get.log("request ${request.fields.toString()}--file");
+
     var response = await request.send();
+    Get.log(response.statusCode.toString() + "415");
     var respStr = await response.stream.bytesToString();
     final responseJson = jsonDecode(respStr);
     sharePref.saveString(AppRes.user, respStr);
+    Get.log("request ${request.toString()}");
     Get.log('SALON REGISTRATION $respStr');
 
     Salon salon = Salon.fromJson(responseJson);
@@ -102,32 +111,51 @@ class ApiService {
     return SendOtpResponce.fromJson(responseJson);
   }
 
-  Future<VerifyResponce> verifyOTP({
-    required String password,
-    required String phoneNumber,
-  }) async {
-    var request = VerifyRequest(phoneNumber: phoneNumber,userType: "partner",otp: password);
-    Get.log(request.toJson().toString());
+  Future<VerifyResponce> verifyOTP(
+      {required String password,
+      required String phoneNumber,
+      required bool needName,
+      required String fullName}) async {
+    var request = needName
+        ? {
+            "phone_number": phoneNumber,
+            "user_type": "partner",
+            "otp": password,
+            "full_name": fullName
+          }
+        : {
+            "phone_number": phoneNumber,
+            "user_type": "partner",
+            "otp": password
+          };
+    SharePref sharePref = await SharePref().init();
+    Get.log(request.toString());
     Get.log(ConstRes.verifyOtp.toString());
-    var response = await http.post(
-        Uri.parse(ConstRes.verifyOtp),
-        body: request.toJson(),
-        headers: {
-          "Accept":"application/json",
-          ConstRes.apiKey: ConstRes.apiKeyValue,
-        }
-    );
+    var response =
+        await http.post(Uri.parse(ConstRes.verifyOtp), body: request, headers: {
+      "Accept": "application/json",
+      ConstRes.apiKey: ConstRes.apiKeyValue,
+    });
+
     // ignore: prefer_interpolation_to_compose_strings
-    Get.log(response.body.toString()+" kelayotgan body"+ response.statusCode.toString()+'status codi'+response.headers
-        .toString());
+    Get.log(response.body.toString() +
+        " kelayotgan body " +
+        response.statusCode.toString() +
+        'status codi' +
+        response.headers.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
+      sharePref.saveString(AppRes.phoneNumber, phoneNumber);
+      sharePref.saveString(AppRes.fullName, fullName);
       Get.log("ishladi");
       Get.log(response.body);
-
+      Get.offAll(() => RegistrationScreen(
+            phoneNumber: phoneNumber,
+            name: '',
+          ));
     }
     // Get.to(()=>MainScreen());
-    var s =  verifyResponceFromJson(response.body);
-    Get.log(s.toString()+"bu json");
+    var s = verifyResponceFromJson(response.body);
+    Get.log("${s}bu json");
     return s;
   }
 

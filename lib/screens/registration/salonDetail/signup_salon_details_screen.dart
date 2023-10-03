@@ -122,25 +122,25 @@ class SignUpSalonDetailsScreen extends StatelessWidget {
                   height: 15,
                 ),
                 TextWithTextFieldSmokeWhiteWidget(
-                  title: AppLocalizations.of(context)!.emailAddress,
+                  title: AppLocalizations.of(context)!.phoneNumber,
                   controller: signUpBloc.emailController,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                TextWithTextFieldSmokeWhiteWidget(
-                  title: AppLocalizations.of(context)!.password,
-                  controller: signUpBloc.passwordController,
-                  isPassword: true,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextWithTextFieldSmokeWhiteWidget(
-                  title: AppLocalizations.of(context)!.confirmPassword,
-                  controller: signUpBloc.confirmPasswordController,
-                  isPassword: true,
-                ),
+                // TextWithTextFieldSmokeWhiteWidget(
+                //   title: AppLocalizations.of(context)!.password,
+                //   controller: signUpBloc.passwordController,
+                //   isPassword: true,
+                // ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // TextWithTextFieldSmokeWhiteWidget(
+                //   title: AppLocalizations.of(context)!.confirmPassword,
+                //   controller: signUpBloc.confirmPasswordController,
+                //   isPassword: true,
+                // ),
                 const SizedBox(
                   height: 30,
                 ),

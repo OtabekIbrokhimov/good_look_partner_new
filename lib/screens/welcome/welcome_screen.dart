@@ -137,7 +137,10 @@ class _WelComeScreenState extends State<WelComeScreen> {
     } else if (salon.data?.bankAccount != null) {
       goToMainPage(salon);
     } else if (salon.status! && salon.data?.bankAccount == null) {
-      Get.off(() => const RegistrationScreen());
+      Get.off(() => const RegistrationScreen(
+            phoneNumber: '',
+            name: '',
+          ));
     } else {
       Get.off(() => const EmailLoginScreen());
     }
