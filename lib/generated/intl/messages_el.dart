@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addService":
             MessageLookupByLibrary.simpleMessage("Προσθήκη υπηρεσίας"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Προσθήκη υποδοχής"),
-        "appName": MessageLookupByLibrary.simpleMessage("Cut.FX"),
+        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
         "appointments": MessageLookupByLibrary.simpleMessage("Εφόδια"),
         "apr": MessageLookupByLibrary.simpleMessage("Απρ"),
         "april": MessageLookupByLibrary.simpleMessage("Απρίλιος"),

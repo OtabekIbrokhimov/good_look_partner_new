@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавить изображения"),
         "addService": MessageLookupByLibrary.simpleMessage("Добавить услугу"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Добавить слот"),
-        "appName": MessageLookupByLibrary.simpleMessage("Cut.FX"),
+        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
         "appointments": MessageLookupByLibrary.simpleMessage("Назначения"),
         "apr": MessageLookupByLibrary.simpleMessage("апр"),
         "april": MessageLookupByLibrary.simpleMessage("апрель"),

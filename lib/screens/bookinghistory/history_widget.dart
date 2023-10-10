@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:cutfx_salon/model/bookings/booking.dart';
-import 'package:cutfx_salon/screens/requestDetails/request_detail_screen.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
@@ -11,6 +10,8 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+
+import '../requestDetails/request_detail_screen.dart';
 
 class BookingHistoryWidget extends StatelessWidget {
   const BookingHistoryWidget({
@@ -123,7 +124,7 @@ class ItemHistoryBooking extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${bookingData.user?.fullname?.capitalize}',
+                            '${bookingData.user?.firstName?.capitalize}',
                             style: kSemiBoldTextStyle.copyWith(
                               fontSize: 18,
                             ),

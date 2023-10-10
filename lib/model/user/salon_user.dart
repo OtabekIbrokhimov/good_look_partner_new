@@ -53,8 +53,8 @@ class UserData {
     num? isBlock,
     String? identity,
     String? fullname,
-    String? email,
     String? phoneNumber,
+
     String? profileImage,
     num? isNotification,
     num? deviceType,
@@ -72,7 +72,7 @@ class UserData {
     _isBlock = isBlock;
     _identity = identity;
     _fullname = fullname;
-    _email = email;
+    _phoneNumber = phoneNumber;
     _phoneNumber = phoneNumber;
     _profileImage = profileImage;
     _isNotification = isNotification;
@@ -93,7 +93,7 @@ class UserData {
     _isBlock = json['is_block'];
     _identity = json['identity'];
     _fullname = json['fullname'];
-    _email = json['email'];
+    _phoneNumber = json['phone_number'];
     _phoneNumber = json['phone_number'];
     _profileImage = json['profile_image'];
     _isNotification = json['is_notification'];
@@ -113,8 +113,8 @@ class UserData {
   num? _isBlock;
   String? _identity;
   String? _fullname;
-  String? _email;
   String? _phoneNumber;
+
   String? _profileImage;
   num? _isNotification;
   num? _deviceType;
@@ -133,8 +133,8 @@ class UserData {
     num? isBlock,
     String? identity,
     String? fullname,
-    String? email,
     String? phoneNumber,
+
     String? profileImage,
     num? isNotification,
     num? deviceType,
@@ -153,8 +153,8 @@ class UserData {
         isBlock: isBlock ?? _isBlock,
         identity: identity ?? _identity,
         fullname: fullname ?? _fullname,
-        email: email ?? _email,
         phoneNumber: phoneNumber ?? _phoneNumber,
+
         profileImage: profileImage ?? _profileImage,
         isNotification: isNotification ?? _isNotification,
         deviceType: deviceType ?? _deviceType,
@@ -177,9 +177,9 @@ class UserData {
 
   String? get fullname => _fullname;
 
-  String? get email => _email;
-
   String? get phoneNumber => _phoneNumber;
+
+
 
   String? get profileImage => _profileImage;
 
@@ -216,8 +216,8 @@ class UserData {
     map['is_block'] = _isBlock;
     map['identity'] = _identity;
     map['fullname'] = _fullname;
-    map['email'] = _email;
     map['phone_number'] = _phoneNumber;
+
     map['profile_image'] = _profileImage;
     map['is_notification'] = _isNotification;
     map['device_type'] = _deviceType;

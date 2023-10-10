@@ -137,13 +137,13 @@ class EditSalonDetailBloc
       );
       return;
     }
-    if (categoryIds.isEmpty) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseSelectAtLeastOneCategory,
-        false,
-      );
-      return;
-    }
+    // if (categoryIds.isEmpty) {
+    //   AppRes.showSnackBar(
+    //     AppLocalizations.of(Get.context!)!.pleaseSelectAtLeastOneCategory,
+    //     false,
+    //   );
+    //   // return;
+    // }
     if (imageList == null || imageList!.isEmpty || imageList!.length < 3) {
       AppRes.showSnackBar(
         AppLocalizations.of(Get.context!)!.pleaseSelectMinimum3Images,

@@ -416,6 +416,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
       return null;
     }
+    AppRes.showCustomLoader();
     ApiService().salonRegistration(
       email: emailController.text,
       ownerName: ownerNameController.text,
@@ -424,7 +425,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       salonName: salonNameController.text,
       isRegistration: true,
     );
-
+    add(SignUpNextClickEvent(2));
     return null;
   }
 
@@ -514,13 +515,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   }
 
   Future<Salon?> updateCategoriesAndGender() async {
-    if (categoryIds.isEmpty) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseSelectAtLeastOneCategory,
-        false,
-      );
-      return null;
-    }
+    // if (categoryIds.isEmpty) {
+    //   AppRes.showSnackBar(
+    //     AppLocalizations.of(Get.context!)!.pleaseSelectAtLeastOneCategory,
+    //     false,
+    //   );
+    //   return null;
+    // }null
     AppRes.showCustomLoader();
     return await ApiService().updateSalonDetails(
         salonId: ConstRes.salonId,

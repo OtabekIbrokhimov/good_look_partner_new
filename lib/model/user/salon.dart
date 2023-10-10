@@ -61,9 +61,9 @@ class SalonData {
   num? _isNotification;
   num? _onVacation;
   num? _rating;
-  num? _reviewsCount;
   String? _salonNumber;
-  String? _email;
+  num? _reviewsCount;
+  String? _phoneNumber;
   String? _salonName;
   String? _ownerName;
   String? _ownerPhoto;
@@ -89,7 +89,6 @@ class SalonData {
   List<Awards>? _awards;
   List<SlotData>? _slots;
   BankAccount? _bankAccount;
-
   SalonData({
     num? id,
     num? wallet,
@@ -102,7 +101,7 @@ class SalonData {
     num? rating,
     num? reviewsCount,
     String? salonNumber,
-    String? email,
+    String? phoneNumber,
     String? salonName,
     String? ownerName,
     String? ownerPhoto,
@@ -140,7 +139,7 @@ class SalonData {
     _rating = rating;
     _reviewsCount = reviewsCount;
     _salonNumber = salonNumber;
-    _email = email;
+    _phoneNumber = phoneNumber;
     _salonName = salonName;
     _ownerName = ownerName;
     _ownerPhoto = ownerPhoto;
@@ -180,7 +179,7 @@ class SalonData {
     _rating = num.tryParse(json['rating'].toString());
     _reviewsCount = num.tryParse(json['reviews_count'].toString());
     _salonNumber = json['salon_number'];
-    _email = json['email'];
+    _phoneNumber = json['phone_number'];
     _salonName = json['salon_name'];
     _ownerName = json['owner_name'];
     _ownerPhoto = json['owner_photo'];
@@ -248,7 +247,7 @@ class SalonData {
     num? onVacation,
     num? rating,
     String? salonNumber,
-    String? email,
+    String? phoneNumber,
     String? salonName,
     String? ownerName,
     String? ownerPhoto,
@@ -287,7 +286,7 @@ class SalonData {
         rating: rating ?? _rating,
         reviewsCount: reviewsCount ?? _reviewsCount,
         salonNumber: salonNumber ?? _salonNumber,
-        email: email ?? _email,
+        phoneNumber: phoneNumber ?? _phoneNumber,
         salonName: salonName ?? _salonName,
         ownerName: ownerName ?? _ownerName,
         ownerPhoto: ownerPhoto ?? _ownerPhoto,
@@ -338,7 +337,7 @@ class SalonData {
 
   String? get salonNumber => _salonNumber;
 
-  String? get email => _email;
+  String? get phoneNumber => _phoneNumber;
 
   String? get salonName => _salonName;
 
@@ -410,7 +409,7 @@ class SalonData {
     map['rating'] = _rating;
     map['reviews_count'] = _reviewsCount;
     map['salon_number'] = _salonNumber;
-    map['email'] = _email;
+    map['phone_number'] = _phoneNumber;
     map['salon_name'] = _salonName;
     map['owner_name'] = _ownerName;
     map['owner_photo'] = _ownerPhoto;

@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448277654552:android:9f21bde23a3ee86fa5a76d",
+        "mobilesdk_app_id": "1:448277654552:android:b9ea6013914a6740a5a76d",
         "android_client_info": {
           "package_name": "uz.goodlook.client"
         }
@@ -43,7 +43,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448277654552:android:880b3b2659e6162fa5a76d",
+        "mobilesdk_app_id": "1:448277654552:android:395b06a61708de6ca5a76d",
         "android_client_info": {
           "package_name": "uz.goodlook.salon"
         }

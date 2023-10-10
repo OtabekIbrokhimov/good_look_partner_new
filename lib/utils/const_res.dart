@@ -2,7 +2,7 @@ class ConstRes {
   /// api url
 
   static const String baseUrl = 'http://api.goodlook.uz/v1/';
-  static const String itemBaseUrl = 'http://lk.goodlook.uz/public/storage/';
+  static const String itemBaseUrl = 'http://lk.goodlook.uz/storage/';
   static const String salonRegistration = '${baseUrl}salonRegistration';
   static const String updateSalonDetails = '${baseUrl}updateSalonDetails';
   static const String addServiceToSalon = '${baseUrl}addServiceToSalon';

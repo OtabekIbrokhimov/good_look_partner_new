@@ -116,28 +116,28 @@ class EmailLoginScreen extends StatelessWidget {
                           const SizedBox(
                             height: 35,
                           ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(() => const RegistrationScreen(
-                                    phoneNumber: '',
-                                    name: '',
-                                  ))?.then(
-                                (value) {
-                                  SystemChrome.setSystemUIOverlayStyle(
-                                    SystemUiOverlayStyle.light,
-                                  );
-                                },
-                              );
-                            },
-                            child: Align(
-                              alignment: AlignmentDirectional.center,
-                              child: Text(
-                                AppLocalizations.of(context)!
-                                    .newUserRegisterHere,
-                                style: kRegularWhiteTextStyle,
-                              ),
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     Get.to(() => const RegistrationScreen(
+                          //           phoneNumber: '',
+                          //           name: '',
+                          //         ))?.then(
+                          //       (value) {
+                          //         SystemChrome.setSystemUIOverlayStyle(
+                          //           SystemUiOverlayStyle.light,
+                          //         );
+                          //       },
+                          //     );
+                          //   },
+                          //   child: Align(
+                          //     alignment: AlignmentDirectional.center,
+                          //     child: Text(
+                          //       AppLocalizations.of(context)!
+                          //           .newUserRegisterHere,
+                          //       style: kRegularWhiteTextStyle,
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             height:
                                 MediaQuery.of(context).viewInsets.bottom == 0

@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addImages": MessageLookupByLibrary.simpleMessage("เพิ่มรูปภาพ"),
         "addService": MessageLookupByLibrary.simpleMessage("เพิ่มบริการ"),
         "addSlot": MessageLookupByLibrary.simpleMessage("เพิ่มสล็อต"),
-        "appName": MessageLookupByLibrary.simpleMessage("Cut.FX"),
+        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
         "appointments": MessageLookupByLibrary.simpleMessage("การนัดหมาย"),
         "apr": MessageLookupByLibrary.simpleMessage("เม.ย"),
         "april": MessageLookupByLibrary.simpleMessage("เมษายน"),

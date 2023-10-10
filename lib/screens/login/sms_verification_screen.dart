@@ -1,3 +1,5 @@
+
+
 import 'package:cutfx_salon/bloc/login/login_bloc.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:flutter/material.dart';
@@ -109,7 +111,7 @@ class SmsCodePage extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    TextWidget(emailLoginBloc: emailLoginBloc),
+                    TextWidget(emailLoginBloc: emailLoginBloc, isFullName: false,),
                     GestureDetector(
                         onTap: () {
                           emailLoginBloc.getMainPage(phone, needFullName);
@@ -141,7 +143,7 @@ class SmsCodePage extends StatelessWidget {
                     ///Timer
                     ResentSmsCodeWidget(
                         resend: () {
-                          emailLoginBloc.checkTime();
+                          emailLoginBloc.checkTime(phone);
                           emailLoginBloc.calculateSmsTime();
                         },
                         time: emailLoginBloc.smsCodeTime,
@@ -166,7 +168,7 @@ class TextWidget extends StatelessWidget {
   const TextWidget({
     super.key,
     required this.emailLoginBloc,
-    this.isFullName = false,
+    required this.isFullName,
   });
 
   final LoginBloc emailLoginBloc;
@@ -191,8 +193,8 @@ class TextWidget extends StatelessWidget {
             ? emailLoginBloc.fullNameTextController
             : emailLoginBloc.smsCodeController,
         textAlign: TextAlign.center,
-        keyboardType: TextInputType.number,
-        onChanged: emailLoginBloc.onChangedPinCode,
+        keyboardType: isFullName? TextInputType.text:TextInputType.number,
+        onChanged:isFullName? emailLoginBloc.onChangedPinCodeWithName:emailLoginBloc.onChangedPinCodeWhoutName,
         decoration: InputDecoration(
             hintText: isFullName
                 ? "Please! enter your full name "

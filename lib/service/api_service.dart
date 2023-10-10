@@ -29,7 +29,10 @@ import '../model/otp/otp_request.dart';
 import '../model/otp/otp_responce.dart';
 import '../model/otp/verify_response.dart';
 import '../model/otp/verufy_request.dart';
+import '../screens/ban/salon_ban_screen.dart';
+import '../screens/main/main_screen.dart';
 import '../screens/registration/registration_screen.dart';
+import '../screens/registration/sign_up_done_screen.dart';
 
 class ApiService {
   Future<Salon> salonRegistration({
@@ -46,7 +49,7 @@ class ApiService {
     Get.log("qani" * 100);
     SharePref sharePref = await SharePref().init();
     request.headers.addAll({ConstRes.apiKey: ConstRes.apiKeyValue});
-    request.fields[ConstRes.phoneNumber] = "email";
+    request.fields[ConstRes.phoneNumber] = email;
     request.fields[ConstRes.salonName] = salonName ?? '';
     request.fields[ConstRes.ownerName] = ownerName ?? '';
     request.fields[ConstRes.type] = isRegistration ? '0' : '1';
@@ -65,19 +68,19 @@ class ApiService {
     } else {
       Get.log("mana muammo");
     }
-    Get.log("yudke");
+
     Get.log(Uri.parse(ConstRes.salonRegistration).toString());
 
     Get.log("request ${request.fields.toString()}--file");
 
     var response = await request.send();
-    Get.log(response.statusCode.toString() + "415");
+    Get.log(response.statusCode.toString() + "status code");
     var respStr = await response.stream.bytesToString();
     final responseJson = jsonDecode(respStr);
     sharePref.saveString(AppRes.user, respStr);
     Get.log("request ${request.toString()}");
     Get.log('SALON REGISTRATION $respStr');
-
+    Get.log("${Salon.fromJson(responseJson).toJson()}bu json ---");
     Salon salon = Salon.fromJson(responseJson);
     ConstRes.salonId = salon.data?.id?.toInt() ?? -1;
     return Salon.fromJson(responseJson);
@@ -86,7 +89,6 @@ class ApiService {
   //my code
   Future<SendOtpResponce> otpSent({
     required String phoneNumber,
-
   }) async {
     SharePref sharePref = await SharePref().init();
     SendOtp request = SendOtp(
@@ -104,7 +106,6 @@ class ApiService {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.log(response.body);
-      AppRes.showSnackBar(response.body, false);
     }
     final responseJson = jsonDecode(response.body);
     Get.log(response.body.toString());
@@ -131,8 +132,7 @@ class ApiService {
     SharePref sharePref = await SharePref().init();
     Get.log(request.toString());
     Get.log(ConstRes.verifyOtp.toString());
-    var response =
-        await http.post(Uri.parse(ConstRes.verifyOtp), body: request, headers: {
+    var response = await http.post(Uri.parse(ConstRes.verifyOtp), body: request, headers: {
       "Accept": "application/json",
       ConstRes.apiKey: ConstRes.apiKeyValue,
     });
@@ -145,13 +145,39 @@ class ApiService {
         response.headers.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       sharePref.saveString(AppRes.phoneNumber, phoneNumber);
-      sharePref.saveString(AppRes.fullName, fullName);
+      if(fullName.isNotEmpty){
+      sharePref.saveString(AppRes.fullName, fullName);}
       Get.log("ishladi");
       Get.log(response.body);
+    if(needName == false){
+      ApiService()
+          .salonRegistration(
+        email: phoneNumber,
+        isRegistration: false,
+      )
+          .then((value) {
+        Get.log(value.data!.toJson().toString());
+        if (value.data?.status == 2) {
+          Get.off(() => const BanSalonInfoScreen());
+        } else if (value.data?.bankAccount == null) {
+          Get.off(() =>  RegistrationScreen(
+            phoneNumber: phoneNumber??"",
+            name: "",
+          ));
+        } else if (value.data?.status?.toInt() == 0) {
+          Get.off(() => const SignUpDoneScreen());
+          return;
+        } else {
+          Get.off(() => const MainScreen());
+        }
+      });
+    }else{
       Get.offAll(() => RegistrationScreen(
             phoneNumber: phoneNumber,
             name: '',
-          ));
+          ));}
+    }else{
+      AppRes.showSnackBar("Please! enter true sms code", false);
     }
     // Get.to(()=>MainScreen());
     var s = verifyResponceFromJson(response.body);
@@ -663,6 +689,7 @@ class ApiService {
   Future<Booking> fetchBookingsByDate({
     required String date,
   }) async {
+    Get.log(Uri.parse(ConstRes.fetchSalonBookingHistory).toString());
     final response = await http.post(
       Uri.parse(ConstRes.fetchBookingsByDate),
       headers: {ConstRes.apiKey: ConstRes.apiKeyValue},
@@ -671,13 +698,19 @@ class ApiService {
         ConstRes.date: date,
       },
     );
+    Get.log({
+      ConstRes.salonId_: ConstRes.salonId.toString(),
+    ConstRes.date: date,
+  }.toString());
     final responseJson = jsonDecode(response.body);
+    Get.log(responseJson.toString());
     return Booking.fromJson(responseJson);
   }
 
   Future<Booking> fetchSalonBookingHistory({
     required int start,
   }) async {
+    Get.log(Uri.parse(ConstRes.fetchSalonBookingHistory).toString());
     final response = await http.post(
       Uri.parse(ConstRes.fetchSalonBookingHistory),
       headers: {ConstRes.apiKey: ConstRes.apiKeyValue},
@@ -686,8 +719,10 @@ class ApiService {
         ConstRes.start: start.toString(),
         ConstRes.count: ConstRes.count_.toString(),
       },
+
     );
     final responseJson = jsonDecode(response.body);
+    Get.log(responseJson.toString());
     return Booking.fromJson(responseJson);
   }
 
@@ -700,6 +735,7 @@ class ApiService {
       },
     );
     final responseJson = jsonDecode(response.body);
+    Get.log(responseJson.toString());
     return Booking.fromJson(responseJson);
   }
 
@@ -723,6 +759,7 @@ class ApiService {
       },
     );
     final responseJson = jsonDecode(response.body);
+    Get.log(response.body.toString());
     return request_details.RequestDetails.fromJson(responseJson);
   }
 

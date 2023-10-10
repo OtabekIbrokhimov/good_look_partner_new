@@ -456,7 +456,7 @@ class ItemBookings extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${data.user?.fullname?.capitalize}',
+                    '${data.user?.firstName?.capitalize}',
                     style: kSemiBoldTextStyle.copyWith(
                       fontSize: 18,
                     ),

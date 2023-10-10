@@ -30,7 +30,7 @@ class MessageUserBloc extends Bloc<MessageUserEvent, MessageUserState> {
   void getChatUsers() async {
     await sharePref.init();
     userData = sharePref.getSalon()?.data;
-    firebaseUserIdentity = '${FirebaseRes.sl}${'${userData?.email}'}';
+    firebaseUserIdentity = '${FirebaseRes.sl}${'${userData?.phoneNumber}'}';
     isLoading = true;
     subscription = db
         .collection(FirebaseRes.userChatList)

@@ -73,7 +73,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   void initFireBase() async {
     firebaseDoctorIdentity = conversation.user?.userIdentity ?? '';
-    firebaseUserIdentity = '${FirebaseRes.sl}${'${userData.email}'}';
+    firebaseUserIdentity = '${FirebaseRes.sl}${'${userData.phoneNumber}'}';
 
     documentReceiver = db
         .collection(FirebaseRes.userChatList)

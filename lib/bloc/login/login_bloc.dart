@@ -46,17 +46,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
       return;
     }else{
-      String phoneNumber = "";
-      for (int i = 0; i < phoneNumberTextController.text.length; i++) {
-        if (phoneNumberTextController.text[i] != " ") {
-          phoneNumber += phoneNumberTextController.text[i];
-        }
-      }
+
       SendOtpResponce? sendOtpResponce;
-      sendOtpResponce = await ApiService().otpSent(phoneNumber: phoneNumber);
-      if (sendOtpResponce != null) {
+      sendOtpResponce = await ApiService().otpSent(phoneNumber: '998${phoneNumberTextController.text}');
+      if (sendOtpResponce.status == true) {
+        AppRes.showSnackBar("We sent sms code", true);
         Get.to(SmsCodePage(
-          phone: phoneNumber,
+          phone: '998${phoneNumberTextController.text}',
           needFullName: sendOtpResponce.created ?? false,
         ));
       } else {
@@ -170,19 +166,37 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       add(UpdateEmailLoginEvent());
     }
   }
-
-  void onChangedPinCode(String value) {
+  void onChangedPinCodeWhoutName(String value) {
     if (value.length == 6) {
       needVerify = true;
       add(UpdateEmailLoginEvent());
-    } else {
+    }{
       needVerify = false;
       add(UpdateEmailLoginEvent());
     }
   }
 
-  void checkTime() {
+  void onChangedPinCodeWithName(String value) {
+    if (value.length == 6 && fullNameTextController.text.isNotEmpty) {
+      needVerify = true;
+      add(UpdateEmailLoginEvent());
+    } else{
+      needVerify = false;
+      add(UpdateEmailLoginEvent());
+    }
+  }
+
+  void checkTime(String phone) async {
     if (smsCodeTime < 60) {
+
+      SendOtpResponce? sendOtpResponce;
+      sendOtpResponce = await ApiService().otpSent(phoneNumber: phone);
+      if(sendOtpResponce.status == true){
+        AppRes.showSnackBar("We sent sms code", true);
+      }else{
+        AppRes.showSnackBar("try again", false);
+      }
+
       smsCodeTime = 60;
       needReset = false;
     }
@@ -199,9 +213,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: smsCode,
           phoneNumber: phone,
           needName: needName,
-          fullName: fullName);
+          fullName: fullNameTextController.text);
 
-      if (verifyResponce != null && verifyResponce?.status == true) {}
+      if (verifyResponce == null ) {
+        AppRes.showSnackBar("check sms code", false);
+      }
     }
   }
 }

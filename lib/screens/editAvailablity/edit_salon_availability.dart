@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cutfx_salon/bloc/editavailablity/edit_availability_bloc.dart';
 import 'package:cutfx_salon/model/slot/slot.dart';
+import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
 import 'package:cutfx_salon/screens/registration/signup_salon_availability.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
@@ -259,156 +260,164 @@ class EditSalonAvailabilityWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              ListView.builder(
-                primary: false,
-                itemCount: DateFormat().dateSymbols.WEEKDAYS.length,
-                padding: const EdgeInsets.all(0),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  List<SlotData>? slots = editAvailabilityBloc
-                      .salonSlots[DateFormat().dateSymbols.WEEKDAYS[index]];
-                  return Container(
-                    color: ColorRes.smokeWhite2,
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              DateFormat()
-                                  .dateSymbols
-                                  .WEEKDAYS[index]
-                                  .toUpperCase(),
-                              style: kSemiBoldTextStyle.copyWith(
-                                fontSize: 14,
-                                letterSpacing: 1.5,
-                              ),
-                            ),
-                            const Spacer(),
-                            CustomCircularInkWell(
-                              onTap: () {
-                                if (editAvailabilityBloc.monFriFrom == null ||
-                                    editAvailabilityBloc.monFriTo == null ||
-                                    editAvailabilityBloc.satSunFrom == null ||
-                                    editAvailabilityBloc.satSunTo == null) {
-                                  AppRes.showSnackBar(
-                                      AppLocalizations.of(context)!
-                                          .pleaseCompleteAvailabilityFirst,
-                                      false);
-                                  return;
-                                }
-                                Get.bottomSheet(
-                                  AddSlotDialog(
-                                    nameOfDay: editAvailabilityBloc
-                                        .salonSlots.keys
-                                        .toList()[index],
-                                    onTimeSlotClick: (timeSelect) {
-                                      editAvailabilityBloc.onSlotTimeClick(
-                                          index, timeSelect);
-                                    },
-                                    onClickSubmit: (timeOfDay, slotLimit) {
-                                      editAvailabilityBloc.onAddSlotClick(
-                                          timeOfDay,
-                                          slotLimit,
-                                          editAvailabilityBloc,
-                                          index);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.add,
-                                style: kSemiBoldThemeTextStyle.copyWith(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: slots == null || slots.isEmpty ? 0 : 50,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: slots?.length ?? 0,
-                            itemBuilder: (context, index) {
-                              return Stack(
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    margin: const EdgeInsets.only(
-                                        right: 10, top: 7),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      color: ColorRes.smokeWhite3,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          AppRes.convert24HoursInto12Hours(
-                                            slots?[index].time,
-                                          ),
-                                          style: kBoldThemeTextStyle.copyWith(
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 2,
-                                        ),
-                                        Text(
-                                          '${slots?[index].bookingLimit} ${AppLocalizations.of(context)!.slots}',
-                                          style:
-                                              kRegularEmpressTextStyle.copyWith(
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 6,
-                                    child: CustomCircularInkWell(
-                                      onTap: () {
-                                        editAvailabilityBloc.deleteSlotBooking(
-                                            slots?[index],
-                                            editAvailabilityBloc);
-                                      },
-                                      child: ClipOval(
-                                        child: Transform.rotate(
-                                          angle: 45 * pi / 180,
-                                          child: Container(
-                                            color: ColorRes.charcoal,
-                                            height: 18,
-                                            child: const Image(
-                                              image: AssetImage(
-                                                AssetRes.icPlus_,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+              Center(
+                child: TextButton(
+                  onPressed: (){
+                    Get.to(const AddMasterScreen());
+                  }, child: const Text("Add master"),
+                ),
+              )
+              ///slots
+              // ListView.builder(
+              //   primary: false,
+              //   itemCount: DateFormat().dateSymbols.WEEKDAYS.length,
+              //   padding: const EdgeInsets.all(0),
+              //   shrinkWrap: true,
+              //   scrollDirection: Axis.vertical,
+              //   itemBuilder: (context, index) {
+              //     List<SlotData>? slots = editAvailabilityBloc
+              //         .salonSlots[DateFormat().dateSymbols.WEEKDAYS[index]];
+              //     return Container(
+              //       color: ColorRes.smokeWhite2,
+              //       margin: const EdgeInsets.only(top: 10),
+              //       padding: const EdgeInsets.symmetric(
+              //           horizontal: 15, vertical: 15),
+              //       child: Column(
+              //         children: [
+              //           Row(
+              //             children: [
+              //               Text(
+              //                 DateFormat()
+              //                     .dateSymbols
+              //                     .WEEKDAYS[index]
+              //                     .toUpperCase(),
+              //                 style: kSemiBoldTextStyle.copyWith(
+              //                   fontSize: 14,
+              //                   letterSpacing: 1.5,
+              //                 ),
+              //               ),
+              //               const Spacer(),
+              //               CustomCircularInkWell(
+              //                 onTap: () {
+              //                   if (editAvailabilityBloc.monFriFrom == null ||
+              //                       editAvailabilityBloc.monFriTo == null ||
+              //                       editAvailabilityBloc.satSunFrom == null ||
+              //                       editAvailabilityBloc.satSunTo == null) {
+              //                     AppRes.showSnackBar(
+              //                         AppLocalizations.of(context)!
+              //                             .pleaseCompleteAvailabilityFirst,
+              //                         false);
+              //                     return;
+              //                   }
+              //                   Get.bottomSheet(
+              //                     AddSlotDialog(
+              //                       nameOfDay: editAvailabilityBloc
+              //                           .salonSlots.keys
+              //                           .toList()[index],
+              //                       onTimeSlotClick: (timeSelect) {
+              //                         editAvailabilityBloc.onSlotTimeClick(
+              //                             index, timeSelect);
+              //                       },
+              //                       onClickSubmit: (timeOfDay, slotLimit) {
+              //                         editAvailabilityBloc.onAddSlotClick(
+              //                             timeOfDay,
+              //                             slotLimit,
+              //                             editAvailabilityBloc,
+              //                             index);
+              //                       },
+              //                     ),
+              //                   );
+              //                 },
+              //                 child: Text(
+              //                   AppLocalizations.of(context)!.add,
+              //                   style: kSemiBoldThemeTextStyle.copyWith(
+              //                     fontSize: 15,
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           SizedBox(
+              //             height: slots == null || slots.isEmpty ? 0 : 50,
+              //             child: ListView.builder(
+              //               scrollDirection: Axis.horizontal,
+              //               itemCount: slots?.length ?? 0,
+              //               itemBuilder: (context, index) {
+              //                 return Stack(
+              //                   children: [
+              //                     Container(
+              //                       width: 100,
+              //                       margin: const EdgeInsets.only(
+              //                           right: 10, top: 7),
+              //                       padding: const EdgeInsets.symmetric(
+              //                         horizontal: 10,
+              //                       ),
+              //                       decoration: const BoxDecoration(
+              //                         color: ColorRes.smokeWhite3,
+              //                         borderRadius:
+              //                             BorderRadius.all(Radius.circular(5)),
+              //                       ),
+              //                       child: Column(
+              //                         crossAxisAlignment:
+              //                             CrossAxisAlignment.start,
+              //                         mainAxisAlignment:
+              //                             MainAxisAlignment.center,
+              //                         children: [
+              //                           Text(
+              //                             AppRes.convert24HoursInto12Hours(
+              //                               slots?[index].time,
+              //                             ),
+              //                             style: kBoldThemeTextStyle.copyWith(
+              //                               fontSize: 15,
+              //                             ),
+              //                           ),
+              //                           const SizedBox(
+              //                             height: 2,
+              //                           ),
+              //                           Text(
+              //                             '${slots?[index].bookingLimit} ${AppLocalizations.of(context)!.slots}',
+              //                             style:
+              //                                 kRegularEmpressTextStyle.copyWith(
+              //                               fontSize: 13,
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     Positioned(
+              //                       right: 6,
+              //                       child: CustomCircularInkWell(
+              //                         onTap: () {
+              //                           editAvailabilityBloc.deleteSlotBooking(
+              //                               slots?[index],
+              //                               editAvailabilityBloc);
+              //                         },
+              //                         child: ClipOval(
+              //                           child: Transform.rotate(
+              //                             angle: 45 * pi / 180,
+              //                             child: Container(
+              //                               color: ColorRes.charcoal,
+              //                               height: 18,
+              //                               child: const Image(
+              //                                 image: AssetImage(
+              //                                   AssetRes.icPlus_,
+              //                                 ),
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 );
+              //               },
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         );

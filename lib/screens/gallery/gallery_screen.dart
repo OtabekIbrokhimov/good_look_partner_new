@@ -40,7 +40,7 @@ class GalleryScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ClipOval(
+                        Container(
                           child: Image(
                             image: NetworkImage(
                                 '${ConstRes.itemBaseUrl}${galleryBloc.salon?.data?.images?[0].image ?? ''}'),

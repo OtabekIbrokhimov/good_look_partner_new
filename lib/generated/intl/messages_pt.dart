@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addImages": MessageLookupByLibrary.simpleMessage("Adicionar imagens"),
         "addService": MessageLookupByLibrary.simpleMessage("Adicionar serviço"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Adicionar espaço"),
-        "appName": MessageLookupByLibrary.simpleMessage("Cut.FX"),
+        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
         "appointments": MessageLookupByLibrary.simpleMessage("Compromissos"),
         "apr": MessageLookupByLibrary.simpleMessage("abril"),
         "april": MessageLookupByLibrary.simpleMessage("abril"),

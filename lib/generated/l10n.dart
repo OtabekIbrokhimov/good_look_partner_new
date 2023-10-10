@@ -51,10 +51,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Cut.FX`
+  /// `GOOD LOOK`
   String get appName {
     return Intl.message(
-      'Cut.FX',
+      'GOOD LOOK',
       name: 'appName',
       desc: '',
       args: [],
