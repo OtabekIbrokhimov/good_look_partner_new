@@ -1,4 +1,5 @@
 import 'package:cutfx_salon/model/user/salon.dart';
+import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
 import 'package:cutfx_salon/screens/bookinghistory/booking_history_screen.dart';
 import 'package:cutfx_salon/screens/changePassword/change_password.dart';
 import 'package:cutfx_salon/screens/changelanguage/change_language.dart';
@@ -119,6 +120,13 @@ class _SettingScreenState extends State<SettingScreen> {
                     ItemSettingWidget(
                       title: AppLocalizations.of(context)!.manageServices,
                       onTap: () => Get.to(() => const ManageServicesScreen()),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
+                      title: "Manage masters",
+                      onTap: () => Get.to(() => const AddMasterScreen()),
                     ),
                     const SizedBox(
                       height: 3,

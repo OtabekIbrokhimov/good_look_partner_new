@@ -62,8 +62,8 @@ class ItemManageService extends StatelessWidget {
                                 .deleteService(serviceData);
                           },
                           child: Container(
-                            height: 35,
-                            width: 35,
+                            height: 36,
+                            width: 36,
                             margin: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
@@ -85,7 +85,7 @@ class ItemManageService extends StatelessWidget {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.only(
-                    bottom: 5,
+                    bottom: 2,
                     right: 10,
                     left: 10,
                   ),
@@ -153,55 +153,59 @@ class ItemManageService extends StatelessWidget {
                             ],
                           ),
                           const Spacer(),
-                          Visibility(
-                            visible: isShowFromManage,
-                            child: Row(
-                              children: [
-                                CustomCircularInkWell(
-                                  onTap: () {
-                                    Get.to(
-                                      () => const AddServiceScreen(),
-                                      arguments: serviceData,
-                                    )?.then((value) {
-                                      context
-                                          .read<ManageServiceBloc>()
-                                          .onTapCategory(
-                                              serviceData?.categoryId ?? -1);
-                                    });
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: ColorRes.smokeWhite,
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    margin: const EdgeInsets.only(
-                                        right: 10, bottom: 4),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 5),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.edit,
-                                      style: kRegularTextStyle.copyWith(
-                                        color: ColorRes.themeColor,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                ToggleButton(
-                                  isActive: serviceData?.status == 1,
-                                  onToggleChange: (isActive) {
-                                    ApiService().changeServiceStatus(
-                                      serviceId:
-                                          serviceData?.id.toString() ?? '-1',
-                                      status: isActive ? '1' : '0',
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          )
+
                         ],
                       ),
+                     Row(
+                         mainAxisAlignment: MainAxisAlignment.end,
+                         crossAxisAlignment: CrossAxisAlignment.end,
+                         children:[ Visibility(
+                        visible: isShowFromManage,
+                        child: Row(
+                          children: [
+                            CustomCircularInkWell(
+                              onTap: () {
+                                Get.to(
+                                      () => const AddServiceScreen(),
+                                  arguments: serviceData,
+                                )?.then((value) {
+                                  context
+                                      .read<ManageServiceBloc>()
+                                      .onTapCategory(
+                                      serviceData?.categoryId ?? -1);
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: ColorRes.smokeWhite,
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                margin: const EdgeInsets.only(
+                                    right: 10, bottom: 4),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: Text(
+                                  AppLocalizations.of(context)!.edit,
+                                  style: kRegularTextStyle.copyWith(
+                                    color: ColorRes.themeColor,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            ToggleButton(
+                              isActive: serviceData?.status == 1,
+                              onToggleChange: (isActive) {
+                                ApiService().changeServiceStatus(
+                                  serviceId:
+                                  serviceData?.id.toString() ?? '-1',
+                                  status: isActive ? '1' : '0',
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )]),
                     ],
                   ),
                 ),

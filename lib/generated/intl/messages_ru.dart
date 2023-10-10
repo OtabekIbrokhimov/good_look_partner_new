@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutSalon": MessageLookupByLibrary.simpleMessage("О салоне"),
         "aboutService": MessageLookupByLibrary.simpleMessage("О сервисе"),
@@ -131,12 +130,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Адрес электронной почты"),
         "enterYourBankDetails": MessageLookupByLibrary.simpleMessage(
             "Введите свои банковские реквизиты"),
+        "enterYourDetailsAndCompleteProfileForBetterExperience":
+            MessageLookupByLibrary.simpleMessage(
+                "Для удобства введите свои данные и заполните профиль"),
         "enterYourDetailsAndCompleteYourRegistration":
             MessageLookupByLibrary.simpleMessage(
                 "Введите свои данные и завершите\nрегистрацию"),
         "enterYourEmailAddressOnWhichWeWillSendYouTheLinkToResetThePassword":
             MessageLookupByLibrary.simpleMessage(
                 "Введите адрес электронной почты, на который мы\nвышлем вам ссылку для сброса пароля."),
+        "enterYourOneTimeCode": MessageLookupByLibrary.simpleMessage(
+            "Введите свой одноразовый код"),
         "feb": MessageLookupByLibrary.simpleMessage("февраль"),
         "february": MessageLookupByLibrary.simpleMessage("февраль"),
         "female": MessageLookupByLibrary.simpleMessage("Женский"),
@@ -196,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("Маршировать"),
         "markCompleted":
             MessageLookupByLibrary.simpleMessage("Отметить как выполненное"),
+        "master": MessageLookupByLibrary.simpleMessage("Мастер"),
         "may": MessageLookupByLibrary.simpleMessage("Может"),
         "message": MessageLookupByLibrary.simpleMessage("Сообщение"),
         "messages": MessageLookupByLibrary.simpleMessage("Сообщения"),
@@ -229,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payoutReject":
             MessageLookupByLibrary.simpleMessage("ВыплатаОтклонить"),
         "payouts": MessageLookupByLibrary.simpleMessage("Выплаты"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Номер телефона"),
         "photoShouldBeClear":
             MessageLookupByLibrary.simpleMessage("Фото должно быть четким"),
         "placeBooking":
@@ -255,6 +261,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, введите имя владельца"),
         "pleaseEnterPassword":
             MessageLookupByLibrary.simpleMessage("Пожалуйста введите пароль"),
+        "pleaseEnterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста! Введите номер телефона"),
+        "pleaseEnterPhoneNumberCorrectly": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста! Введите номер телефона правильно"),
         "pleaseEnterPrice":
             MessageLookupByLibrary.simpleMessage("Пожалуйста, введите цену"),
         "pleaseEnterRenterAccountNumber": MessageLookupByLibrary.simpleMessage(
@@ -327,9 +337,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Зарегистрируйте свой магазин у нас, находите клиентов, назначайте встречи и развивайте бизнес."),
         "registration":
             MessageLookupByLibrary.simpleMessage("Постановка на учет"),
+        "registrationWithPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Регистрация по номеру телефона"),
         "requestID":
             MessageLookupByLibrary.simpleMessage("Идентификатор запроса"),
         "requests": MessageLookupByLibrary.simpleMessage("Запросы"),
+        "resendCode":
+            MessageLookupByLibrary.simpleMessage("Отправить код повторно"),
         "reviews": MessageLookupByLibrary.simpleMessage("Отзывы"),
         "salon": MessageLookupByLibrary.simpleMessage("Салон"),
         "salonAddress": MessageLookupByLibrary.simpleMessage("Адрес салона"),
@@ -410,9 +424,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAlreadyExist":
             MessageLookupByLibrary.simpleMessage("Пользователь уже существует"),
         "vacationMode": MessageLookupByLibrary.simpleMessage("Режим отпуска"),
+        "verify": MessageLookupByLibrary.simpleMessage("Проверить"),
         "video": MessageLookupByLibrary.simpleMessage("Видео?"),
         "view": MessageLookupByLibrary.simpleMessage("Вид"),
         "wallet": MessageLookupByLibrary.simpleMessage("Кошелек"),
+        "weSentOtp": MessageLookupByLibrary.simpleMessage(
+            "Мы отправили код подтверждения в OTP для номера телефона, который вы не вводили"),
         "withdraw": MessageLookupByLibrary.simpleMessage("Отзывать"),
         "withdrawDescription": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите вывести всю сумму своего кошелька?"),

@@ -65,7 +65,7 @@ class _SalonDetailsScreenState extends State<SalonDetailsScreen> {
                         TopBarOfSalonDetails(toolbarIsExpand: toolbarIsExpand),
                       ];
                     },
-                    physics: const NeverScrollableScrollPhysics(),
+
                     body: Column(
                       children: [
                         Container(

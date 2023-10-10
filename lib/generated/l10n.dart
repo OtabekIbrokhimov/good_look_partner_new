@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -2642,6 +2641,116 @@ class S {
     return Intl.message(
       'Slots',
       name: 'slots',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent a verification code to OTP for a phone number that you did not enter`
+  String get weSentOtp {
+    return Intl.message(
+      'We have sent a verification code to OTP for a phone number that you did not enter',
+      name: 'weSentOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your one-time code`
+  String get enterYourOneTimeCode {
+    return Intl.message(
+      'Enter your one-time code',
+      name: 'enterYourOneTimeCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify`
+  String get verify {
+    return Intl.message(
+      'Verify',
+      name: 'verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend code`
+  String get resendCode {
+    return Intl.message(
+      'Resend code',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Master`
+  String get master {
+    return Intl.message(
+      'Master',
+      name: 'master',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! Enter phone Number`
+  String get pleaseEnterPhoneNumber {
+    return Intl.message(
+      'Please! Enter phone Number',
+      name: 'pleaseEnterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! Enter phone Number correctly`
+  String get pleaseEnterPhoneNumberCorrectly {
+    return Intl.message(
+      'Please! Enter phone Number correctly',
+      name: 'pleaseEnterPhoneNumberCorrectly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your details and complete profile for better experience`
+  String get enterYourDetailsAndCompleteProfileForBetterExperience {
+    return Intl.message(
+      'Enter your details and complete profile for better experience',
+      name: 'enterYourDetailsAndCompleteProfileForBetterExperience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration with phone number`
+  String get registrationWithPhoneNumber {
+    return Intl.message(
+      'Registration with phone number',
+      name: 'registrationWithPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage masters`
+  String get manage_masters {
+    return Intl.message(
+      'Manage masters',
+      name: 'manage_masters',
       desc: '',
       args: [],
     );

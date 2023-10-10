@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutSalon": MessageLookupByLibrary.simpleMessage("About Salon"),
         "aboutService": MessageLookupByLibrary.simpleMessage("About Service"),
@@ -126,12 +125,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "enterYourBankDetails":
             MessageLookupByLibrary.simpleMessage("Enter Your Bank Details"),
+        "enterYourDetailsAndCompleteProfileForBetterExperience":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter your details and complete profile for better experience"),
         "enterYourDetailsAndCompleteYourRegistration":
             MessageLookupByLibrary.simpleMessage(
                 "Enter your details and complete\nyour registration"),
         "enterYourEmailAddressOnWhichWeWillSendYouTheLinkToResetThePassword":
             MessageLookupByLibrary.simpleMessage(
                 "Enter your email address, on which we will\nsend you the link to reset the password."),
+        "enterYourOneTimeCode":
+            MessageLookupByLibrary.simpleMessage("Enter your one-time code"),
         "feb": MessageLookupByLibrary.simpleMessage("Feb"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
@@ -185,9 +189,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageAwards": MessageLookupByLibrary.simpleMessage("Manage Awards"),
         "manageServices":
             MessageLookupByLibrary.simpleMessage("Manage Services"),
+        "manage_masters":
+            MessageLookupByLibrary.simpleMessage("Manage masters"),
         "mar": MessageLookupByLibrary.simpleMessage("Mar"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "markCompleted": MessageLookupByLibrary.simpleMessage("Mark Completed"),
+        "master": MessageLookupByLibrary.simpleMessage("Master"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "message": MessageLookupByLibrary.simpleMessage("Message"),
         "messages": MessageLookupByLibrary.simpleMessage("Messages"),
@@ -219,6 +226,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payoutHistory": MessageLookupByLibrary.simpleMessage("Payout History"),
         "payoutReject": MessageLookupByLibrary.simpleMessage("PayoutReject"),
         "payouts": MessageLookupByLibrary.simpleMessage("Payouts"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "photoShouldBeClear":
             MessageLookupByLibrary.simpleMessage("Photo should be clear"),
         "placeBooking": MessageLookupByLibrary.simpleMessage("Place Booking"),
@@ -244,6 +252,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter  holders name"),
         "pleaseEnterPassword":
             MessageLookupByLibrary.simpleMessage("Please enter password"),
+        "pleaseEnterPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Please! Enter phone Number"),
+        "pleaseEnterPhoneNumberCorrectly": MessageLookupByLibrary.simpleMessage(
+            "Please! Enter phone Number correctly"),
         "pleaseEnterPrice":
             MessageLookupByLibrary.simpleMessage("Please enter price"),
         "pleaseEnterRenterAccountNumber": MessageLookupByLibrary.simpleMessage(
@@ -314,8 +326,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Register your shop with us, find customers, manage appointments and grow business."),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
+        "registrationWithPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Registration with phone number"),
         "requestID": MessageLookupByLibrary.simpleMessage("Request ID"),
         "requests": MessageLookupByLibrary.simpleMessage("Requests"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "salon": MessageLookupByLibrary.simpleMessage("Salon"),
         "salonAddress": MessageLookupByLibrary.simpleMessage("Salon Address"),
@@ -390,9 +405,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAlreadyExist":
             MessageLookupByLibrary.simpleMessage("User Already Exist"),
         "vacationMode": MessageLookupByLibrary.simpleMessage("Vacation Mode"),
+        "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "video": MessageLookupByLibrary.simpleMessage("Video?"),
         "view": MessageLookupByLibrary.simpleMessage("View"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
+        "weSentOtp": MessageLookupByLibrary.simpleMessage(
+            "We have sent a verification code to OTP for a phone number that you did not enter"),
         "withdraw": MessageLookupByLibrary.simpleMessage("Withdraw"),
         "withdrawDescription": MessageLookupByLibrary.simpleMessage(
             "Do you really want to withdraw all amount of your wallet?"),
