@@ -17,9 +17,9 @@ import 'package:get/get.dart';
 class ItemManageService extends StatelessWidget {
   final ServiceData? serviceData;
   final bool isShowFromManage;
-
+  final bool needEdit;
   const ItemManageService(
-      {Key? key, required this.serviceData, required this.isShowFromManage})
+      {Key? key, required this.serviceData, required this.isShowFromManage,  this.needEdit = true})
       : super(key: key);
 
   @override
@@ -54,7 +54,7 @@ class ItemManageService extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Visibility(
-                        visible: isShowFromManage,
+                        visible: isShowFromManage&&needEdit,
                         child: CustomCircularInkWell(
                           onTap: () {
                             context
@@ -160,7 +160,7 @@ class ItemManageService extends StatelessWidget {
                          mainAxisAlignment: MainAxisAlignment.end,
                          crossAxisAlignment: CrossAxisAlignment.end,
                          children:[ Visibility(
-                        visible: isShowFromManage,
+                        visible: isShowFromManage&&needEdit,
                         child: Row(
                           children: [
                             CustomCircularInkWell(
