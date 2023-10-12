@@ -12,6 +12,8 @@ class CategoryItemClickEvent extends ManageServiceEvent {
 
 class CategoryAllItemClickEvent extends ManageServiceEvent {}
 
+class TakeIdEvent extends ManageServiceEvent {}
+
 class DeleteItemClickEvent extends ManageServiceEvent {
   final int serviceId;
 

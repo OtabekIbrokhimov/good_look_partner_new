@@ -266,7 +266,7 @@ class ToolBarWidget extends StatelessWidget {
           children: [
             CustomCircularInkWell(
               onTap: () {
-                Get.back();
+                Get.back(result: "ishladi");
               },
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

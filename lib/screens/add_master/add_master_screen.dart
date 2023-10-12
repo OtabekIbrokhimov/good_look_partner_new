@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:cutfx_salon/bloc/edit/edit_profile_bloc.dart';
-import 'package:cutfx_salon/bloc/manageservices/manage_service_bloc.dart';
+import 'package:cutfx_salon/screens/add_master/add_time_screen.dart';
+import 'package:cutfx_salon/screens/add_master/choose_service_screen.dart';
 import 'package:cutfx_salon/screens/main/main_screen.dart';
-import 'package:cutfx_salon/screens/manageServices/item_manage_service.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
@@ -14,9 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
-import '../addService/add_service_screen.dart';
-import '../manageServices/tab_bar_of_manage_service.dart';
-
 class AddMasterScreen extends StatelessWidget {
   const AddMasterScreen({Key? key}) : super(key: key);
 
@@ -24,25 +21,28 @@ class AddMasterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => EditProfileBloc(),
-        child: Scaffold(
-            body:SingleChildScrollView(child:  Column(children: [
-
-              BlocBuilder<EditProfileBloc, EditProfileState>(
-                builder: (context, state) {
-                  EditProfileBloc editProfileBloc = context.read<EditProfileBloc>();
-                  return Container(
-                      height: 340,
-                      child:Column(
-                        children: [
-                          Container(
-                            color: ColorRes.smokeWhite,
-                            width: double.infinity,
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: SafeArea(
-                              bottom: false,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+        child: BlocBuilder<EditProfileBloc, EditProfileState>(
+          builder: (context, state) {
+            EditProfileBloc editProfileBloc = context.read<EditProfileBloc>();
+            editProfileBloc.takeAllInformation();
+            return Scaffold(
+              body: ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: [
+                    SizedBox(
+                        height: Get.height - 50,
+                        child: Column(
+                          children: [
+                            Container(
+                              color: ColorRes.smokeWhite,
+                              width: double.infinity,
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: SafeArea(
+                                bottom: false,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
                                   CustomCircularInkWell(
                                     onTap: () {
                                       Get.back();
@@ -116,19 +116,17 @@ class AddMasterScreen extends StatelessWidget {
                                                 imagePadding: 5,
                                                 bgColor: ColorRes.charcoal50,
                                               ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-
-                          Expanded(
-                            child: SingleChildScrollView(
+                            SingleChildScrollView(
                               physics: const NeverScrollableScrollPhysics(),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -138,134 +136,103 @@ class AddMasterScreen extends StatelessWidget {
                                   children: [
                                     TextWithTextFieldSmokeWhiteWidget(
                                       title: "Full name",
-                                      controller:
-                                      editProfileBloc.fullNameTextController,
+                                      controller: editProfileBloc
+                                          .fullNameTextController,
                                     ),
-
                                   ],
                                 ),
                               ),
                             ),
-                          ),
-
-                        ],
-                      ));
-                },
-              ),
-              SizedBox(
-                  height: 300,
-                  width: Get.width,
-                  child:   BlocProvider(
-                    create: (context) => ManageServiceBloc(),
-                    child: Scaffold(
-                      body: Column(
-                        children: [
-                          const TabBarOfManageServiceWidget(),
-                          Expanded(
-                            child: BlocBuilder<ManageServiceBloc, ManageServiceState>(
-                              builder: (context, state) {
-                                if (state is LoadingServiceState) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(
-                                      color: ColorRes.themeColor,
-                                    ),
-                                  );
-                                }
-                                if (state is ServiceDataFoundState) {
-                                  return ListView.builder(
-                                    itemCount: state.services?.length ?? 0,
-                                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                                    itemBuilder: (context, index) => ItemManageService(
-                                      serviceData: state.services?[index],
-                                      isShowFromManage: true,
-                                      needEdit: false,
-                                    ),
-                                  );
-                                }
-                                return const DataNotFound();
+                            EditWidget(
+                              title: "Edit service",
+                              onTapEdit: () async {
+                                List<int> items = await Get.to(
+                                    () => const ChooseServiceScreen(),
+                                    arguments: editProfileBloc.ids);
+                                Get.log(items.toString());
+                                editProfileBloc.takeIds(items);
                               },
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [ Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,),
-                  child: SafeArea(
-                    top: false,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xff62B654),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width:150,
-                      height: 50,
-                      child: TextButton(
-                        style: const ButtonStyle(
-                        ),
-                        onPressed: () {
-                        },
-                        child: const Text(
-                          'Free time',
-                          style: kRegularWhiteTextStyle,
-                        ),
-                      ),
-                    ),
-                  ),
-                ), Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,),
-                  child: SafeArea(
-                    top: false,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffFF6C6C),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width:150,
-                      height: 50,
-                      child: TextButton(
-
-                        onPressed: () {
-                        },
-                        child: Text(
-                          'Work time',
-                          style: kRegularWhiteTextStyle,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),],),
-
-              BlocBuilder<EditProfileBloc, EditProfileState>(
-                  builder: (context, state) {
-                    EditProfileBloc editProfileBloc = context.read<EditProfileBloc>();
-                    return  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: SafeArea(
-                        top: false,
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 55,
-                          child: TextButton(
-                            style: kButtonThemeStyle,
-                            onPressed: () {
-                              editProfileBloc.add(SubmitEditProfileEvent());
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.submit,
-                              style: kRegularWhiteTextStyle,
+                            EditWidget(
+                              title: "Edit time",
+                              onTapEdit: () {
+                                Get.to(const AddTimeScreen());
+                              },
                             ),
-                          ),
-                        ),
-                      ),
-                    );}),
+                            SizedBox(height: Get.width / 2),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              child: SafeArea(
+                                top: false,
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  height: 55,
+                                  child: TextButton(
+                                    style: kButtonThemeStyle,
+                                    onPressed: () {
+                                      editProfileBloc.createMaster();
+                                    },
+                                    child: Text(
+                                      AppLocalizations.of(context)!.submit,
+                                      style: kRegularWhiteTextStyle,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ))
+                  ]),
+            );
+          },
+        ));
+  }
+}
 
-            ]))),);
+class EditWidget extends StatelessWidget {
+  final String title;
+  final Function onTapEdit;
+
+  const EditWidget({
+    super.key,
+    required this.title,
+    required this.onTapEdit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            title,
+            style: kBoldThemeTextStyle,
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: BgRoundImageWidget(
+                image: AssetRes.icEdit,
+                onTap: () {
+                  onTapEdit();
+                },
+                height: 30,
+                width: 30,
+                imagePadding: 5,
+                bgColor: ColorRes.charcoal50,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
   }
 }

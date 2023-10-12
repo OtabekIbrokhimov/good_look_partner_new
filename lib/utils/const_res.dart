@@ -57,7 +57,7 @@ class ConstRes {
   static const String editEmployee = '${baseUrl}staff/editStaff';
   static const String deleteEmployee = '${baseUrl}staff/deleteStaff';
   static const String getEmployeesList = '${baseUrl}staff/fetchActiveStaffList';
-
+  static const String fetchMasterList = '${baseUrl}staff/fetchActiveStaffList';
   static String termsOfUseUrl = baseUrl.replaceAll('api/', 'termsOfUse');
   static String privacyPolicyUrl = baseUrl.replaceAll('api/', 'privacypolicy');
 
@@ -113,6 +113,11 @@ class ConstRes {
   static const String count = 'count';
   static const String date = 'date';
   static const String month = 'month';
+  static const String fullName = 'full_name';
+  static const String services = 'services';
+  static const String workTime = 'worktime';
+  static const String photo = 'photo';
+  static const String salonid = 'salon_id';
   static const String year = 'year';
   static const String completionOtp = 'completion_otp';
   static const String userId = 'user_id';

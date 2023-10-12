@@ -76,6 +76,7 @@ class ItemSalonDetailsService extends StatelessWidget {
             padding: const EdgeInsets.all(0),
             itemBuilder: (context, index) {
               return ItemManageService(
+                whenSelected: (c) {},
                 serviceData: ServiceData.fromJson(
                   categories?.services?[index].toJson(),
                 ),

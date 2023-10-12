@@ -1,19 +1,12 @@
-import 'dart:math';
-
 import 'package:cutfx_salon/bloc/editavailablity/edit_availability_bloc.dart';
-import 'package:cutfx_salon/model/slot/slot.dart';
-import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
-import 'package:cutfx_salon/screens/registration/signup_salon_availability.dart';
-import 'package:cutfx_salon/utils/app_res.dart';
+import 'package:cutfx_salon/screens/add_master/master_list_screen.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
-import 'package:cutfx_salon/utils/custom/custom_widget.dart';
 import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class EditSalonAvailabilityWidget extends StatelessWidget {
   const EditSalonAvailabilityWidget({Key? key}) : super(key: key);
@@ -263,7 +256,7 @@ class EditSalonAvailabilityWidget extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: (){
-                    Get.to(const AddMasterScreen());
+                    Get.to(() => const MasterListScreen());
                   }, child: const Text("Add master"),
                 ),
               )

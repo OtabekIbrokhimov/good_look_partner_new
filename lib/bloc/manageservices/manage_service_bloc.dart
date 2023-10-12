@@ -7,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 part 'manage_service_event.dart';
-
 part 'manage_service_state.dart';
 
 class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
@@ -15,6 +14,11 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
     on<FetchedCategoryDataEvent>((event, emit) {
       emit(FetchCategoriesState());
     });
+
+    on<TakeIdEvent>((event, emit) {
+      emit(TakeIdState());
+    });
+
     on<CategoryItemClickEvent>((event, emit) async {
       emit(LoadingServiceState());
       services = await ApiService()
@@ -53,7 +57,6 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
         ),
       );
     });
-
     fetchCategories();
   }
 
@@ -62,7 +65,6 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
 
   void fetchCategories() async {
     categories = await ApiService().fetchSalonCategories();
-
     add(FetchedCategoryDataEvent());
     add(CategoryAllItemClickEvent());
   }
@@ -80,5 +82,29 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
   void deleteService(ServiceData? serviceData) {
     this.serviceData = serviceData;
     add(DeleteItemClickEvent(serviceData?.id ?? -1));
+  }
+
+  List<int> ids = [];
+
+  void takeFirstIds(List<int> id) {
+    ids = id;
+    add(TakeIdEvent());
+  }
+
+  void takeIds(int id) {
+    Get.log(id.toString() + "manabu");
+
+    ids.isEmpty ? {ids.add(id), ids.add(id)} : {};
+    for (int i = 0; i < ids.length; i++) {
+      if (ids[i] == id) {
+        ids.removeAt(i);
+        Get.log(ids.toString());
+      } else {
+        ids.add(id);
+        Get.log(ids.toString());
+      }
+    }
+    add(TakeIdEvent());
+    Get.log(ids.toString());
   }
 }

@@ -1,5 +1,5 @@
 import 'package:cutfx_salon/model/user/salon.dart';
-import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
+import 'package:cutfx_salon/screens/add_master/master_list_screen.dart';
 import 'package:cutfx_salon/screens/bookinghistory/booking_history_screen.dart';
 import 'package:cutfx_salon/screens/changePassword/change_password.dart';
 import 'package:cutfx_salon/screens/changelanguage/change_language.dart';
@@ -111,7 +111,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     ItemSettingWidget(
                       title:
-                          AppLocalizations.of(context)!.editAvailabilitySlots,
+                      AppLocalizations.of(context)!.editAvailabilitySlots,
                       onTap: () => Get.to(() => const EditAvailabilityScreen()),
                     ),
                     const SizedBox(
@@ -126,7 +126,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     ItemSettingWidget(
                       title: "Manage masters",
-                      onTap: () => Get.to(() => const AddMasterScreen()),
+                      onTap: () {
+                        Get.to(() => const MasterListScreen());
+                      },
                     ),
                     const SizedBox(
                       height: 3,
@@ -170,7 +172,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.termsOfUse,
                       onTap: () {
                         Get.to(
-                          () => const WebViewScreen(),
+                              () => const WebViewScreen(),
                           arguments: AppLocalizations.of(context)!.termsOfUse,
                         );
                       },
@@ -182,9 +184,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.privacyPolicy,
                       onTap: () {
                         Get.to(
-                          () => const WebViewScreen(),
+                              () => const WebViewScreen(),
                           arguments:
-                              AppLocalizations.of(context)!.privacyPolicy,
+                          AppLocalizations.of(context)!.privacyPolicy,
                         );
                       },
                     ),
@@ -195,7 +197,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.changeLanguage,
                       onTap: () {
                         Get.to(
-                          () => const ChangeLanguageScreen(),
+                              () => const ChangeLanguageScreen(),
                         );
                       },
                     ),
@@ -230,7 +232,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ConfirmationBottomSheet(
                             title: AppLocalizations.of(context)!.logOut,
                             description:
-                                AppLocalizations.of(context)!.logoutDec,
+                            AppLocalizations.of(context)!.logoutDec,
                             buttonText: AppLocalizations.of(context)!.continue_,
                             onButtonClick: () async {
                               showDialog(
@@ -260,9 +262,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         Get.bottomSheet(
                           ConfirmationBottomSheet(
                             title:
-                                AppLocalizations.of(context)!.deleteMyAccount,
+                            AppLocalizations.of(context)!.deleteMyAccount,
                             description:
-                                AppLocalizations.of(context)!.deleteDesc,
+                            AppLocalizations.of(context)!.deleteDesc,
                             buttonText: AppLocalizations.of(context)!.continue_,
                             onButtonClick: () {
                               AppRes.showCustomLoader();

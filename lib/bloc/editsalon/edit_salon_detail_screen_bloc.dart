@@ -177,7 +177,7 @@ class EditSalonDetailBloc
 
   void onTapFetchLocation() {
     Get.to(
-      const SelectLocationScreen(),
+      () => const SelectLocationScreen(),
     )?.then((value) {
       latLng = value;
       add(FetchLocationEvent());

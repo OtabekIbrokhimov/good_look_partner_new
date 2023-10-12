@@ -29,7 +29,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   TextEditingController emailAddressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   LoginBloc() : super(LoginInitial()) {
     on<LoginEvent>((event, emit) {});
@@ -51,10 +50,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       sendOtpResponce = await ApiService().otpSent(phoneNumber: '998${phoneNumberTextController.text}');
       if (sendOtpResponce.status == true) {
         AppRes.showSnackBar("We sent sms code", true);
-        Get.to(SmsCodePage(
-          phone: '998${phoneNumberTextController.text}',
-          needFullName: sendOtpResponce.created ?? false,
-        ));
+        Get.to(() => SmsCodePage(
+              phone: '998${phoneNumberTextController.text}',
+              needFullName: sendOtpResponce?.created ?? false,
+            ));
       } else {
         AppRes.showSnackBar("please! try again", false);
       }

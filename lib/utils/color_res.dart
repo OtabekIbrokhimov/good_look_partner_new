@@ -46,4 +46,5 @@ class ColorRes {
   static const mistyRose = Color(0xffFFEAEA);
   static const panache = Color(0xffF2FAF1);
   static const apple = Color(0xff57BC46);
+  static const grey = Color(0xffd9d9d9);
 }

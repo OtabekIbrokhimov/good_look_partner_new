@@ -15,6 +15,7 @@ import 'package:cutfx_salon/model/rest/rest_response.dart';
 import 'package:cutfx_salon/model/review/salon_review.dart';
 import 'package:cutfx_salon/model/service/services.dart' as services;
 import 'package:cutfx_salon/model/setting/setting.dart';
+import 'package:cutfx_salon/model/status_message.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/model/user/salon_user.dart';
 import 'package:cutfx_salon/model/wallet/wallet_statement.dart';
@@ -22,13 +23,14 @@ import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+
+import '../model/calendar/calendar_date.dart';
+import '../model/masters/master_responce.dart';
 import '../model/otp/otp_request.dart';
 import '../model/otp/otp_responce.dart';
 import '../model/otp/verify_response.dart';
-import '../model/otp/verufy_request.dart';
 import '../screens/ban/salon_ban_screen.dart';
 import '../screens/main/main_screen.dart';
 import '../screens/registration/registration_screen.dart';
@@ -86,13 +88,63 @@ class ApiService {
     return Salon.fromJson(responseJson);
   }
 
+  Future<StatusMessage> createMaster({
+    required String fullName,
+    required List<CalendarDates> worktime,
+    required List<int> services,
+    String? salonId,
+    File? ownerPhoto,
+    String? status,
+  }) async {
+    var request = http.MultipartRequest(
+      ConstRes.aPost,
+      Uri.parse(ConstRes.createEmployee),
+    );
+
+    request.headers.addAll({
+      ConstRes.apiKey: ConstRes.apiKeyValue,
+      "Accept": "application/json",
+    });
+    request.fields['fullname'] = fullName;
+    request.fields[ConstRes.salonid] = "11";
+    request.fields[ConstRes.services] = services.toString();
+    request.fields[ConstRes.salonId_] = salonId ?? "";
+    request.fields[ConstRes.status] = status ?? "";
+    request.fields['worktime'] = CalendarDates.encode(worktime);
+    // for (int i = 0; i < worktime.length; i++) {
+    //   request.fields["worktime"] = worktime[i].().toString();
+    // }
+    if (ownerPhoto != null) {
+      request.files.add(
+        http.MultipartFile(
+          ConstRes.photo,
+          ownerPhoto.readAsBytes().asStream(),
+          ownerPhoto.lengthSync(),
+          filename: ownerPhoto.path.split("/").last,
+        ),
+      );
+    }
+
+    Get.log(Uri.parse(ConstRes.salonRegistration).toString());
+    Get.log("request ${request.fields.toString()}--file");
+    Get.log("request ${request.files.toString()}--file");
+    var response = await request.send();
+    Get.log("${response.statusCode}status code");
+    var respStr = await response.stream.bytesToString();
+    final responseJson = jsonDecode(respStr);
+    Get.log("$responseJson bu json ---");
+    return StatusMessage.fromJson(responseJson);
+  }
+
   //my code
   Future<SendOtpResponce> otpSent({
     required String phoneNumber,
   }) async {
     SharePref sharePref = await SharePref().init();
     SendOtp request = SendOtp(
-      phoneNumber: phoneNumber, userType: "partner",);
+      phoneNumber: phoneNumber,
+      userType: "partner",
+    );
     Get.log(request.toJson().toString());
     Get.log(ConstRes.sentForOtp.toString());
     sharePref.getString(ConstRes.deviceToken) ?? 'q';
@@ -110,6 +162,39 @@ class ApiService {
     final responseJson = jsonDecode(response.body);
     Get.log(response.body.toString());
     return SendOtpResponce.fromJson(responseJson);
+  }
+
+  Future<StatusMessage> deleteMaster({
+    required String id,
+  }) async {
+    var response = await http.post(
+      Uri.parse(ConstRes.deleteEmployee),
+      body: {"id": id},
+      headers: {
+        ConstRes.apiKey: ConstRes.apiKeyValue,
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.log(response.body);
+    }
+    final responseJson = jsonDecode(response.body);
+    Get.log(response.body.toString());
+    return StatusMessage.fromJson(responseJson);
+  }
+
+  Future<MasterList> fetchMasterList(String id) async {
+    Get.log({"salon_id": id}.toString());
+    Get.log(Uri.parse(ConstRes.fetchMasterList).toString());
+    final response =
+        await http.post(Uri.parse(ConstRes.fetchMasterList), headers: {
+      "Accept": "application/json",
+      ConstRes.apiKey: ConstRes.apiKeyValue,
+    }, body: {
+      "salon_id": id
+    });
+    Get.log(response.body);
+    final responseJson = jsonDecode(response.body);
+    return MasterList.fromJson(responseJson);
   }
 
   Future<VerifyResponce> verifyOTP(
@@ -132,7 +217,8 @@ class ApiService {
     SharePref sharePref = await SharePref().init();
     Get.log(request.toString());
     Get.log(ConstRes.verifyOtp.toString());
-    var response = await http.post(Uri.parse(ConstRes.verifyOtp), body: request, headers: {
+    var response =
+        await http.post(Uri.parse(ConstRes.verifyOtp), body: request, headers: {
       "Accept": "application/json",
       ConstRes.apiKey: ConstRes.apiKeyValue,
     });
@@ -145,38 +231,40 @@ class ApiService {
         response.headers.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       sharePref.saveString(AppRes.phoneNumber, phoneNumber);
-      if(fullName.isNotEmpty){
-      sharePref.saveString(AppRes.fullName, fullName);}
+      if (fullName.isNotEmpty) {
+        sharePref.saveString(AppRes.fullName, fullName);
+      }
       Get.log("ishladi");
       Get.log(response.body);
-    if(needName == false){
-      ApiService()
-          .salonRegistration(
-        email: phoneNumber,
-        isRegistration: false,
-      )
-          .then((value) {
-        Get.log(value.data!.toJson().toString());
-        if (value.data?.status == 2) {
-          Get.off(() => const BanSalonInfoScreen());
-        } else if (value.data?.bankAccount == null) {
-          Get.off(() =>  RegistrationScreen(
-            phoneNumber: phoneNumber??"",
-            name: "",
-          ));
-        } else if (value.data?.status?.toInt() == 0) {
-          Get.off(() => const SignUpDoneScreen());
-          return;
-        } else {
-          Get.off(() => const MainScreen());
-        }
-      });
-    }else{
-      Get.offAll(() => RegistrationScreen(
-            phoneNumber: phoneNumber,
-            name: '',
-          ));}
-    }else{
+      if (needName == false) {
+        ApiService()
+            .salonRegistration(
+          email: phoneNumber,
+          isRegistration: false,
+        )
+            .then((value) {
+          Get.log(value.data!.toJson().toString());
+          if (value.data?.status == 2) {
+            Get.off(() => const BanSalonInfoScreen());
+          } else if (value.data?.bankAccount == null) {
+            Get.off(() => RegistrationScreen(
+                  phoneNumber: phoneNumber,
+                  name: "",
+                ));
+          } else if (value.data?.status?.toInt() == 0) {
+            Get.off(() => const SignUpDoneScreen());
+            return;
+          } else {
+            Get.off(() => const MainScreen());
+          }
+        });
+      } else {
+        Get.offAll(() => RegistrationScreen(
+              phoneNumber: phoneNumber,
+              name: '',
+            ));
+      }
+    } else {
       AppRes.showSnackBar("Please! enter true sms code", false);
     }
     // Get.to(()=>MainScreen());
@@ -184,7 +272,6 @@ class ApiService {
     Get.log("${s}bu json");
     return s;
   }
-
 
   Future<Setting> fetchGlobalSettings() async {
     final response = await http.post(
@@ -342,12 +429,6 @@ class ApiService {
   Future<Salon> deleteBookingSlots({
     required int slotId,
   }) async {
-    final response =
-        await http.post(Uri.parse(ConstRes.deleteBookingSlots), headers: {
-      ConstRes.apiKey: ConstRes.apiKeyValue,
-    }, body: {
-      ConstRes.slotId: slotId.toString(),
-    });
     Salon salon = await fetchMySalonDetails();
     return salon;
   }
@@ -700,8 +781,8 @@ class ApiService {
     );
     Get.log({
       ConstRes.salonId_: ConstRes.salonId.toString(),
-    ConstRes.date: date,
-  }.toString());
+      ConstRes.date: date,
+    }.toString());
     final responseJson = jsonDecode(response.body);
     Get.log(responseJson.toString());
     return Booking.fromJson(responseJson);
@@ -719,7 +800,6 @@ class ApiService {
         ConstRes.start: start.toString(),
         ConstRes.count: ConstRes.count_.toString(),
       },
-
     );
     final responseJson = jsonDecode(response.body);
     Get.log(responseJson.toString());

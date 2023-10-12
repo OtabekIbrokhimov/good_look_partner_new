@@ -51,6 +51,7 @@ class ManageServicesScreen extends StatelessWidget {
                       itemCount: state.services?.length ?? 0,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       itemBuilder: (context, index) => ItemManageService(
+                        whenSelected: (i) {},
                         serviceData: state.services?[index],
                         isShowFromManage: true,
                       ),

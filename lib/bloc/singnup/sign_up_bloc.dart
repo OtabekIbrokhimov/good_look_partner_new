@@ -32,7 +32,6 @@ import 'package:intl/intl.dart';
 import '../../model/user/salon.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  final firebase_auth.FirebaseAuth _auth = firebase_auth.FirebaseAuth.instance;
   SharePref? sharePref;
   Salon? user;
   String? title;
@@ -175,7 +174,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   void onFetchLocationClick(SignUpBloc signUpBloc) {
     Get.to(
-      const SelectLocationScreen(),
+      () => const SelectLocationScreen(),
     )?.then((value) {
       latLng = value;
       signUpBloc.add(SignUpLocationClickEvent(latLng));
@@ -286,7 +285,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     AppRes.showCustomLoader();
     await updateSalonAvailability();
     user = await ApiService().addBookingSlots(
-        '${0.convert2Digits(timeOfDay?.hour)}${0.convert2Digits(timeOfDay?.minute)}',
+        '${0.convert2Digits(timeOfDay.hour)}${0.convert2Digits(timeOfDay.minute)}',
         weekDay.toString(),
         slotLimit.toString());
     AppRes.hideCustomLoaderWithBack();

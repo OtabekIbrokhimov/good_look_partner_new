@@ -7,3 +7,5 @@ class FetchUserProfileEvent extends EditProfileEvent {}
 class SubmitEditProfileEvent extends EditProfileEvent {}
 
 class ImageSelectClickEvent extends EditProfileEvent {}
+
+class TakeIdsEvent extends EditProfileEvent {}

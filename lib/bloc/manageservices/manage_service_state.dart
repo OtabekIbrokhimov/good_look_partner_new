@@ -8,6 +8,8 @@ class FetchCategoriesState extends ManageServiceState {}
 
 class LoadingServiceState extends ManageServiceState {}
 
+class TakeIdState extends ManageServiceState {}
+
 class ServiceDataFoundState extends ManageServiceState {
   final List<ServiceData>? services;
 
