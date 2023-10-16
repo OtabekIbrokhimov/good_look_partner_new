@@ -12,6 +12,9 @@ part 'manage_service_state.dart';
 class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
   ManageServiceBloc() : super(ManageServiceInitial()) {
     on<FetchedCategoryDataEvent>((event, emit) {
+      if (Get.arguments != null) {
+        takeFirstIds(Get.arguments);
+      }
       emit(FetchCategoriesState());
     });
 
@@ -87,13 +90,11 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
   List<int> ids = [];
 
   void takeFirstIds(List<int> id) {
+    Get.log(id.toString());
     ids = id;
-    add(TakeIdEvent());
   }
 
   void takeIds(int id) {
-    Get.log(id.toString() + "manabu");
-
     ids.isEmpty ? {ids.add(id), ids.add(id)} : {};
     for (int i = 0; i < ids.length; i++) {
       if (ids[i] == id) {
@@ -105,6 +106,7 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
       }
     }
     add(TakeIdEvent());
+    add(CategoryAllItemClickEvent());
     Get.log(ids.toString());
   }
 }

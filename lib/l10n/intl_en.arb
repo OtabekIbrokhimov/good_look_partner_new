@@ -1,5 +1,5 @@
 {
-  "appName": "GOOD LOOK",
+  "appName": "Cut.FX",
   "salon": "Salon",
   "premiumBeautyServices": "Premium Beauty Services",
   "registerYourShopWithUsAndHaveValuableLeads": "Register your shop with us and\nhave valuable leads",
@@ -155,7 +155,7 @@
   "pleaseEnterSalonOwnerName": "Please enter salon owner name",
   "pleaseSelectOwnerImage": "Please select owner image",
   "pleaseEnterSalonName": "Please enter salon name",
-  "pleaseEnterEmailAddress": "Please enter email address",
+  "pleaseEnterEmailAddress": "Please enter phone number",
   "pleaseEnterPassword": "Please enter password",
   "pleaseEnterConfirmPassword": "Please enter confirm password",
   "passwordDoesNotMatch": "Password does not match",
@@ -257,8 +257,10 @@
   "doYouReallyWantToDeleteThisSlot": "Do you really want to delete this slot?",
   "deleteSlot": "Delete Slot",
   "editAvailabilitySlots": "Edit Availability & Slots",
-  "slots": "Slots",
-
+   "slots": "Slots",
+    "enterYourDetailsAndCompleteProfileForBetterExperience":"Enter your details end complete profile for better experience",
+    "emailRegistration":"Email Registration",
+    "fullName":"Full Name",
     "phoneNumber":"Phone Number",
     "weSentOtp":"We have sent a verification code to OTP for a phone number that you did not enter",
     "enterYourOneTimeCode":"Enter your one-time code",
@@ -266,10 +268,5 @@
     "resendCode":"Resend code",
     "master":"Master",
     "pleaseEnterPhoneNumber":"Please! Enter phone Number",
-    "pleaseEnterPhoneNumberCorrectly":"Please! Enter phone Number correctly",
-    "enterYourDetailsAndCompleteProfileForBetterExperience":"Enter your details and complete profile for better experience",
-    "registrationWithPhoneNumber":"Registration with phone number",
-
-
-     "manage_masters":"Manage masters"
+    "pleaseEnterPhoneNumberCorrectly":"Please! Enter phone Number correctly"
 }

@@ -5,3 +5,5 @@ abstract class AddServiceEvent {}
 class CategoryDataFetchedEvent extends AddServiceEvent {}
 
 class AddTimeEvent extends AddServiceEvent {}
+
+class UpdateTimeEvent extends AddServiceEvent {}

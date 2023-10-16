@@ -21,7 +21,7 @@ class ChooseServiceScreen extends StatelessWidget {
             builder: (context, state) {
           ManageServiceBloc manageServiceBloc =
               context.watch<ManageServiceBloc>();
-          // manageServiceBloc.takeFirstIds(Get.arguments);
+
           return Scaffold(
               body: ListView(shrinkWrap: true, children: [
             const ToolBarWidget(
@@ -60,7 +60,6 @@ class ChooseServiceScreen extends StatelessWidget {
                                 list: manageServiceBloc.ids,
                                 whenSelected: (v) {
                                   manageServiceBloc.takeIds(v);
-                                  Get.log("ishla davay");
                                 },
                               ),
                             );

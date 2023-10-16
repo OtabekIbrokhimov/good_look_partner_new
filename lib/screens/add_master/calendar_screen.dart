@@ -1,5 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:cutfx_salon/bloc/addmastertime/add_master_time_block.dart';
+import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,8 @@ class CalendarScreen extends StatelessWidget {
       create: (context) => AddMasterTimeBlock(),
       child: BlocBuilder<AddMasterTimeBlock, AddMasterTimeState>(
         builder: (context, state) {
-          AddMasterTimeBlock addtime = context.read<AddMasterTimeBlock>();
-          if (Get.arguments != null) addtime.pickTimes(Get.arguments);
+          AddMasterTimeBlock addtime = context.watch<AddMasterTimeBlock>();
+          Get.arguments != null? addtime.pickTimes(Get.arguments):{};
           return Scaffold(
             backgroundColor: ColorRes.smokeWhite,
             body: Column(
@@ -83,8 +84,11 @@ class CalendarScreen extends StatelessWidget {
                   ],
                 ),
                 CalendarDatePicker2(
+
                   config: CalendarDatePicker2Config(
                     calendarType: CalendarDatePicker2Type.multi,
+                    selectedRangeHighlightColor: ColorRes.fountainBlue,
+selectedDayHighlightColor: ColorRes.themeColor,
                     disableModePicker: true,
                   ),
                   value: addtime.datas,

@@ -1,15 +1,15 @@
 class MasterList {
   bool? status;
-  List<Data>? data;
+  List<Master>? data;
 
   MasterList({this.status, this.data});
 
   MasterList.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <Master>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(Master.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class MasterList {
   }
 }
 
-class Data {
+class Master {
   int? id;
   int? salonId;
   String? fullname;
@@ -34,7 +34,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
+  Master(
       {this.id,
       this.salonId,
       this.fullname,
@@ -44,7 +44,7 @@ class Data {
       this.createdAt,
       this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Master.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     salonId = json['salon_id'];
     fullname = json['fullname'];

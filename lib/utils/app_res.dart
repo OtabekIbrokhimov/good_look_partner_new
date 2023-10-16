@@ -14,6 +14,7 @@ class AppRes {
   static const String user = 'user';
   static const String phoneNumber = 'phone_number';
   static const String calendarDates = 'calendar_dates';
+  static const String calendarDatesAll = 'all_dates';
   static const String fullName = 'full_name';
   static const String settings = 'settings';
 

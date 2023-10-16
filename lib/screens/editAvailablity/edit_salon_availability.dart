@@ -256,7 +256,7 @@ class EditSalonAvailabilityWidget extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: (){
-                    Get.to(() => const MasterListScreen());
+                    Get.off(() => const MasterListScreen());
                   }, child: const Text("Add master"),
                 ),
               )

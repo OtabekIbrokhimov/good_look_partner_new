@@ -76,7 +76,7 @@ class ApiService {
     Get.log("request ${request.fields.toString()}--file");
 
     var response = await request.send();
-    Get.log(response.statusCode.toString() + "status code");
+    Get.log("${response.statusCode}status code");
     var respStr = await response.stream.bytesToString();
     final responseJson = jsonDecode(respStr);
     sharePref.saveString(AppRes.user, respStr);
@@ -106,9 +106,52 @@ class ApiService {
       "Accept": "application/json",
     });
     request.fields['fullname'] = fullName;
-    request.fields[ConstRes.salonid] = "11";
     request.fields[ConstRes.services] = services.toString();
     request.fields[ConstRes.salonId_] = salonId ?? "";
+    request.fields[ConstRes.status] = status ?? "";
+    request.fields['worktime'] = CalendarDates.encode(worktime);
+    if (ownerPhoto != null) {
+      request.files.add(
+        http.MultipartFile(
+          ConstRes.photo,
+          ownerPhoto.readAsBytes().asStream(),
+          ownerPhoto.lengthSync(),
+          filename: ownerPhoto.path.split("/").last,
+        ),
+      );
+    }
+
+    Get.log(Uri.parse(ConstRes.salonRegistration).toString());
+    Get.log("request ${request.fields.toString()}--file");
+    Get.log("request ${request.files.toString()}--file");
+    var response = await request.send();
+    Get.log("${response.statusCode}status code");
+    var respStr = await response.stream.bytesToString();
+    final responseJson = jsonDecode(respStr);
+    Get.log("$responseJson bu json ---");
+    return StatusMessage.fromJson(responseJson);
+  }
+
+  Future<StatusMessage> editMaster({
+    required String fullName,
+    required List<CalendarDates> worktime,
+    required List<int> services,
+    String? id,
+    File? ownerPhoto,
+    String? status,
+  }) async {
+    var request = http.MultipartRequest(
+      ConstRes.aPost,
+      Uri.parse(ConstRes.editEmployee),
+    );
+
+    request.headers.addAll({
+      ConstRes.apiKey: ConstRes.apiKeyValue,
+      "Accept": "application/json",
+    });
+    request.fields['fullname'] = fullName;
+    request.fields['id'] = id ?? "";
+    request.fields[ConstRes.services] = services.toString();
     request.fields[ConstRes.status] = status ?? "";
     request.fields['worktime'] = CalendarDates.encode(worktime);
     // for (int i = 0; i < worktime.length; i++) {
@@ -125,7 +168,7 @@ class ApiService {
       );
     }
 
-    Get.log(Uri.parse(ConstRes.salonRegistration).toString());
+    Get.log(Uri.parse(ConstRes.editEmployee).toString());
     Get.log("request ${request.fields.toString()}--file");
     Get.log("request ${request.files.toString()}--file");
     var response = await request.send();

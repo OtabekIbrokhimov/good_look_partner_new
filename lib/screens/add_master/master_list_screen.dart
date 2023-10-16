@@ -1,11 +1,14 @@
 import 'package:cutfx_salon/bloc/masterlistblock/master_list_bloc.dart';
+import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../utils/asset_res.dart';
 import '../../utils/const_res.dart';
+import '../../utils/custom/custom_bottom_sheet.dart';
 import '../../utils/custom/custom_widget.dart';
 import '../main/main_screen.dart';
 
@@ -21,6 +24,18 @@ class MasterListScreen extends StatelessWidget {
           MasterListBloc masters = context.read<MasterListBloc>();
 
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Get.to(
+                  () => AddMasterScreen(),
+                );
+              },
+              backgroundColor: ColorRes.themeColor,
+              child: const Icon(
+                Icons.add,
+                size: 40,
+              ),
+            ),
             backgroundColor: ColorRes.smokeWhite,
             body: Column(
               children: [
@@ -44,7 +59,15 @@ class MasterListScreen extends StatelessWidget {
                                         .toString() ??
                                     "");
                               },
-                              edit: () {});
+                              edit: () {
+                                Get.to(
+                                    () => AddMasterScreen(
+                                          master:
+                                              masters.masterList?.data?[index],
+                                        ),
+                                    arguments:
+                                        masters.masterList?.data?[index]);
+                              });
                         }))
               ],
             ),
@@ -125,7 +148,9 @@ class MasterItem extends StatelessWidget {
                           alignment: Alignment.bottomRight,
                           child: BgRoundImageWidget(
                             image: AssetRes.icEdit,
-                            onTap: () {},
+                            onTap: () {
+                              edit();
+                            },
                             height: 30,
                             width: 30,
                             imagePadding: 5,
@@ -135,9 +160,6 @@ class MasterItem extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: () {
-                        edit();
-                      },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Align(
@@ -145,7 +167,13 @@ class MasterItem extends StatelessWidget {
                           child: BgRoundImageWidget(
                             image: AssetRes.icRemove,
                             onTap: () {
-                              delete();
+                              Get.bottomSheet(  ConfirmationBottomSheet(
+                                  title: "Delete",
+                                  description: "Do you wanna delete this date",
+                                  buttonText: AppLocalizations.of(context)!.continue_,
+                                  onButtonClick: () {
+                                    delete();
+                                  }));
                             },
                             height: 30,
                             width: 30,
