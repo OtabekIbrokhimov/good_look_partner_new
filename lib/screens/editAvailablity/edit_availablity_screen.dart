@@ -6,6 +6,11 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../bloc/addmastertime/add_master_time_block.dart';
 
 class EditAvailabilityScreen extends StatelessWidget {
   const EditAvailabilityScreen({Key? key}) : super(key: key);

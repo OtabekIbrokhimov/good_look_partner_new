@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `GOOD LOOK`
+  /// `Cut.FX`
   String get appName {
     return Intl.message(
-      'GOOD LOOK',
+      'Cut.FX',
       name: 'appName',
       desc: '',
       args: [],
@@ -1616,10 +1616,10 @@ class S {
     );
   }
 
-  /// `Please enter email address`
+  /// `Please enter phone number`
   String get pleaseEnterEmailAddress {
     return Intl.message(
-      'Please enter email address',
+      'Please enter phone number',
       name: 'pleaseEnterEmailAddress',
       desc: '',
       args: [],
@@ -2646,6 +2646,36 @@ class S {
     );
   }
 
+  /// `Enter your details end complete profile for better experience`
+  String get enterYourDetailsAndCompleteProfileForBetterExperience {
+    return Intl.message(
+      'Enter your details end complete profile for better experience',
+      name: 'enterYourDetailsAndCompleteProfileForBetterExperience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Registration`
+  String get emailRegistration {
+    return Intl.message(
+      'Email Registration',
+      name: 'emailRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get fullName {
+    return Intl.message(
+      'Full Name',
+      name: 'fullName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
@@ -2726,31 +2756,451 @@ class S {
     );
   }
 
-  /// `Enter your details and complete profile for better experience`
-  String get enterYourDetailsAndCompleteProfileForBetterExperience {
-    return Intl.message(
-      'Enter your details and complete profile for better experience',
-      name: 'enterYourDetailsAndCompleteProfileForBetterExperience',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Registration with phone number`
-  String get registrationWithPhoneNumber {
-    return Intl.message(
-      'Registration with phone number',
-      name: 'registrationWithPhoneNumber',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Manage masters`
-  String get manage_masters {
+  String get manageMasters {
     return Intl.message(
       'Manage masters',
-      name: 'manage_masters',
+      name: 'manageMasters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Master List`
+  String get masterList {
+    return Intl.message(
+      'Master List',
+      name: 'masterList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create master`
+  String get createMaster {
+    return Intl.message(
+      'Create master',
+      name: 'createMaster',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit service`
+  String get editService {
+    return Intl.message(
+      'Edit service',
+      name: 'editService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Time`
+  String get editTime {
+    return Intl.message(
+      'Edit Time',
+      name: 'editTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose service`
+  String get chooseService {
+    return Intl.message(
+      'Choose service',
+      name: 'chooseService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Time`
+  String get addTime {
+    return Intl.message(
+      'Add Time',
+      name: 'addTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free time`
+  String get freeTime {
+    return Intl.message(
+      'Free time',
+      name: 'freeTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work time`
+  String get workTime {
+    return Intl.message(
+      'Work time',
+      name: 'workTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Time and Date`
+  String get chooseTimeAndDate {
+    return Intl.message(
+      'Choose Time and Date',
+      name: 'chooseTimeAndDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you wanna delete this date`
+  String get doYouWannaDate {
+    return Intl.message(
+      'Do you wanna delete this date',
+      name: 'doYouWannaDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you wanna delete this master`
+  String get doYouWannaMaster {
+    return Intl.message(
+      'Do you wanna delete this master',
+      name: 'doYouWannaMaster',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage free time`
+  String get manageFreeTime {
+    return Intl.message(
+      'Manage free time',
+      name: 'manageFreeTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage work time`
+  String get manageWorkTime {
+    return Intl.message(
+      'Manage work time',
+      name: 'manageWorkTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage vocation time`
+  String get manageVocation {
+    return Intl.message(
+      'Manage vocation time',
+      name: 'manageVocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `successfully deleted`
+  String get successfullyDeleted {
+    return Intl.message(
+      'successfully deleted',
+      name: 'successfullyDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! enter full name`
+  String get pleaseEnterFullName {
+    return Intl.message(
+      'Please! enter full name',
+      name: 'pleaseEnterFullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! enter sms code`
+  String get pleaseEnterSmsCode {
+    return Intl.message(
+      'Please! enter sms code',
+      name: 'pleaseEnterSmsCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `check sms code`
+  String get checkSmsCode {
+    return Intl.message(
+      'check sms code',
+      name: 'checkSmsCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hour`
+  String get hour {
+    return Intl.message(
+      'hour',
+      name: 'hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours`
+  String get hours {
+    return Intl.message(
+      'hours',
+      name: 'hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `en`
+  String get en {
+    return Intl.message(
+      'en',
+      name: 'en',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get month {
+    return Intl.message(
+      'month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `months`
+  String get months {
+    return Intl.message(
+      'months',
+      name: 'months',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `day`
+  String get day {
+    return Intl.message(
+      'day',
+      name: 'day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days`
+  String get days {
+    return Intl.message(
+      'days',
+      name: 'days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `week`
+  String get week {
+    return Intl.message(
+      'week',
+      name: 'week',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `weeks`
+  String get weeks {
+    return Intl.message(
+      'weeks',
+      name: 'weeks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get min {
+    return Intl.message(
+      'min',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `years`
+  String get years {
+    return Intl.message(
+      'years',
+      name: 'years',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message(
+      'Yesterday',
+      name: 'yesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `just now`
+  String get justNow {
+    return Intl.message(
+      'just now',
+      name: 'justNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get completed {
+    return Intl.message(
+      'Completed',
+      name: 'completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message(
+      'Rejected',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Pending`
+  String get bookingPending {
+    return Intl.message(
+      'Booking Pending',
+      name: 'bookingPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Confirmed`
+  String get bookingConfirmed {
+    return Intl.message(
+      'Booking Confirmed',
+      name: 'bookingConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled By Salon`
+  String get cancelledBySalon {
+    return Intl.message(
+      'Cancelled By Salon',
+      name: 'cancelledBySalon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled By You`
+  String get cancelledByYou {
+    return Intl.message(
+      'Cancelled By You',
+      name: 'cancelledByYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! choose master photo`
+  String get pleaseChooseMasterPhoto {
+    return Intl.message(
+      'Please! choose master photo',
+      name: 'pleaseChooseMasterPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose master work time`
+  String get chooseMasterWorkTime {
+    return Intl.message(
+      'Choose master work time',
+      name: 'chooseMasterWorkTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please! choose services`
+  String get pleaseChooseServices {
+    return Intl.message(
+      'Please! choose services',
+      name: 'pleaseChooseServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully added`
+  String get successfullyAdded {
+    return Intl.message(
+      'Successfully added',
+      name: 'successfullyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My masters`
+  String get my_masters {
+    return Intl.message(
+      'My masters',
+      name: 'my_masters',
       desc: '',
       args: [],
     );
@@ -2763,26 +3213,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'ar'),
-      Locale.fromSubtags(languageCode: 'da'),
-      Locale.fromSubtags(languageCode: 'de'),
-      Locale.fromSubtags(languageCode: 'el'),
-      Locale.fromSubtags(languageCode: 'es'),
-      Locale.fromSubtags(languageCode: 'fr'),
-      Locale.fromSubtags(languageCode: 'hi'),
-      Locale.fromSubtags(languageCode: 'id'),
-      Locale.fromSubtags(languageCode: 'it'),
-      Locale.fromSubtags(languageCode: 'ja'),
-      Locale.fromSubtags(languageCode: 'ko'),
-      Locale.fromSubtags(languageCode: 'nb'),
-      Locale.fromSubtags(languageCode: 'nl'),
-      Locale.fromSubtags(languageCode: 'pl'),
-      Locale.fromSubtags(languageCode: 'pt'),
       Locale.fromSubtags(languageCode: 'ru'),
-      Locale.fromSubtags(languageCode: 'th'),
-      Locale.fromSubtags(languageCode: 'tr'),
-      Locale.fromSubtags(languageCode: 'vi'),
-      Locale.fromSubtags(languageCode: 'zh'),
+      Locale.fromSubtags(languageCode: 'uz'),
     ];
   }
 

@@ -12,6 +12,7 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 
 class ItemManageService extends StatelessWidget {
@@ -109,6 +110,8 @@ class ItemManageService extends StatelessWidget {
                       children: [
                         Text(
                           '${serviceData?.title}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: kSemiBoldTextStyle.copyWith(
                             color: ColorRes.nero,
                             fontSize: 16,
@@ -235,7 +238,46 @@ class ItemManageService extends StatelessWidget {
       ),
     );
   }
-
+  // void timePicking2(BuildContext context,) {
+  //   Get.bottomSheet(Container(
+  //       padding: const EdgeInsets.all(15),
+  //       height: Get.height / 2,
+  //       color: Colors.white,
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         children: [
+  //           Row(
+  //             crossAxisAlignment: CrossAxisAlignment.end,
+  //             mainAxisAlignment: MainAxisAlignment.end,
+  //             children: [
+  //
+  //               InkWell(
+  //                   onTap: () {
+  //                     Get.back();
+  //                   },
+  //                   child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
+  //               ),
+  //
+  //             ],
+  //           ),
+  //           TimePickerSpinner(
+  //             minutesInterval: 15,
+  //             is24HourMode: true,
+  //             normalTextStyle:
+  //             const TextStyle(fontSize: 24, color: Colors.grey),
+  //             highlightedTextStyle:
+  //             const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+  //             spacing: 50,
+  //             itemHeight: 80,
+  //             isForce2Digits: true,
+  //             onTimeChange: (time) {
+  //               ok.selectTime(time, isStart);
+  //             },
+  //           ),
+  //
+  //         ],
+  //       )));
+  // }
   bool checkIt(List<int> list, int id) {
     if (list.isEmpty) {
       return false;

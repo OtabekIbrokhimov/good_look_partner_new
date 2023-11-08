@@ -58,7 +58,7 @@ class RegistrationScreen extends StatelessWidget {
                                 AppLocalizations.of(context)!.registration,
                                 style: const TextStyle(
                                   color: ColorRes.themeColor,
-                                  fontFamily: AssetRes.fnProductSansLight,
+                                  fontFamily: AssetRes.fnGTWalsheimProLight,
                                   fontSize: 22,
                                 ),
                               ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:cutfx_salon/model/bookings/booking.dart';
 import 'package:cutfx_salon/model/cat/categories.dart' as cat;
@@ -235,7 +236,7 @@ class ApiService {
     }, body: {
       "salon_id": id
     });
-    Get.log(response.body);
+
     final responseJson = jsonDecode(response.body);
     return MasterList.fromJson(responseJson);
   }
@@ -308,8 +309,9 @@ class ApiService {
             ));
       }
     } else {
-      AppRes.showSnackBar("Please! enter true sms code", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
     }
+
     // Get.to(()=>MainScreen());
     var s = verifyResponceFromJson(response.body);
     Get.log("${s}bu json");

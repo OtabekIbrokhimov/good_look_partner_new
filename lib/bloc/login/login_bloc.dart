@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -165,18 +165,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       add(UpdateEmailLoginEvent());
     }
   }
-  void onChangedPinCodeWhoutName(String value) {
-    if (value.length == 6) {
-      needVerify = true;
-      add(UpdateEmailLoginEvent());
-    }{
-      needVerify = false;
-      add(UpdateEmailLoginEvent());
-    }
-  }
 
-  void onChangedPinCodeWithName(String value) {
-    if (value.length == 6 && fullNameTextController.text.isNotEmpty) {
+
+  void onChangedPinCodeWithName(String value, bool needName) {
+    if(needName == true&& fullNameTextController.text.isEmpty){
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterFullName, false);
+      return;
+    }
+
+    if (value.length ==  6 && value.isNumericOnly) {
       needVerify = true;
       add(UpdateEmailLoginEvent());
     } else{
@@ -191,7 +188,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       SendOtpResponce? sendOtpResponce;
       sendOtpResponce = await ApiService().otpSent(phoneNumber: phone);
       if(sendOtpResponce.status == true){
-        AppRes.showSnackBar("We sent sms code", true);
+        AppRes.showSnackBar(sendOtpResponce.message??"", true);
       }else{
         AppRes.showSnackBar("try again", false);
       }
@@ -204,7 +201,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void getMainPage(String phone, bool needName) async {
     if (smsCodeController.text.length != 6) {
-      AppRes.showSnackBar("Please enter sms code", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
       return;
     } else {
       smsCode = smsCodeController.text;
@@ -215,7 +212,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           fullName: fullNameTextController.text);
 
       if (verifyResponce == null ) {
-        AppRes.showSnackBar("check sms code", false);
+        AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.checkSmsCode, false);
       }
     }
   }

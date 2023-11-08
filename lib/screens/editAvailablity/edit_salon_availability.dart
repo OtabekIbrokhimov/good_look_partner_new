@@ -234,32 +234,32 @@ class EditSalonAvailabilityWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.addBookingSlotsByWeekDays,
-                      style: kRegularTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .ifYouHaveAddedOnly2SlotsForMondayThen,
-                      style:
-                          kRegularTextStyle.copyWith(color: ColorRes.empress),
-                    ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // Text(
+                    //   AppLocalizations.of(context)!.addBookingSlotsByWeekDays,
+                    //   style: kRegularTextStyle,
+                    // ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
+                    // Text(
+                    //   AppLocalizations.of(context)!
+                    //       .ifYouHaveAddedOnly2SlotsForMondayThen,
+                    //   style:
+                    //       kRegularTextStyle.copyWith(color: ColorRes.empress),
+                    // ),
                   ],
                 ),
               ),
-              Center(
-                child: TextButton(
-                  onPressed: (){
-                    Get.off(() => const MasterListScreen());
-                  }, child: const Text("Add master"),
-                ),
-              )
+              // Center(
+              //   child: TextButton(
+              //     onPressed: (){
+              //       Get.off(() => const MasterListScreen());
+              //     }, child: const Text("Add master"),
+              //   ),
+              // )
               ///slots
               // ListView.builder(
               //   primary: false,

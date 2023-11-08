@@ -1,17 +1,19 @@
-import 'package:cutfx_salon/screens/add_master/calendar_screen.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/custom/custom_widget.dart';
 import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+
 import '../../bloc/directmastertime/direct_master_time_block.dart';
 import '../../utils/asset_res.dart';
 import '../../utils/custom/custom_bottom_sheet.dart';
 import '../main/main_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AddTimeScreen extends StatefulWidget {
-  const AddTimeScreen({super.key});
+  const AddTimeScreen({super.key, this.title = "Add time"});
+
+  final String title;
 
   @override
   State<AddTimeScreen> createState() => _AddTimeScreenState();
@@ -47,84 +49,31 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    const ToolBarWidget(
-                      title: "Add Time",
+                    ToolBarWidget(
+                      title: widget.title,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                          ),
-                          child: SafeArea(
-                                top: false,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff62B654),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 150,
-                                  height: 50,
-                                  child: TextButton(
-                                    style: const ButtonStyle(),
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Free time',
-                                      style: kRegularWhiteTextStyle,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                              ),
-                              child: SafeArea(
-                                top: false,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xffFF6C6C),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 150,
-                                  height: 50,
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Work time',
-                                      style: kRegularWhiteTextStyle,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height - 200,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                          itemCount: directMasterBlock.mainList.date?.length??0,
+                    SizedBox(
+                      height: Get.height - 200,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount:
+                              directMasterBlock.mainList.date?.length ?? 0,
                           itemBuilder: (context, index) {
                             return TimeInfoWidget(
-                              startDate:
-                                   directMasterBlock.mainList.date?[index].date?[0].start ??
-                                      "",
-                              day: directMasterBlock.mainList.date?[index].date?[0].date ??
+                              startDate: directMasterBlock
+                                      .mainList.date?[index].date?[0].start ??
                                   "",
-                              endDate:
-                                   directMasterBlock.mainList.date?[index].date?[0].end ??
-                                      "",
+                              day: directMasterBlock
+                                      .mainList.date?[index].date?[0].date ??
+                                  "",
+                              endDate: directMasterBlock
+                                      .mainList.date?[index].date?[0].end ??
+                                  "",
                               delete: () {
                                 directMasterBlock.deleteDay(index);
                               },
                               edit: () {
-                                Get.off(() => const CalendarScreen(),
-                                    arguments:
-                                        directMasterBlock.mainList.date?[index]);
-                                directMasterBlock.deleteDay(index,isEdit: true);
+                                directMasterBlock.edit(index);
                               },
                             );
                           }),
@@ -139,7 +88,7 @@ class TimeInfoWidget extends StatelessWidget {
   final String day;
   final String endDate;
   final Function delete;
-  final Function edit;
+  final Function() edit;
 
   const TimeInfoWidget({
     super.key,
@@ -165,7 +114,7 @@ class TimeInfoWidget extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                '$startDate - $endDate',
+                '${formatTime(startDate.split(":").first)}:${formatTime(startDate.split(":")[1])} - ${formatTime(endDate.split(":").first)}:${formatTime(endDate.split(":")[1])}',
                 style: kMediumThemeTextStyle,
               ),
               const Spacer(),
@@ -197,17 +146,15 @@ class TimeInfoWidget extends StatelessWidget {
                     child: BgRoundImageWidget(
                       image: AssetRes.icRemove,
                       onTap: () {
-                        Get.bottomSheet(
-                          ConfirmationBottomSheet(
-                            title: "Delete",
-                            description: "Do you wanna delete this date",
+                        Get.bottomSheet(ConfirmationBottomSheet(
+                            title: AppLocalizations.of(context)!.delete,
+                            description:
+                                AppLocalizations.of(context)!.doYouWannaDate,
                             buttonText: AppLocalizations.of(context)!.continue_,
                             onButtonClick: () {
                               delete();
-                              }));
-                            },
-
-
+                            }));
+                      },
                       height: 30,
                       width: 30,
                       imagePadding: 5,
@@ -219,5 +166,13 @@ class TimeInfoWidget extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  String formatTime(String value) {
+    if (value.length > 1) {
+      return value;
+    } else {
+      return "0$value";
+    }
   }
 }

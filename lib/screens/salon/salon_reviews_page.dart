@@ -116,7 +116,7 @@ class SalonReviewsPage extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                '${salonReview.user?.fullname?.capitalize}',
+                                                '${salonReview.user?.firstName}',
                                                 style: kRegularTextStyle,
                                               ),
                                               const Spacer(),
@@ -154,8 +154,8 @@ class SalonReviewsPage extends StatelessWidget {
                                             height: 5,
                                           ),
                                           Text(
-                                            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-                                            style:
+                                            salonReview.comment??"",
+                                             style:
                                                 kLightWhiteTextStyle.copyWith(
                                               color: ColorRes.empress,
                                               fontSize: 17,

@@ -30,7 +30,7 @@ class BookingsScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.dialog(const QrScanScreen());
+            Get.dialog( QrScanScreen());
           },
           backgroundColor: ColorRes.themeColor,
           child: const Image(
@@ -55,6 +55,7 @@ class BookingsScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TableCalendar(
+
                   firstDay:
                       DateTime.utc(bookingsBloc.year, bookingsBloc.month, 1),
                   lastDay: DateTime.utc(
@@ -110,7 +111,7 @@ class BookingsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat('EE').format(day).toUpperCase(),
+                                    DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
                                     style: kRegularThemeTextStyle.copyWith(
                                       color: ColorRes.empress,
                                       fontSize: 12,
@@ -152,7 +153,7 @@ class BookingsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('EE').format(day).toUpperCase(),
+                                  DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
                                   style: kRegularThemeTextStyle.copyWith(
                                     color: ColorRes.empress,
                                     fontSize: 12,
@@ -193,7 +194,7 @@ class BookingsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('EE').format(day).toUpperCase(),
+                                  DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
                                   style: kRegularThemeTextStyle.copyWith(
                                     color: ColorRes.themeColor,
                                     fontSize: 12,
@@ -244,7 +245,7 @@ class BookingsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat('EE').format(day).toUpperCase(),
+                                    DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
                                     style: kRegularThemeTextStyle.copyWith(
                                       color: ColorRes.empress,
                                       fontSize: 12,
@@ -263,6 +264,7 @@ class BookingsScreen extends StatelessWidget {
                     },
                   ),
                   daysOfWeekHeight: 0,
+
                 ),
                 SizedBox(
                   height: 0,
@@ -434,7 +436,7 @@ class ItemBookings extends StatelessWidget {
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: Center(
                             child: Text(
-                              AppRes.convert24HoursInto12Hours(data.time),
+                         data.time ?? "",
                               style: kSemiBoldTextStyle.copyWith(
                                 color: ColorRes.white,
                                 fontSize: 16,
@@ -465,7 +467,7 @@ class ItemBookings extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    '${data.services?.length} ${AppLocalizations.of(context)!.services}',
+                    '${data.services?.split(" ").length} ${AppLocalizations.of(context)!.services}',
                     style: kThinWhiteTextStyle.copyWith(
                       color: ColorRes.black,
                     ),
@@ -477,6 +479,7 @@ class ItemBookings extends StatelessWidget {
                     children: [
                       Text(
                         (data.payableAmount ?? 0).currency,
+                        overflow: TextOverflow.ellipsis,
                         style: kSemiBoldThemeTextStyle,
                       ),
                       Padding(
@@ -488,10 +491,11 @@ class ItemBookings extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(
+                      SizedBox(
+                        width: 60,
                         child: Text(
                           AppRes.convertTimeForService(
-                              int.parse(data.duration ?? '0')),
+                              int.parse(data.duration ?? '0'),context ),
                           style: kLightTextStyle.copyWith(
                             color: ColorRes.themeColor,
                           ),
@@ -502,7 +506,7 @@ class ItemBookings extends StatelessWidget {
                           color: ColorRes.smokeWhite1,
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        margin: const EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 5),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 7),
                         child: Text(

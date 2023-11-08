@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../model/masters/master_responce.dart';
 import '../../service/api_service.dart';
 import '../../utils/shared_pref.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'master_list_event.dart';
 part 'master_list_state.dart';
@@ -33,7 +34,7 @@ class MasterListBloc extends Bloc<MasterListEvent, MasterListState> {
     if (statusMessage.status == true) {
       Get.back();
       AppRes.showSnackBar(
-          statusMessage.message ?? "successfully deleted", true);
+          statusMessage.message ?? AppLocalizations.of(Get.context!)!.successfullyDeleted, true);
       fetchMasters();
     } else {
       Get.back();

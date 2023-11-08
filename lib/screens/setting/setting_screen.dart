@@ -125,7 +125,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       height: 3,
                     ),
                     ItemSettingWidget(
-                      title: "Manage masters",
+                      title: AppLocalizations.of(context)!.manageMasters,
                       onTap: () {
                         Get.to(() => const MasterListScreen());
                       },
@@ -204,15 +204,15 @@ class _SettingScreenState extends State<SettingScreen> {
                     const SizedBox(
                       height: 3,
                     ),
-                    ItemSettingWidget(
-                      title: AppLocalizations.of(context)!.changePassword,
-                      onTap: () {
-                        Get.bottomSheet(
-                          const ChangePasswordScreen(),
-                          backgroundColor: ColorRes.transparent,
-                        );
-                      },
-                    ),
+                    // ItemSettingWidget(
+                    //   title: AppLocalizations.of(context)!.changePassword,
+                    //   onTap: () {
+                    //     Get.bottomSheet(
+                    //       const ChangePasswordScreen(),
+                    //       backgroundColor: ColorRes.transparent,
+                    //     );
+                    //   },
+                    // ),
                     const SizedBox(
                       height: 3,
                     ),

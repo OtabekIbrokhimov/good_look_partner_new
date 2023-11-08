@@ -70,6 +70,13 @@ class SignUpSalonAddressWidget extends StatelessWidget {
                       ),
                     ),
                     InternationalPhoneNumberInput(
+                      locale: 'uz',
+                      initialValue: PhoneNumber(
+                        dialCode: "998",
+                        isoCode: PhoneNumber.getISO2CodeByPrefix(
+                          '998',
+                        ),
+                      ),
                       textFieldController: signUpBloc.salonPhoneController,
                       onInputChanged: (PhoneNumber number) {
                         signUpBloc.salonPhone =

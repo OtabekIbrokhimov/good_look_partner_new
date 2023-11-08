@@ -52,11 +52,11 @@ class MessageScreen extends StatelessWidget {
                           border: InputBorder.none,
                           hintText: AppLocalizations.of(context)!.search,
                           hintStyle: kRegularTextStyle.copyWith(
-                            color: ColorRes.darkGray,
+                            color: ColorRes.black,
                           ),
                         ),
                         style: kRegularTextStyle.copyWith(
-                          color: ColorRes.charcoal50,
+                          color: ColorRes.black,
                         ),
                         onChanged: (value) {
                           context.read<MessageUserBloc>().filterData(value);

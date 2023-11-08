@@ -56,13 +56,13 @@ class SmsCodePage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorRes.themeColor,
-              fontFamily: AssetRes.fnProductSansRegular,
+              fontFamily: AssetRes.fnGTWalsheimProRegular,
             ),
           ),
         ),
         body: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
-            LoginBloc emailLoginBloc = context.read<LoginBloc>();
+            LoginBloc emailLoginBloc = context.watch<LoginBloc>();
             emailLoginBloc.firstTimeCalculate
                 ? emailLoginBloc.calculateSmsTime()
                 : () {};
@@ -133,7 +133,7 @@ class SmsCodePage extends StatelessWidget {
                                 ? kThemeButtonTextStyle
                                 : const TextStyle(
                                     color: ColorRes.white,
-                                    fontFamily: AssetRes.fnProductSansRegular,
+                                    fontFamily: AssetRes.fnGTWalsheimProRegular,
                                     fontSize: 16,
                                   ),
                           ),
@@ -194,7 +194,7 @@ class TextWidget extends StatelessWidget {
             : emailLoginBloc.smsCodeController,
         textAlign: TextAlign.center,
         keyboardType: isFullName? TextInputType.text:TextInputType.number,
-        onChanged:isFullName? emailLoginBloc.onChangedPinCodeWithName:emailLoginBloc.onChangedPinCodeWhoutName,
+        onChanged:(v){emailLoginBloc.onChangedPinCodeWithName(v,isFullName);},
         decoration: InputDecoration(
             hintText: isFullName
                 ? "Please! enter your full name "

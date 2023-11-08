@@ -36,7 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавить изображения"),
         "addService": MessageLookupByLibrary.simpleMessage("Добавить услугу"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Добавить слот"),
-        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
+        "addTime": MessageLookupByLibrary.simpleMessage("Добавить время"),
+        "appName": MessageLookupByLibrary.simpleMessage("Good Look Partner"),
         "appointments": MessageLookupByLibrary.simpleMessage("Назначения"),
         "apr": MessageLookupByLibrary.simpleMessage("апр"),
         "april": MessageLookupByLibrary.simpleMessage("апрель"),
@@ -48,16 +49,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "awards": MessageLookupByLibrary.simpleMessage("Награды"),
         "bankName": MessageLookupByLibrary.simpleMessage("Название банка"),
         "banned": MessageLookupByLibrary.simpleMessage("Запрещено"),
+        "bookingConfirmed":
+            MessageLookupByLibrary.simpleMessage("Бронирование подтверждено"),
         "bookingDetails":
             MessageLookupByLibrary.simpleMessage("Детали бронирования"),
         "bookingHistory":
             MessageLookupByLibrary.simpleMessage("История бронирования"),
+        "bookingPending":
+            MessageLookupByLibrary.simpleMessage("Ожидание бронирования"),
         "bookingRequests":
             MessageLookupByLibrary.simpleMessage("Запросы на бронирование"),
         "bookings": MessageLookupByLibrary.simpleMessage("Бронирование"),
         "by": MessageLookupByLibrary.simpleMessage("К"),
-        "callNow": MessageLookupByLibrary.simpleMessage("Позвони сейчас"),
+        "callNow": MessageLookupByLibrary.simpleMessage("Позвони"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
+        "cancelledBySalon":
+            MessageLookupByLibrary.simpleMessage("Отменено салоном"),
+        "cancelledByYou": MessageLookupByLibrary.simpleMessage("Отменено вами"),
         "cancelledChequePhoto":
             MessageLookupByLibrary.simpleMessage("Отменено проверить фото"),
         "categoriesYouServe": MessageLookupByLibrary.simpleMessage(
@@ -66,12 +74,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Изменение языка"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+        "checkSmsCode":
+            MessageLookupByLibrary.simpleMessage("проверить код смс"),
+        "chooseMasterWorkTime": MessageLookupByLibrary.simpleMessage(
+            "Выберите основное рабочее время"),
+        "chooseService":
+            MessageLookupByLibrary.simpleMessage("Выберите услугу"),
+        "chooseTimeAndDate":
+            MessageLookupByLibrary.simpleMessage("Выберите время и дату"),
         "clickToFetchLocation": MessageLookupByLibrary.simpleMessage(
             "Нажмите, чтобы получить местоположение"),
         "closed": MessageLookupByLibrary.simpleMessage("Закрыто"),
         "commission": MessageLookupByLibrary.simpleMessage("Комиссия"),
         "completeBooking":
             MessageLookupByLibrary.simpleMessage("Завершить бронирование"),
+        "completed": MessageLookupByLibrary.simpleMessage("Завершено"),
         "completedOrders":
             MessageLookupByLibrary.simpleMessage("Выполненные заказы"),
         "confirmPassword":
@@ -82,8 +99,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "continue_": MessageLookupByLibrary.simpleMessage("Продолжать"),
         "couponDiscount":
             MessageLookupByLibrary.simpleMessage("Купонная скидка"),
+        "createMaster": MessageLookupByLibrary.simpleMessage("Создать мастер"),
         "dash": MessageLookupByLibrary.simpleMessage("-"),
         "date": MessageLookupByLibrary.simpleMessage("Дата"),
+        "day": MessageLookupByLibrary.simpleMessage("день"),
+        "days": MessageLookupByLibrary.simpleMessage("дни"),
         "dec": MessageLookupByLibrary.simpleMessage("декабрь"),
         "december": MessageLookupByLibrary.simpleMessage("Декабрь"),
         "decline": MessageLookupByLibrary.simpleMessage("Отклонить"),
@@ -110,6 +130,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Скидка (необязательно)"),
         "doYouReallyWantToDeleteThisSlot": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите удалить этот слот?"),
+        "doYouWannaDate":
+            MessageLookupByLibrary.simpleMessage("Хотите удалить эту дату"),
+        "doYouWannaMaster": MessageLookupByLibrary.simpleMessage(
+            "Хотите удалить этого мастера"),
         "done": MessageLookupByLibrary.simpleMessage("Сделанный"),
         "duration": MessageLookupByLibrary.simpleMessage("Продолжительность"),
         "earning": MessageLookupByLibrary.simpleMessage("Заработок"),
@@ -126,13 +150,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Изменить банковские реквизиты"),
         "editSalonDetails": MessageLookupByLibrary.simpleMessage(
             "Изменить информацию о салоне"),
+        "editService":
+            MessageLookupByLibrary.simpleMessage("Редактировать сервис"),
+        "editTime":
+            MessageLookupByLibrary.simpleMessage("Время редактирования"),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("Адрес электронной почты"),
+        "emailRegistration": MessageLookupByLibrary.simpleMessage(
+            "Регистрация по электронной почте"),
+        "en": MessageLookupByLibrary.simpleMessage("ru"),
         "enterYourBankDetails": MessageLookupByLibrary.simpleMessage(
             "Введите свои банковские реквизиты"),
         "enterYourDetailsAndCompleteProfileForBetterExperience":
             MessageLookupByLibrary.simpleMessage(
-                "Для удобства введите свои данные и заполните профиль"),
+                "Для удобства введите свои данные и завершите полный профиль"),
         "enterYourDetailsAndCompleteYourRegistration":
             MessageLookupByLibrary.simpleMessage(
                 "Введите свои данные и завершите\nрегистрацию"),
@@ -155,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
         "four": MessageLookupByLibrary.simpleMessage("4"),
+        "freeTime": MessageLookupByLibrary.simpleMessage("Свободное время"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Полное имя"),
         "gallery": MessageLookupByLibrary.simpleMessage("Галерея"),
         "galleryDes": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, добавьте что-нибудь в свою галерею, чтобы пользователи\n могли видеть, какие услуги вы предлагаете,\nи обстановку в вашем салоне."),
@@ -165,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "helpAndFAQ": MessageLookupByLibrary.simpleMessage(
             "Помощь и часто задаваемые вопросы"),
         "holdersName": MessageLookupByLibrary.simpleMessage("Имя владельца"),
+        "hour": MessageLookupByLibrary.simpleMessage("час"),
+        "hours": MessageLookupByLibrary.simpleMessage("часы"),
         "i": MessageLookupByLibrary.simpleMessage("я"),
         "ifYouHaveAddedOnly2SlotsForMondayThen":
             MessageLookupByLibrary.simpleMessage(
@@ -178,6 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "july": MessageLookupByLibrary.simpleMessage("Июль"),
         "jun": MessageLookupByLibrary.simpleMessage("июнь"),
         "june": MessageLookupByLibrary.simpleMessage("Июнь"),
+        "justNow": MessageLookupByLibrary.simpleMessage("только сейчас"),
         "keepItOnIfYouWantToReceiveNotifications":
             MessageLookupByLibrary.simpleMessage(
                 "Держите его включенным, если хотите получать уведомления"),
@@ -194,20 +230,33 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Мужской"),
         "manageAwards":
             MessageLookupByLibrary.simpleMessage("Управление наградами"),
+        "manageFreeTime": MessageLookupByLibrary.simpleMessage(
+            "Управляйте свободным временем"),
+        "manageMasters":
+            MessageLookupByLibrary.simpleMessage("Управление мастерами"),
         "manageServices":
             MessageLookupByLibrary.simpleMessage("Управление службами"),
+        "manageVocation":
+            MessageLookupByLibrary.simpleMessage("Управление временем отпуска"),
+        "manageWorkTime":
+            MessageLookupByLibrary.simpleMessage("Управлять рабочим временем"),
         "mar": MessageLookupByLibrary.simpleMessage("март"),
         "march": MessageLookupByLibrary.simpleMessage("Маршировать"),
         "markCompleted":
             MessageLookupByLibrary.simpleMessage("Отметить как выполненное"),
         "master": MessageLookupByLibrary.simpleMessage("Мастер"),
+        "masterList": MessageLookupByLibrary.simpleMessage("Основной список"),
         "may": MessageLookupByLibrary.simpleMessage("Может"),
         "message": MessageLookupByLibrary.simpleMessage("Сообщение"),
         "messages": MessageLookupByLibrary.simpleMessage("Сообщения"),
+        "min": MessageLookupByLibrary.simpleMessage("мин"),
         "monday": MessageLookupByLibrary.simpleMessage("Понедельник"),
         "mondayFriday":
             MessageLookupByLibrary.simpleMessage("Понедельник Пятница"),
+        "month": MessageLookupByLibrary.simpleMessage("месяц"),
+        "months": MessageLookupByLibrary.simpleMessage("месяцы"),
         "mySalon": MessageLookupByLibrary.simpleMessage("Мой салон"),
+        "my_masters": MessageLookupByLibrary.simpleMessage("My masters"),
         "navigate": MessageLookupByLibrary.simpleMessage("Навигация"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
         "newUserRegisterHere": MessageLookupByLibrary.simpleMessage(
@@ -234,11 +283,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "payoutReject":
             MessageLookupByLibrary.simpleMessage("ВыплатаОтклонить"),
         "payouts": MessageLookupByLibrary.simpleMessage("Выплаты"),
+        "pending": MessageLookupByLibrary.simpleMessage("в ожидании"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Номер телефона"),
         "photoShouldBeClear":
             MessageLookupByLibrary.simpleMessage("Фото должно быть четким"),
         "placeBooking":
             MessageLookupByLibrary.simpleMessage("Место Бронирование"),
+        "pleaseChooseMasterPhoto": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста! выберите главное фото"),
+        "pleaseChooseServices":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста! выберите услуги"),
         "pleaseCompleteAvailabilityFirst": MessageLookupByLibrary.simpleMessage(
             "Сначала заполните доступность...!"),
         "pleaseEnterAboutSalon": MessageLookupByLibrary.simpleMessage(
@@ -257,6 +311,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, введите описание"),
         "pleaseEnterEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите адрес электронной почты"),
+        "pleaseEnterFullName": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста! введите полное имя"),
         "pleaseEnterHoldersName": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите имя владельца"),
         "pleaseEnterPassword":
@@ -279,6 +335,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, введите телефон салона"),
         "pleaseEnterServiceTitle": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите название услуги"),
+        "pleaseEnterSmsCode":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста! введите смс-код"),
         "pleaseEnterSwiftCode": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите быстрый код"),
         "pleaseEnterTheCompletionOtpBelowntoCompleteTheBookingnaskCustomer":
@@ -337,8 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Зарегистрируйте свой магазин у нас, находите клиентов, назначайте встречи и развивайте бизнес."),
         "registration":
             MessageLookupByLibrary.simpleMessage("Постановка на учет"),
-        "registrationWithPhoneNumber": MessageLookupByLibrary.simpleMessage(
-            "Регистрация по номеру телефона"),
+        "rejected": MessageLookupByLibrary.simpleMessage("Отклонено"),
         "requestID":
             MessageLookupByLibrary.simpleMessage("Идентификатор запроса"),
         "requests": MessageLookupByLibrary.simpleMessage("Запросы"),
@@ -412,7 +469,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Время, необходимое (минуты)"),
         "to": MessageLookupByLibrary.simpleMessage("К"),
         "tooLarge": MessageLookupByLibrary.simpleMessage("Слишком большой..."),
-        "topRated": MessageLookupByLibrary.simpleMessage("Самые популярные"),
+        "topRated": MessageLookupByLibrary.simpleMessage("Популярные"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("Общая сумма"),
         "totalEarning": MessageLookupByLibrary.simpleMessage("Общий доход"),
         "totalOrders": MessageLookupByLibrary.simpleMessage("Всего заказов"),
@@ -430,11 +487,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet": MessageLookupByLibrary.simpleMessage("Кошелек"),
         "weSentOtp": MessageLookupByLibrary.simpleMessage(
             "Мы отправили код подтверждения в OTP для номера телефона, который вы не вводили"),
+        "week": MessageLookupByLibrary.simpleMessage("неделя"),
+        "weeks": MessageLookupByLibrary.simpleMessage("недели"),
         "withdraw": MessageLookupByLibrary.simpleMessage("Отзывать"),
         "withdrawDescription": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите вывести всю сумму своего кошелька?"),
         "withdrawTitle":
             MessageLookupByLibrary.simpleMessage("Запрос на вывод средств"),
+        "workTime": MessageLookupByLibrary.simpleMessage("Рабочее время"),
+        "year": MessageLookupByLibrary.simpleMessage("год"),
+        "years": MessageLookupByLibrary.simpleMessage("лет"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Вчера"),
         "yourFaceShouldBeVisibleCompletelyImageWithSpecsHeadphonesWillNotBeApproved":
             MessageLookupByLibrary.simpleMessage(
                 "Ваше лицо должно быть видно\nполностью.\nИзображение с очками и наушниками\nне будет одобрено."),

@@ -35,7 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addImages": MessageLookupByLibrary.simpleMessage("Add Images"),
         "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Add Slot"),
-        "appName": MessageLookupByLibrary.simpleMessage("GOOD LOOK"),
+        "addTime": MessageLookupByLibrary.simpleMessage("Add Time"),
+        "appName": MessageLookupByLibrary.simpleMessage("Cut.FX"),
         "appointments": MessageLookupByLibrary.simpleMessage("Appointments"),
         "apr": MessageLookupByLibrary.simpleMessage("Apr"),
         "april": MessageLookupByLibrary.simpleMessage("April"),
@@ -47,16 +48,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "awards": MessageLookupByLibrary.simpleMessage("Awards"),
         "bankName": MessageLookupByLibrary.simpleMessage("Bank Name"),
         "banned": MessageLookupByLibrary.simpleMessage("Banned"),
+        "bookingConfirmed":
+            MessageLookupByLibrary.simpleMessage("Booking Confirmed"),
         "bookingDetails":
             MessageLookupByLibrary.simpleMessage("Booking Details"),
         "bookingHistory":
             MessageLookupByLibrary.simpleMessage("Booking History"),
+        "bookingPending":
+            MessageLookupByLibrary.simpleMessage("Booking Pending"),
         "bookingRequests":
             MessageLookupByLibrary.simpleMessage("Booking Requests"),
         "bookings": MessageLookupByLibrary.simpleMessage("Bookings"),
         "by": MessageLookupByLibrary.simpleMessage("By"),
         "callNow": MessageLookupByLibrary.simpleMessage("Call Now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelledBySalon":
+            MessageLookupByLibrary.simpleMessage("Cancelled By Salon"),
+        "cancelledByYou":
+            MessageLookupByLibrary.simpleMessage("Cancelled By You"),
         "cancelledChequePhoto":
             MessageLookupByLibrary.simpleMessage("Cancelled Cheque Photo"),
         "categoriesYouServe":
@@ -65,12 +74,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "checkSmsCode": MessageLookupByLibrary.simpleMessage("check sms code"),
+        "chooseMasterWorkTime":
+            MessageLookupByLibrary.simpleMessage("Choose master work time"),
+        "chooseService": MessageLookupByLibrary.simpleMessage("Choose service"),
+        "chooseTimeAndDate":
+            MessageLookupByLibrary.simpleMessage("Choose Time and Date"),
         "clickToFetchLocation":
             MessageLookupByLibrary.simpleMessage("Click To Fetch Location"),
         "closed": MessageLookupByLibrary.simpleMessage("Closed"),
         "commission": MessageLookupByLibrary.simpleMessage("Commission"),
         "completeBooking":
             MessageLookupByLibrary.simpleMessage("Complete Booking"),
+        "completed": MessageLookupByLibrary.simpleMessage("Completed"),
         "completedOrders":
             MessageLookupByLibrary.simpleMessage("Completed Orders"),
         "confirmPassword":
@@ -80,8 +96,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "continue_": MessageLookupByLibrary.simpleMessage("Continue"),
         "couponDiscount":
             MessageLookupByLibrary.simpleMessage("Coupon Discount"),
+        "createMaster": MessageLookupByLibrary.simpleMessage("Create master"),
         "dash": MessageLookupByLibrary.simpleMessage("-"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
+        "day": MessageLookupByLibrary.simpleMessage("day"),
+        "days": MessageLookupByLibrary.simpleMessage("days"),
         "dec": MessageLookupByLibrary.simpleMessage("Dec"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
         "decline": MessageLookupByLibrary.simpleMessage("Decline"),
@@ -106,6 +125,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Discount (optional)"),
         "doYouReallyWantToDeleteThisSlot": MessageLookupByLibrary.simpleMessage(
             "Do you really want to delete this slot?"),
+        "doYouWannaDate": MessageLookupByLibrary.simpleMessage(
+            "Do you wanna delete this date"),
+        "doYouWannaMaster": MessageLookupByLibrary.simpleMessage(
+            "Do you wanna delete this master"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "duration": MessageLookupByLibrary.simpleMessage("Duration"),
         "earning": MessageLookupByLibrary.simpleMessage("Earning"),
@@ -122,12 +145,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Bank Details"),
         "editSalonDetails":
             MessageLookupByLibrary.simpleMessage("Edit Salon Details"),
+        "editService": MessageLookupByLibrary.simpleMessage("Edit service"),
+        "editTime": MessageLookupByLibrary.simpleMessage("Edit Time"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+        "emailRegistration":
+            MessageLookupByLibrary.simpleMessage("Email Registration"),
+        "en": MessageLookupByLibrary.simpleMessage("en"),
         "enterYourBankDetails":
             MessageLookupByLibrary.simpleMessage("Enter Your Bank Details"),
         "enterYourDetailsAndCompleteProfileForBetterExperience":
             MessageLookupByLibrary.simpleMessage(
-                "Enter your details and complete profile for better experience"),
+                "Enter your details end complete profile for better experience"),
         "enterYourDetailsAndCompleteYourRegistration":
             MessageLookupByLibrary.simpleMessage(
                 "Enter your details and complete\nyour registration"),
@@ -150,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Your Password?"),
         "four": MessageLookupByLibrary.simpleMessage("4"),
+        "freeTime": MessageLookupByLibrary.simpleMessage("Free time"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "galleryDes": MessageLookupByLibrary.simpleMessage(
             "Please add something to your gallery so that users\ncan see what kind of services you are offering\nand the environment of your salon."),
@@ -159,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Genders You Serve"),
         "helpAndFAQ": MessageLookupByLibrary.simpleMessage("Help & FAQ"),
         "holdersName": MessageLookupByLibrary.simpleMessage("Holders Name"),
+        "hour": MessageLookupByLibrary.simpleMessage("hour"),
+        "hours": MessageLookupByLibrary.simpleMessage("hours"),
         "i": MessageLookupByLibrary.simpleMessage("i"),
         "ifYouHaveAddedOnly2SlotsForMondayThen":
             MessageLookupByLibrary.simpleMessage(
@@ -172,6 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "jun": MessageLookupByLibrary.simpleMessage("Jun"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
+        "justNow": MessageLookupByLibrary.simpleMessage("just now"),
         "keepItOnIfYouWantToReceiveNotifications":
             MessageLookupByLibrary.simpleMessage(
                 "Keep it On, if you want to receive notifications"),
@@ -187,20 +220,30 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you really want to logout ?"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "manageAwards": MessageLookupByLibrary.simpleMessage("Manage Awards"),
+        "manageFreeTime":
+            MessageLookupByLibrary.simpleMessage("Manage free time"),
+        "manageMasters": MessageLookupByLibrary.simpleMessage("Manage masters"),
         "manageServices":
             MessageLookupByLibrary.simpleMessage("Manage Services"),
-        "manage_masters":
-            MessageLookupByLibrary.simpleMessage("Manage masters"),
+        "manageVocation":
+            MessageLookupByLibrary.simpleMessage("Manage vocation time"),
+        "manageWorkTime":
+            MessageLookupByLibrary.simpleMessage("Manage work time"),
         "mar": MessageLookupByLibrary.simpleMessage("Mar"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "markCompleted": MessageLookupByLibrary.simpleMessage("Mark Completed"),
         "master": MessageLookupByLibrary.simpleMessage("Master"),
+        "masterList": MessageLookupByLibrary.simpleMessage("Master List"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "message": MessageLookupByLibrary.simpleMessage("Message"),
         "messages": MessageLookupByLibrary.simpleMessage("Messages"),
+        "min": MessageLookupByLibrary.simpleMessage("min"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "mondayFriday": MessageLookupByLibrary.simpleMessage("Monday - Friday"),
+        "month": MessageLookupByLibrary.simpleMessage("month"),
+        "months": MessageLookupByLibrary.simpleMessage("months"),
         "mySalon": MessageLookupByLibrary.simpleMessage("My Salon"),
+        "my_masters": MessageLookupByLibrary.simpleMessage("My masters"),
         "navigate": MessageLookupByLibrary.simpleMessage("Navigate"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "newUserRegisterHere":
@@ -226,10 +269,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "payoutHistory": MessageLookupByLibrary.simpleMessage("Payout History"),
         "payoutReject": MessageLookupByLibrary.simpleMessage("PayoutReject"),
         "payouts": MessageLookupByLibrary.simpleMessage("Payouts"),
+        "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "photoShouldBeClear":
             MessageLookupByLibrary.simpleMessage("Photo should be clear"),
         "placeBooking": MessageLookupByLibrary.simpleMessage("Place Booking"),
+        "pleaseChooseMasterPhoto":
+            MessageLookupByLibrary.simpleMessage("Please! choose master photo"),
+        "pleaseChooseServices":
+            MessageLookupByLibrary.simpleMessage("Please! choose services"),
         "pleaseCompleteAvailabilityFirst": MessageLookupByLibrary.simpleMessage(
             "Please complete availability first...!"),
         "pleaseEnterAboutSalon":
@@ -247,7 +295,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterDescription":
             MessageLookupByLibrary.simpleMessage("Please enter description"),
         "pleaseEnterEmailAddress":
-            MessageLookupByLibrary.simpleMessage("Please enter email address"),
+            MessageLookupByLibrary.simpleMessage("Please enter phone number"),
+        "pleaseEnterFullName":
+            MessageLookupByLibrary.simpleMessage("Please! enter full name"),
         "pleaseEnterHoldersName":
             MessageLookupByLibrary.simpleMessage("Please enter  holders name"),
         "pleaseEnterPassword":
@@ -270,6 +320,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter salon phone"),
         "pleaseEnterServiceTitle":
             MessageLookupByLibrary.simpleMessage("Please enter service title"),
+        "pleaseEnterSmsCode":
+            MessageLookupByLibrary.simpleMessage("Please! enter sms code"),
         "pleaseEnterSwiftCode":
             MessageLookupByLibrary.simpleMessage("Please enter swift code"),
         "pleaseEnterTheCompletionOtpBelowntoCompleteTheBookingnaskCustomer":
@@ -326,8 +378,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Register your shop with us, find customers, manage appointments and grow business."),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
-        "registrationWithPhoneNumber": MessageLookupByLibrary.simpleMessage(
-            "Registration with phone number"),
+        "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "requestID": MessageLookupByLibrary.simpleMessage("Request ID"),
         "requests": MessageLookupByLibrary.simpleMessage("Requests"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
@@ -378,6 +429,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "submissionSuccessful":
             MessageLookupByLibrary.simpleMessage("Submission Successful"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "successfullyAdded":
+            MessageLookupByLibrary.simpleMessage("Successfully added"),
+        "successfullyDeleted":
+            MessageLookupByLibrary.simpleMessage("successfully deleted"),
         "swiftCode": MessageLookupByLibrary.simpleMessage("Swift Code"),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms Of Use"),
         "thereIsNothingToShow":
@@ -411,11 +466,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "weSentOtp": MessageLookupByLibrary.simpleMessage(
             "We have sent a verification code to OTP for a phone number that you did not enter"),
+        "week": MessageLookupByLibrary.simpleMessage("week"),
+        "weeks": MessageLookupByLibrary.simpleMessage("weeks"),
         "withdraw": MessageLookupByLibrary.simpleMessage("Withdraw"),
         "withdrawDescription": MessageLookupByLibrary.simpleMessage(
             "Do you really want to withdraw all amount of your wallet?"),
         "withdrawTitle":
             MessageLookupByLibrary.simpleMessage("Withdraw Request"),
+        "workTime": MessageLookupByLibrary.simpleMessage("Work time"),
+        "year": MessageLookupByLibrary.simpleMessage("year"),
+        "years": MessageLookupByLibrary.simpleMessage("years"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
         "yourFaceShouldBeVisibleCompletelyImageWithSpecsHeadphonesWillNotBeApproved":
             MessageLookupByLibrary.simpleMessage(
                 "Your Face should be visible\ncompletely.\nImage with Specs & Headphones\nwill not be approved."),

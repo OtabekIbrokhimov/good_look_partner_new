@@ -129,19 +129,20 @@ class AppRes {
   }
 
   static String convert24HoursInto12Hours(String? value) {
+    String v = value ?? "";
     DateTime dateTime = DateTime(
       DateTime.now().year,
       1,
       1,
-      int.parse(value?.substring(0, 2) ?? '0'),
-      int.parse(value?.substring(2, 4) ?? '0'),
+      int.parse((v != "nullnull") ? v.substring(0, 2) : "00"),
+      int.parse((v != "nullnull") ? v.substring(2, 4) : '00'),
     );
-    return DateFormat('hh:mm a').format(dateTime);
+    return ('${formatTime(dateTime.hour.toString())}:${formatTime(dateTime.minute.toString())}');
   }
 
   static String formatDate(DateTime dateTime,
       {String pattern = 'dd MMM, yyyy - EEE - h:mm a', bool isUtc = true}) {
-    return DateFormat(pattern).format(isUtc ? dateTime.toLocal() : dateTime);
+    return DateFormat(pattern,AppLocalizations.of(Get.context!)!.en).format(isUtc ? dateTime.toLocal() : dateTime);
   }
 
   static DateTime parseDate(String dateTime,
@@ -189,53 +190,55 @@ class AppRes {
     return name;
   }
 
-  static String convertTimeForService(int min) {
+  static String convertTimeForService(int min,BuildContext context) {
     if (min >= 60) {
       if (min == 60) {
-        return '1 Hour';
+        return '1' + AppLocalizations.of(Get.context!)!.hour;
       } else {
         if (min.remainder(60) == 0) {
-          return '${min.minutes.inHours} hr';
+          return '${min.minutes.inHours} ${AppLocalizations.of(context)!.hour}';
         }
-        return '${min.minutes.inHours} hr ${min.remainder(60)} min';
+        return '${min.minutes.inHours}${AppLocalizations.of(context)!.hour}'
+            ' ${min.remainder(60)} ${AppLocalizations.of(context)!.min}';
       }
     } else {
-      return '$min min';
+      return '$min ${AppLocalizations.of(context)!.min}';
     }
   }
 
   static String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
     if (diff.inDays > 365) {
-      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"}";
+      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? AppLocalizations.of(Get.context!)!.year  : AppLocalizations.of(Get.context!)!.years }";
     }
     if (diff.inDays > 30) {
-      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"}";
+      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? AppLocalizations.of(Get.context!)!.month  : AppLocalizations.of(Get.context!)!.months }";
     }
     if (diff.inDays > 7) {
-      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"}";
+      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? AppLocalizations.of(Get.context!)!.week  : AppLocalizations.of(Get.context!)!.weeks }";
     }
     if (diff.inDays > 0) {
       if (diff.inDays == 1) {
-        return "Yesterday";
+        return AppLocalizations.of(Get.context!)!.yesterday;
       }
-      return "${diff.inDays} days";
+      // ignore: prefer_interpolation_to_compose_strings
+      return "${diff.inDays}"+ AppLocalizations.of(Get.context!)!.day ;
     }
     if (diff.inHours > 0) {
-      return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"}";
+      return "${diff.inHours} ${diff.inHours == 1 ?  AppLocalizations.of(Get.context!)!.hour : AppLocalizations.of(Get.context!)!.hours}";
     }
     if (diff.inMinutes > 0) {
-      return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"}";
+      return "${diff.inMinutes} ${diff.inMinutes == 1 ?  AppLocalizations.of(Get.context!)!.min :AppLocalizations.of(Get.context!)!.min }";
     }
-    return "just now";
+    return AppLocalizations.of(Get.context!)!.justNow;
   }
 
   static String getStringOfStatusByType(num status) {
     return status == 0
-        ? 'Pending'
+        ? AppLocalizations.of(Get.context!)!.pending
         : status == 1
-            ? 'Completed'
-            : 'Rejected';
+            ? AppLocalizations.of(Get.context!)!.completed
+            : AppLocalizations.of(Get.context!)!.rejected;
   }
 
   static Color getBackgroundColorByStatus(num status) {
@@ -268,17 +271,24 @@ class AppRes {
 
   static String getTextByStatus(int status) {
     return status == 0
-        ? 'Booking Pending'
+        ? AppLocalizations.of(Get.context!)!.bookingPending
         : status == 1
-            ? 'Booking Confirmed'
+            ? AppLocalizations.of(Get.context!)!.bookingConfirmed
             : status == 2
-                ? 'Completed'
+                ? AppLocalizations.of(Get.context!)!.completed
                 : status == 3
-                    ? 'Cancelled By Salon'
-                    : 'Cancelled By You';
+                    ? AppLocalizations.of(Get.context!)!.cancelledBySalon
+                    : AppLocalizations.of(Get.context!)!.cancelledByYou;
   }
 
   static int? findSelectLanguageCode(List<String> languageCode) {
     return languageCode.indexOf(SharePref.selectedLanguage);
+  }
+static  String formatTime(String value) {
+    if (value.length > 1) {
+      return value;
+    } else {
+      return "0$value";
+    }
   }
 }

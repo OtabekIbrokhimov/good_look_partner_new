@@ -13,6 +13,9 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class AddServiceScreen extends StatelessWidget {
   const AddServiceScreen({Key? key}) : super(key: key);
@@ -197,10 +200,17 @@ class AddServiceScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        TextWithTextFieldSmokeWhiteWidget(
-                          title: AppLocalizations.of(context)!.timeItTakesMin,
-                          controller: addServiceBloc.timeItTakesController,
-                          textInputType: TextInputType.number,
+
+                        InkWell(
+                          onTap:(){
+                            timePicking2(context, addServiceBloc.takeMinute);
+                          },
+                          child: TextWithTextFieldSmokeWhiteWidget(
+                            enable: false,
+                            title: AppLocalizations.of(context)!.timeItTakesMin,
+                            controller: addServiceBloc.timeItTakesController,
+                            textInputType: TextInputType.number,
+                          ),
                         ),
                         const SizedBox(
                           height: 10,
@@ -468,32 +478,33 @@ class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
                           ? ColorRes.lavender50
                           : ColorRes.smokeWhite,
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      image: DecorationImage(image: NetworkImage(
+                          '${ConstRes.itemBaseUrl}${categoryData.icon}'),
+                      fit: BoxFit.cover
+                      )
                     ),
                     margin: const EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: AspectRatio(
-                              aspectRatio: 1 / 1,
-                              child: Image(
-                                image: NetworkImage(
-                                    '${ConstRes.itemBaseUrl}${categoryData.icon}'),
-                                color: addServiceBloc.selectedCatId ==
-                                        categoryData.id
-                                    ? ColorRes.themeColor
-                                    : ColorRes.darkGray,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const ImageNotFound(
-                                    color: ColorRes.transparent,
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Expanded(
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(10),
+                        //     child: AspectRatio(
+                        //       aspectRatio: 1 / 1,
+                        //       child: Image(
+                        //         image: NetworkImage(
+                        //             '${ConstRes.itemBaseUrl}${categoryData.icon}'),
+                        //
+                        //         errorBuilder: (context, error, stackTrace) {
+                        //           return const ImageNotFound(
+                        //             color: ColorRes.transparent,
+                        //           );
+                        //         },
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 12),
                           child: Text(
@@ -518,6 +529,52 @@ class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
       },
     );
   }
+}
+void timePicking2(BuildContext context,Function(String text) findHowLong) {
+  Get.bottomSheet(
+
+      Container(
+      padding: const EdgeInsets.all(15),
+      height: Get.height / 2,
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+
+              InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
+              ),
+
+            ],
+          ),
+          TimePickerSpinner(
+            time: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day,0),
+            minutesInterval: 15,
+            is24HourMode: true,
+            normalTextStyle:
+            const TextStyle(fontSize: 24, color: Colors.grey),
+            highlightedTextStyle:
+            const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+            spacing: 50,
+            itemHeight: 80,
+            isForce2Digits: true,
+            onTimeChange: (time) {
+              int minutes= ((time.hour*60) + time.minute);
+            findHowLong (minutes.toString());
+            },
+          ),
+
+        ],
+      )),
+  enableDrag: false
+  );
 }
 
 class AddServiceGenderWidget extends StatefulWidget {

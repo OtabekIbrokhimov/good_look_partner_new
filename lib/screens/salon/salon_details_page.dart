@@ -91,7 +91,7 @@ class SalonDetailsPage extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'Monday - Friday',
+                              AppLocalizations.of(context)!.mondayFriday,
                               style: kLightWhiteTextStyle.copyWith(
                                 color: ColorRes.empress,
                                 fontSize: 16,
@@ -119,7 +119,7 @@ class SalonDetailsPage extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Saturday - Sunday',
+                          AppLocalizations.of(context)!.saturdaySunday,
                           style: kLightWhiteTextStyle.copyWith(
                             color: ColorRes.empress,
                             fontSize: 16,

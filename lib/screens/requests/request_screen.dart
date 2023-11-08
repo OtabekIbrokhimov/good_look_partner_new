@@ -121,7 +121,7 @@ class ItemBookingRequest extends StatelessWidget {
                         ),
                         pattern: 'dd MMM, yyyy - EE',
                         isUtc: false,
-                      )} - ${AppRes.convert24HoursInto12Hours(data.time)}',
+                      )} - ${data.time??'00:00'}',
                       style: kLightTextStyle.copyWith(
                         color: ColorRes.empress,
                         fontSize: 14,
@@ -165,7 +165,7 @@ class ItemBookingRequest extends StatelessWidget {
                         ),
                         Text(
                           AppRes.convertTimeForService(
-                            int.parse(data.duration ?? '0'),
+                            int.parse(data.duration ?? '0'),context
                           ),
                           style: kLightTextStyle.copyWith(
                             color: ColorRes.themeColor,

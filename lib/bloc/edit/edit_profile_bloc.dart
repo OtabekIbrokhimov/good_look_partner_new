@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:cutfx_salon/generated/l10n.dart';
+import 'package:cutfx_salon/model/calendar/CalendarMainList.dart';
+import 'package:cutfx_salon/model/calendar/calenda_list.dart';
 import 'package:cutfx_salon/model/status_message.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
-import 'package:cutfx_salon/screens/add_master/master_list_screen.dart';
 import 'package:cutfx_salon/service/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../model/calendar/calendar_date.dart';
 import '../../model/masters/master_responce.dart';
+import '../../screens/add_master/add_time_screen.dart';
 import '../../utils/app_res.dart';
 import '../../utils/shared_pref.dart';
 
@@ -20,28 +24,27 @@ part 'edit_profile_state.dart';
 
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   EditProfileBloc() : super(EditProfileInitial()) {
+    if (Get.arguments != null) {
+      takeAllInformation(Get.arguments);
+    }
+
     on<FetchUserProfileEvent>((event, emit) async {
-      if (Get.arguments != null) {
-        takeAllInformation(Get.arguments);
-      }
       emit(UserDataFoundState());
     });
     on<SubmitEditProfileEvent>(
-          (event, emit) async {
+      (event, emit) async {
         if (fullNameTextController.text.isEmpty) {
-          AppRes.showSnackBar("please enter full name", false);
+          AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterFullName, false);
           return;
         }
-        AppRes.showCustomLoader();
         createMaster(needCreate);
-        AppRes.hideCustomLoaderWithBack();
       },
     );
     on<ImageSelectClickEvent>((event, emit) async {
       final ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
       imageFile = image != null ? File(image.path) : null;
-      add(FetchUserProfileEvent());
+      emit(ImageClickState());
     });
     on<TakeIdsEvent>((event, emit) async {
       emit(TakeIdsState());
@@ -62,6 +65,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   bool needCreate = true;
 
   void takeAllInformation(Master? master) async {
+    dates.clear();
     if (master != null) {
       needCreate = false;
       imageUrl = master.photo ?? "";
@@ -77,19 +81,65 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
           master.worktime;
         }
       }
+      takeHourOfWork(dates);
     } else {
       needCreate = false;
-      SharePref sharePref = await SharePref().init();
-      final String dateString = sharePref.getString(AppRes.calendarDates) ?? "";
-      dates = CalendarDates.decode(dateString);
+    }
+  }
+
+  void takeHourOfWork(List<CalendarDates> list) async {
+    Get.log("boshladi");
+    Get.log(list[0].toJson().toString());
+    SharePref sharePref = await SharePref().init();
+    CalendarList calendarList = CalendarList(date: []);
+    if (sharePref.getString(AppRes.calendarDates)!.length < 3) {
+      CalendarMainList? calendarMainList = CalendarMainList(date: []);
+      int l = list.length ?? 0;
+      Get.log("${jsonEncode(list).toString()}uzunligi $l");
+      Map<String, CalendarList> map = {};
+      for (int i = 0; i < l; i++) {
+        map['${list[i].start}${list[i].end}'] = CalendarList(date: []);
+      }
+
+      map.forEach((key, value) {
+        for (int i = 0; i < l; i++) {
+          if (key == '${list[i].start}${list[i].end}') {
+            map[key]?.date?.add(list[i]);
+          }
+        }
+      });
+
+      map.forEach((key, value) {
+        calendarMainList.date?.add(value);
+      });
+      // if(calendarList.date!.isEmpty){
+      //   calendarList.date?.add(list[i]);
+      // }else{
+      //   if(calendarList.date?.last.start == list[i].start && calendarList.date?.last.end == list[i].end ){
+      //     Get.log("${calendarList.date?.last.start} == ${list[i].start} && ${calendarList.date?.last.end} == ${list[i].end}");
+      //     calendarList.date?.add(list[i]);
+      //     Get.log(calendarList.date!.length.toString());
+      //   }else{
+      //     Get.log("${calendarList.date?.last.start} == ${list[i].start} && ${calendarList.date?.last.end} == ${list[i].end}");
+      //     calendarMainList.date?.add(calendarList);
+      //     calendarList.date?.clear();
+      //     calendarList.date?.add(list[i]);
+      //
+      //   }
+      // }}
+
       add(FetchUserProfileEvent());
+      sharePref.saveString(AppRes.calendarDates, jsonEncode(calendarMainList));
+      Get.log("${sharePref.getString(AppRes.calendarDates)}mama");
     }
   }
 
   void takeTimeForResult() async {
     SharePref sharePref = await SharePref().init();
     final String dateString = sharePref.getString(AppRes.calendarDates) ?? "";
-    if(dateString.length> 3) {
+    Get.log(dateString + "bunsan bo'lishi mumkin");
+    if (dateString.length > 3) {
+      dates.clear();
       Map<String, dynamic> valueMap = json.decode(dateString);
       Get.log("${valueMap['date'][0]['date']}bu list");
       for (int b = 0; b < valueMap['date'].length; b++) {
@@ -98,6 +148,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
               start: valueMap['date'][b]['date'][i]['start'],
               end: valueMap['date'][b]['date'][i]['end'],
               date: valueMap['date'][b]['date'][i]['date']));
+          Get.log("mana");
         }
       }
       add(FetchUserProfileEvent());
@@ -127,21 +178,28 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     add(TakeIdsEvent());
   }
 
+  onTapEdit() async {
+    await Get.to(() =>  AddTimeScreen(
+          title: AppLocalizations.of(Get.context!)!.manageWorkTime,
+        ));
+    dates.clear();
+  }
+
   void createMaster(bool needCreate) async {
     takeTimeForResult();
     SharePref sharePref = await SharePref().init();
     Salon? salon = sharePref.getSalon();
     if (fullNameTextController.text.isEmpty) {
-      AppRes.showSnackBar("please enter full name", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterFullName, false);
       return;
     } else if (imageFile == null) {
-      AppRes.showSnackBar("please choose master photo", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseChooseMasterPhoto, false);
       return;
     } else if (dates.isEmpty) {
-      AppRes.showSnackBar("choose master work time", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.chooseMasterWorkTime, false);
       return;
     } else if (ids.isEmpty) {
-      AppRes.showSnackBar("please choose services", false);
+      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.chooseService, false);
       return;
     } else {
       if (needCreate == true) {
@@ -153,20 +211,17 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             salonId: salon?.data?.id.toString() ?? "",
             ownerPhoto: imageFile,
             status: "1");
+        AppRes.hideCustomLoader();
         if (statusMessage.status == true) {
+          Get.back();
           AppRes.showSnackBar(
-              statusMessage.message ?? "successfully added", true);
-          SharePref sharePref = await SharePref().init();
-
+              statusMessage.message ?? AppLocalizations.of(Get.context!)!.successfullyAdded, true);
           sharePref.saveString(AppRes.calendarDates, '');
           dates.clear();
           ids.clear();
-          Get.off(() => const MasterListScreen());
         } else {
-          AppRes.hideCustomLoader();
           AppRes.showSnackBar(statusMessage.message ?? "error", false);
         }
-        AppRes.hideCustomLoader();
       } else {
         AppRes.showCustomLoader();
         StatusMessage statusMessage = await ApiService().editMaster(
@@ -176,18 +231,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             id: id,
             ownerPhoto: imageFile,
             status: "1");
+        AppRes.hideCustomLoader();
         if (statusMessage.status == true) {
-          AppRes.hideCustomLoader();
-
+          Get.back();
           AppRes.showSnackBar(
               statusMessage.message ?? "successfully edited", true);
-          SharePref sharePref = await SharePref().init();
           sharePref.saveString(AppRes.calendarDates, '');
           dates.clear();
           ids.clear();
-          Get.off(() => const MasterListScreen());
         } else {
-          AppRes.hideCustomLoader();
           AppRes.showSnackBar(statusMessage.message ?? "error", false);
         }
       }

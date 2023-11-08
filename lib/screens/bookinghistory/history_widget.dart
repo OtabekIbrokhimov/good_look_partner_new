@@ -133,7 +133,7 @@ class ItemHistoryBooking extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '${bookingData.services?.length} ${AppLocalizations.of(context)!.services}',
+                            '${bookingData.services?.split(",").length} ${AppLocalizations.of(context)!.services}',
                             style: kThinWhiteTextStyle.copyWith(
                               color: ColorRes.black,
                             ),
@@ -159,7 +159,7 @@ class ItemHistoryBooking extends StatelessWidget {
                               ),
                               Text(
                                 AppRes.convertTimeForService(
-                                    int.parse(bookingData.duration ?? '0')),
+                                    int.parse(bookingData.duration ?? '0'),context),
                                 style: kLightTextStyle.copyWith(
                                   color: ColorRes.themeColor,
                                 ),

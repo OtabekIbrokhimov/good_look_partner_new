@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+2
+version: 1.0.1+3
 
 environment:
   sdk: '>=2.19.0 <3.10.5'
@@ -89,6 +89,9 @@ dependencies:
   calendar_date_picker2: ^0.5.3
   flutter_app_badger: ^1.5.0
   mask_input_formatter: ^0.0.3
+  # pick times
+
+  flutter_time_picker_spinner: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -120,26 +123,23 @@ flutter:
     - family: GilroyBlack
       fonts:
         - asset: font/gilroy_black.ttf
-    - family: GilroyLight
+    - family: GTWalsheimProBlack
       fonts:
-        - asset: font/gilroy_light.ttf
-    - family: ProductSansBlack
+        - asset: font/GTWalsheimPro-Black.ttf
+    - family: GTWalsheimProBold
       fonts:
-        - asset: font/ProductSans-Black.ttf
-    - family: ProductSansBold
+        - asset: font/GTWalsheimPro-Bold.ttf
+    - family: GTWalsheimProLight
       fonts:
-        - asset: font/ProductSans-Bold.ttf
-    - family: ProductSansLight
+        - asset: font/GTWalsheimPro-Light.ttf
+    - family: GTWalsheimProMedium
       fonts:
-        - asset: font/ProductSans-Light.ttf
-    - family: ProductSansMedium
+        - asset: font/GTWalsheimPro-Medium.ttf
+    - family: GTWalsheimProRegular
       fonts:
-        - asset: font/ProductSans-Medium.ttf
-    - family: ProductSansRegular
+        - asset: font/GTWalsheimPro-Regular.ttf
+    - family: GTWalsheimProThin
       fonts:
-        - asset: font/ProductSans-Regular.ttf
-    - family: ProductSansThin
-      fonts:
-        - asset: font/ProductSans-Thin.ttf
+        - asset: font/GTWalsheimPro-Thin.ttf
 flutter_intl:
   enabled: true

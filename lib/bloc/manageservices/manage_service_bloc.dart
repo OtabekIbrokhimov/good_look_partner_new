@@ -95,16 +95,18 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
   }
 
   void takeIds(int id) {
+    bool needAdd = true;
     ids.isEmpty ? {ids.add(id), ids.add(id)} : {};
     for (int i = 0; i < ids.length; i++) {
       if (ids[i] == id) {
         ids.removeAt(i);
-        Get.log(ids.toString());
-      } else {
-        ids.add(id);
-        Get.log(ids.toString());
-      }
-    }
+        needAdd = false;
+        Get.log("${ids}hnbjbjhjk");
+      } }
+if(needAdd) {
+  ids.add(id);
+  Get.log(ids.toString());
+}
     add(TakeIdEvent());
     add(CategoryAllItemClickEvent());
     Get.log(ids.toString());

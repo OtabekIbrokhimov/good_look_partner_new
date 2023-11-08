@@ -6,12 +6,14 @@ import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/utils/firebase_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 part 'message_user_event.dart';
 part 'message_user_state.dart';
 
 class MessageUserBloc extends Bloc<MessageUserEvent, MessageUserState> {
   MessageUserBloc() : super(MessageUserInitial()) {
+    Get.log("mana");
     getChatUsers();
     on<FetchMessageUserEvent>((event, emit) {
       emit(MessageUsersDataFoundState());
@@ -30,7 +32,8 @@ class MessageUserBloc extends Bloc<MessageUserEvent, MessageUserState> {
   void getChatUsers() async {
     await sharePref.init();
     userData = sharePref.getSalon()?.data;
-    firebaseUserIdentity = '${FirebaseRes.sl}${'${userData?.phoneNumber}'}';
+    firebaseUserIdentity = '${FirebaseRes.sl}+${userData?.phoneNumber}';
+    Get.log("${FirebaseRes.sl}+${userData?.phoneNumber}");
     isLoading = true;
     subscription = db
         .collection(FirebaseRes.userChatList)

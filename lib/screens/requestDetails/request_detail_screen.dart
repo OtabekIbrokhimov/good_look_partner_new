@@ -111,7 +111,7 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                       Text(
                                         AppRes.convertTimeForService(int.parse(
                                             requestDetails?.data?.duration ??
-                                                '0')),
+                                                '0'),context),
                                         style: kLightTextStyle.copyWith(
                                           color: ColorRes.themeColor,
                                           fontSize: 16,
@@ -324,10 +324,9 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      AppRes
-                                                          .convert24HoursInto12Hours(
+
                                                               requestDetails
-                                                                  .data?.time),
+                                                                  .data?.time??"",
                                                       style:
                                                           kRegularThemeTextStyle
                                                               .copyWith(
@@ -356,7 +355,7 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                           int.parse(requestDetails
                                                                   .data
                                                                   ?.duration ??
-                                                              '0')),
+                                                              '0'),context),
                                                       style:
                                                           kRegularThemeTextStyle
                                                               .copyWith(
@@ -420,7 +419,7 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                           ),
                                                           Text(
                                                             '${  requestDetails.data
-                                                                ?.services} | ${AppRes.convertTimeForService(00)}',
+                                                                ?.services} | ${AppRes.convertTimeForService(00,context)}',
                                                             style:
                                                                 kLightTextStyle
                                                                     .copyWith(
