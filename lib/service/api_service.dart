@@ -311,6 +311,7 @@ class ApiService {
     } else {
       AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
     }
+
     // Get.to(()=>MainScreen());
     var s = verifyResponceFromJson(response.body);
     Get.log("${s}bu json");

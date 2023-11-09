@@ -123,26 +123,23 @@ flutter:
     - family: GilroyBlack
       fonts:
         - asset: font/gilroy_black.ttf
-    - family: GilroyLight
+    - family: GTWalsheimProBlack
       fonts:
-        - asset: font/gilroy_light.ttf
-    - family: ProductSansBlack
+        - asset: font/GTWalsheimPro-Black.ttf
+    - family: GTWalsheimProBold
       fonts:
-        - asset: font/ProductSans-Black.ttf
-    - family: ProductSansBold
+        - asset: font/GTWalsheimPro-Bold.ttf
+    - family: GTWalsheimProLight
       fonts:
-        - asset: font/ProductSans-Bold.ttf
-    - family: ProductSansLight
+        - asset: font/GTWalsheimPro-Light.ttf
+    - family: GTWalsheimProMedium
       fonts:
-        - asset: font/ProductSans-Light.ttf
-    - family: ProductSansMedium
+        - asset: font/GTWalsheimPro-Medium.ttf
+    - family: GTWalsheimProRegular
       fonts:
-        - asset: font/ProductSans-Medium.ttf
-    - family: ProductSansRegular
+        - asset: font/GTWalsheimPro-Regular.ttf
+    - family: GTWalsheimProThin
       fonts:
-        - asset: font/ProductSans-Regular.ttf
-    - family: ProductSansThin
-      fonts:
-        - asset: font/ProductSans-Thin.ttf
+        - asset: font/GTWalsheimPro-Thin.ttf
 flutter_intl:
   enabled: true

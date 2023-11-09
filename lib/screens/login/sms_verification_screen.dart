@@ -56,7 +56,7 @@ class SmsCodePage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorRes.themeColor,
-              fontFamily: AssetRes.fnProductSansRegular,
+              fontFamily: AssetRes.fnGTWalsheimProRegular,
             ),
           ),
         ),
@@ -133,7 +133,7 @@ class SmsCodePage extends StatelessWidget {
                                 ? kThemeButtonTextStyle
                                 : const TextStyle(
                                     color: ColorRes.white,
-                                    fontFamily: AssetRes.fnProductSansRegular,
+                                    fontFamily: AssetRes.fnGTWalsheimProRegular,
                                     fontSize: 16,
                                   ),
                           ),

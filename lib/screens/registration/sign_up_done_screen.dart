@@ -74,7 +74,7 @@ class _SignUpDoneScreenState extends State<SignUpDoneScreen> {
                           AppLocalizations.of(context)!.registration,
                           style: const TextStyle(
                             color: ColorRes.themeColor,
-                            fontFamily: AssetRes.fnProductSansLight,
+                            fontFamily: AssetRes.fnGTWalsheimProLight,
                             fontSize: 22,
                           ),
                         ),

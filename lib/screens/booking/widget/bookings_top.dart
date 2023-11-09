@@ -52,10 +52,10 @@ class _BookingsTopWidgetState extends State<BookingsTopWidget> {
                   );
                   // await SimpleMonthYearPicker.showMonthYearPickerDialog(
                   //   context: context,
-                  //   titleFontFamily: AssetRes.fnProductSansBlack,
+                  //   titleFontFamily: AssetRes.fnGTWalsheimProBlack,
                   //   selectionColor: ColorRes.themeColor,
-                  //   monthTextFontFamily: AssetRes.fnProductSansMedium,
-                  //   yearTextFontFamily: AssetRes.fnProductSansBold,
+                  //   monthTextFontFamily: AssetRes.fnGTWalsheimProMedium,
+                  //   yearTextFontFamily: AssetRes.fnGTWalsheimProBold,
                   // );
                 },
                 child: Container(

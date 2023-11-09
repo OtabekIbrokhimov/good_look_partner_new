@@ -66,10 +66,10 @@ class AssetRes {
   ///Fonts
   static const String fnGilroyBlack = 'GilroyBlack';
   static const String fnGilroyLight = 'GilroyLight';
-  static const String fnProductSansLight = 'ProductSansLight';
-  static const String fnProductSansThin = 'ProductSansThin';
-  static const String fnProductSansRegular = 'ProductSansRegular';
-  static const String fnProductSansMedium = 'ProductSansMedium';
-  static const String fnProductSansBold = 'ProductSansBold';
-  static const String fnProductSansBlack = 'ProductSansBlack';
+  static const String fnGTWalsheimProLight = 'GTWalsheimProLight';
+  static const String fnGTWalsheimProThin = 'GTWalsheimProThin';
+  static const String fnGTWalsheimProRegular = 'GTWalsheimProRegular';
+  static const String fnGTWalsheimProMedium = 'GTWalsheimProMedium';
+  static const String fnGTWalsheimProBold = 'GTWalsheimProBold';
+  static const String fnGTWalsheimProBlack = 'GTWalsheimProBlack';
 }
