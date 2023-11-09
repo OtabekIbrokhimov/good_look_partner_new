@@ -114,12 +114,10 @@ class ItemManageService extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: kSemiBoldTextStyle.copyWith(
                             color: ColorRes.nero,
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -131,7 +129,7 @@ class ItemManageService extends StatelessWidget {
                                     Text(
                                       (serviceData?.price ?? 0).currency,
                                       style: kBoldThemeTextStyle.copyWith(
-                                        fontSize: 17,
+                                        fontSize: 16,
                                       ),
                                     ),
                                     Padding(
