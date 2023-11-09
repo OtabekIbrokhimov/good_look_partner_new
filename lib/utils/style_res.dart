@@ -4,106 +4,106 @@ import 'package:flutter/material.dart';
 
 const kSemiBoldWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 23,
 );
 
 const kSemiBoldTextStyle = TextStyle(
   color: ColorRes.neroDark,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 20,
 );
 
 const kSemiBoldThemeTextStyle = TextStyle(
   color: ColorRes.themeColor,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 18,
 );
 const kMediumWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 20,
 );
 
 const kMediumTextStyle = TextStyle(
   color: ColorRes.neroDark,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 20,
 );
 
 const kMediumThemeTextStyle = TextStyle(
   color: ColorRes.themeColor,
-  fontFamily: AssetRes.fnGTWalsheimProMedium,
+  fontFamily: AssetRes.fnProductSansMedium,
   fontSize: 20,
 );
 
 const kBoldWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProBold,
+  fontFamily: AssetRes.fnProductSansBold,
   fontSize: 23,
 );
 
 const kBoldThemeTextStyle = TextStyle(
   color: ColorRes.themeColor,
-  fontFamily: AssetRes.fnGTWalsheimProBold,
+  fontFamily: AssetRes.fnProductSansBold,
   fontSize: 23,
 );
 
 const kBlackWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProBlack,
+  fontFamily: AssetRes.fnProductSansBlack,
   fontSize: 22,
 );
 
 const kRegularWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 16,
 );
 
 const kRegularTextStyle = TextStyle(
   color: ColorRes.black,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 16,
 );
 
 const kRegularEmpressTextStyle = TextStyle(
   color: ColorRes.empress,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 16,
 );
 const kRegularThemeTextStyle = TextStyle(
   color: ColorRes.themeColor,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 16,
 );
 
 const kLightWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProLight,
+  fontFamily: AssetRes.fnProductSansLight,
   fontSize: 14,
 );
 const kLightTextStyle = TextStyle(
   color: ColorRes.neroDark,
-  fontFamily: AssetRes.fnGTWalsheimProLight,
+  fontFamily: AssetRes.fnProductSansLight,
   fontSize: 16,
 );
 
 const kThinWhiteTextStyle = TextStyle(
   color: ColorRes.white,
-  fontFamily: AssetRes.fnGTWalsheimProThin,
+  fontFamily: AssetRes.fnProductSansThin,
   fontSize: 14,
 );
 
 const kBlackButtonTextStyle = TextStyle(
   color: ColorRes.black,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 14,
 );
 
 const kThemeButtonTextStyle = TextStyle(
   color: ColorRes.themeColor,
-  fontFamily: AssetRes.fnGTWalsheimProRegular,
+  fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 18,
 );
 
