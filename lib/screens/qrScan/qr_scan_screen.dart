@@ -10,7 +10,11 @@ import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScanScreen extends StatefulWidget {
-  const QrScanScreen({Key? key}) : super(key: key);
+  final bool needResult;
+  Function(String code)? function;
+
+  QrScanScreen({Key? key, this.needResult = false, this.function})
+      : super(key: key);
 
   @override
   State<QrScanScreen> createState() => _QrScanScreenState();
@@ -71,7 +75,15 @@ class _QrScanScreenState extends State<QrScanScreen> {
                         child: QRView(
                           key: qrKey,
                           overlayMargin: EdgeInsets.zero,
-                          onQRViewCreated: _onQRViewCreated,
+                          onQRViewCreated: (controller) {
+                            widget.needResult
+                                ? controller.scannedDataStream.listen((event) {
+                                    controller.dispose();
+                                    widget.function!(event.code.toString());
+                                    return;
+                                  })
+                                : _onQRViewCreated(controller);
+                          },
                         ),
                       ),
                     ],

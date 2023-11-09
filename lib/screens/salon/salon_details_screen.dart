@@ -1,5 +1,6 @@
 import 'package:cutfx_salon/bloc/mysalon/my_salon_bloc.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
+import 'package:cutfx_salon/screens/add_master/master_list_screen.dart';
 import 'package:cutfx_salon/screens/main/main_screen.dart';
 import 'package:cutfx_salon/screens/salon/salon_awards_page.dart';
 import 'package:cutfx_salon/screens/salon/salon_details_page.dart';
@@ -86,9 +87,11 @@ class _SalonDetailsScreenState extends State<SalonDetailsScreen> {
                             children: const [
                               SalonDetailsPage(),
                               SalonServicesPage(),
+                              MasterListScreen(needManage: false,),
                               SalonGalleryPage(),
                               SalonReviewsPage(),
                               SalonAwardsPage(),
+
                             ],
                           ),
                         ),
@@ -123,9 +126,11 @@ class _TabBarOfSalonDetailWidgetState extends State<TabBarOfSalonDetailWidget> {
     final List<String> categories = [
       AppLocalizations.of(context)!.details,
       AppLocalizations.of(context)!.services,
+      AppLocalizations.of(context)!.my_masters,
       AppLocalizations.of(context)!.gallery,
       AppLocalizations.of(context)!.reviews,
-      AppLocalizations.of(context)!.awards
+      AppLocalizations.of(context)!.awards,
+
     ];
     return Container(
       height: 60,
@@ -518,26 +523,29 @@ class _PageIndicatorState extends State<PageIndicator> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children:
-              List.generate(widget.salon?.data?.images?.length ?? 0, (index) {
-            return SizedBox(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: selectedIndex == index
-                      ? ColorRes.smokeWhite
-                      : ColorRes.smokeWhite.withOpacity(.3),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children:
+                List.generate(widget.salon?.data?.images?.length ?? 0, (index) {
+              return SizedBox(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: selectedIndex == index
+                        ? ColorRes.smokeWhite
+                        : ColorRes.smokeWhite.withOpacity(.3),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
                   ),
+                  margin: const EdgeInsets.symmetric(horizontal: 1),
+                  height: 2.5,
+                  width: 20,
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 1),
-                height: 2.5,
-                width: 20,
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
       ),
     );

@@ -1,16 +1,11 @@
-import 'dart:ui';
-
 import 'package:cutfx_salon/bloc/login/login_bloc.dart';
-import 'package:cutfx_salon/screens/registration/registration_screen.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/custom/custom_widget.dart';
 import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
 import 'package:mask_input_formatter/mask_input_formatter.dart';
 
 class EmailLoginScreen extends StatelessWidget {
@@ -33,12 +28,9 @@ class EmailLoginScreen extends StatelessWidget {
                   height: double.infinity,
                   width: double.infinity,
                 ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                SizedBox(
                   child: Container(
                     width: double.infinity,
-                    decoration:
-                        BoxDecoration(color: ColorRes.black.withOpacity(.4)),
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: SafeArea(
                       child: Column(
@@ -54,7 +46,7 @@ class EmailLoginScreen extends StatelessWidget {
                           ),
                           Text(
                             AppLocalizations.of(context)!.signInToContinue,
-                            style: kSemiBoldWhiteTextStyle,
+                            style: kSemiBoldWhiteTextStyle.copyWith(color: ColorRes.black),
                           ),
                           const SizedBox(
                             height: 10,
@@ -64,6 +56,7 @@ class EmailLoginScreen extends StatelessWidget {
                                 .registerYourShopWithUsFindCustomersManageAppointmentsAnd,
                             style: kLightWhiteTextStyle.copyWith(
                               fontSize: 15,
+                              color: ColorRes.black
                             ),
                           ),
                           const SizedBox(
@@ -103,13 +96,13 @@ class EmailLoginScreen extends StatelessWidget {
                             width: double.infinity,
                             height: 55,
                             child: TextButton(
-                              style: kButtonWhiteStyle,
+                              style: kButtonThemeStyle.copyWith(),
                               onPressed: () {
                                 loginBloc.onContinueClick();
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.continue_,
-                                style: kThemeButtonTextStyle,
+                                style: kLightTextStyle.copyWith(color: ColorRes.white),
                               ),
                             ),
                           ),
@@ -180,14 +173,14 @@ class TextWithTextFieldWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: kRegularWhiteTextStyle,
+          style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
         ),
         Container(
           decoration: BoxDecoration(
             color: ColorRes.white.withOpacity(0.1),
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(
-              color: ColorRes.smokeWhite,
+              color: ColorRes.black,
               width: 0.5,
             ),
           ),
@@ -195,9 +188,9 @@ class TextWithTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
-              const Text(
+               Text(
                 "+998",
-                style: kRegularWhiteTextStyle,
+                style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
               ),
               Flexible(
                 child: TextField(
@@ -209,19 +202,11 @@ class TextWithTextFieldWidget extends StatelessWidget {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
-                  style: kRegularWhiteTextStyle,
+                  style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
                   textCapitalization: TextCapitalization.characters,
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  changeVisiblity();
-                },
-                child: Icon(
-                  isVisible ? Icons.visibility : Icons.visibility_off,
-                  color: ColorRes.white,
-                ),
-              )
+            //
             ],
           ),
         )

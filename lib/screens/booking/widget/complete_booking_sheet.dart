@@ -9,16 +9,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
-class CompleteBookingSheet extends StatelessWidget {
-  const CompleteBookingSheet({
-    Key? key,
-    required this.requestDetails,
-  }) : super(key: key);
-  final RequestDetails requestDetails;
+import '../../../utils/asset_res.dart';
+import '../../qrScan/qr_scan_screen.dart';
 
+class CompleteBookingSheet extends StatefulWidget {
+   CompleteBookingSheet({super.key, required this.requestDetails});
+  final RequestDetails requestDetails;
+  TextEditingController textEditingController = TextEditingController();
+  @override
+  State<CompleteBookingSheet> createState() => _CompleteBookingSheetState();
+}
+
+class _CompleteBookingSheetState extends State<CompleteBookingSheet> {
+
+ void takeCode(String code){
+   Get.log(code);
+   int second = 0;
+   setState(() {
+     widget.textEditingController.text = code;
+   });
+   Get.back();
+   return;
+ }
   @override
   Widget build(BuildContext context) {
-    TextEditingController textEditingController = TextEditingController();
+
     return SafeArea(
       bottom: false,
       child: Container(
@@ -56,9 +71,35 @@ class CompleteBookingSheet extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            TextWithTextFieldSmokeWhiteWidget(
-              title: '',
-              controller: textEditingController,
+            SizedBox(
+              width: Get.width,
+              height: 60,
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 60,
+                    width: Get.width-70,
+                    child: TextWithTextFieldSmokeWhiteWidget(
+                      title: '',
+                      controller: widget.textEditingController,
+                    ),
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () async {
+                      Get.to(()=> QrScanScreen(needResult: true,function: takeCode));
+
+                    },
+                    child: const Image(
+                      image: AssetImage(
+                        AssetRes.icScan,
+                      ),
+                      color: Colors.black,
+                      height: 30,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             SafeArea(
@@ -68,14 +109,14 @@ class CompleteBookingSheet extends StatelessWidget {
                 height: 55,
                 child: TextButton(
                   onPressed: () async {
-                    if (textEditingController.text.isEmpty) {
+                    if (widget.textEditingController.text.isEmpty) {
                       AppRes.showSnackBar('Please enter OTP.', false);
                       return;
                     }
                     AppRes.showCustomLoader();
                     RestResponse restResponse = await ApiService()
-                        .completeBooking(requestDetails.data?.bookingId ?? '',
-                            textEditingController.text);
+                        .completeBooking(widget.requestDetails.data?.bookingId ?? '',
+                            widget.textEditingController.text);
                     if (!restResponse.status!) {
                       AppRes.hideCustomLoader();
 

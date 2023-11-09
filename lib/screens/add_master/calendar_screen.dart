@@ -1,8 +1,9 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:cutfx_salon/bloc/addmastertime/add_master_time_block.dart';
-import 'package:cutfx_salon/utils/app_res.dart';
+import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 
 import '../../utils/color_res.dart';
@@ -19,13 +20,12 @@ class CalendarScreen extends StatelessWidget {
       child: BlocBuilder<AddMasterTimeBlock, AddMasterTimeState>(
         builder: (context, state) {
           AddMasterTimeBlock addtime = context.watch<AddMasterTimeBlock>();
-          Get.arguments != null? addtime.pickTimes(Get.arguments):{};
           return Scaffold(
             backgroundColor: ColorRes.smokeWhite,
             body: Column(
               children: [
                 const ToolBarWidget(
-                  title: "Add Time",
+                  title: '',
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +46,8 @@ class CalendarScreen extends StatelessWidget {
                           child: TextButton(
                             style: const ButtonStyle(),
                             onPressed: () {
-                              addtime.selectTime(context, true);
+                              timePicking2(context,addtime,true);
+
                             },
                             child: Text(
                               addtime.startTime,
@@ -71,7 +72,7 @@ class CalendarScreen extends StatelessWidget {
                           height: 50,
                           child: TextButton(
                             onPressed: () {
-                              addtime.selectTime(context, false);
+                              timePicking2(context,addtime,false);
                             },
                             child: Text(
                               addtime.endTime,
@@ -88,10 +89,10 @@ class CalendarScreen extends StatelessWidget {
                   config: CalendarDatePicker2Config(
                     calendarType: CalendarDatePicker2Type.multi,
                     selectedRangeHighlightColor: ColorRes.fountainBlue,
-selectedDayHighlightColor: ColorRes.themeColor,
+                    selectedDayHighlightColor: ColorRes.themeColor,
                     disableModePicker: true,
                   ),
-                  value: addtime.datas,
+                  value: addtime.datas + addtime.dataForCheck,
                   onValueChanged: (dates) {
                     addtime.takeTime(dates);
                   },
@@ -123,6 +124,49 @@ selectedDayHighlightColor: ColorRes.themeColor,
           );
         },
       ),
+    );
+  }
+
+  void timePicking2(BuildContext context, AddMasterTimeBlock ok, bool isStart) {
+    Get.bottomSheet(Container(
+        padding: const EdgeInsets.all(15),
+        height: Get.height / 2,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+
+                InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
+                ),
+
+              ],
+            ),
+            TimePickerSpinner(
+              minutesInterval: 15,
+              is24HourMode: true,
+              normalTextStyle:
+                  const TextStyle(fontSize: 24, color: Colors.grey),
+              highlightedTextStyle:
+                  const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+              spacing: 50,
+              itemHeight: 80,
+              isForce2Digits: true,
+              onTimeChange: (time) {
+                ok.selectTime(time, isStart);
+              },
+            ),
+
+          ],
+        )),
+    enableDrag: false
     );
   }
 }

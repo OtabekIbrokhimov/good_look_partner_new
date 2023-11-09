@@ -196,17 +196,20 @@ class EditSalonDetailsScreen extends StatelessWidget {
                             onPressed: () {
                               editSalonDetailBloc.onTapFetchLocation();
                             },
-                            child: Text(
-                              editSalonDetailBloc.latLng != null
-                                  ? AppLocalizations.of(context)!
-                                      .locationFetched
-                                  : AppLocalizations.of(context)!
-                                      .clickToFetchLocation,
-                              style: kRegularWhiteTextStyle.copyWith(
-                                color: editSalonDetailBloc.latLng != null
-                                    ? ColorRes.green
-                                    : ColorRes.empress,
-                                fontSize: 16,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                editSalonDetailBloc.latLng != null
+                                    ? AppLocalizations.of(context)!
+                                        .locationFetched
+                                    : AppLocalizations.of(context)!
+                                        .clickToFetchLocation,
+                                style: kRegularWhiteTextStyle.copyWith(
+                                  color: editSalonDetailBloc.latLng != null
+                                      ? ColorRes.green
+                                      : ColorRes.empress,
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
                           ),

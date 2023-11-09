@@ -24,7 +24,9 @@ part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatInitial()) {
+    Get.log("ishladi");
     on<FetchChatArgumentsEvent>((event, emit) async {
+      Get.log("ishladi");
       conversation = Get.arguments[0];
       senderId = conversation.conversationId ?? '';
       userData = Get.arguments[1];

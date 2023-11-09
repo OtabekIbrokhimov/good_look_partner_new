@@ -18,28 +18,11 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: [
-        Text(
-          AppLocalizations.of(context)!.appName.toUpperCase(),
-          style: TextStyle(
-            color: textColor ?? ColorRes.white,
-            fontFamily: AssetRes.fnGilroyBlack,
-            fontSize: textSize ?? 22,
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          AppLocalizations.of(context)!.salon.toUpperCase(),
-          style: TextStyle(
-            color: textColor ?? ColorRes.white,
-            fontFamily: AssetRes.fnGilroyLight,
-            fontSize: textSize ?? 22,
-          ),
-        ),
-      ],
+    return  SizedBox(
+      child: Image(
+        image: const AssetImage("images/logo.png"),
+        width: Get.width*0.8,
+      ),
     );
   }
 }
@@ -96,13 +79,13 @@ class TextWithTextFieldSmokeWhiteWidget extends StatelessWidget {
   final bool? isPassword;
   final TextEditingController? controller;
   final TextInputType? textInputType;
-
+  final bool enable;
   const TextWithTextFieldSmokeWhiteWidget({
     Key? key,
     required this.title,
     this.isPassword,
     this.controller,
-    this.textInputType = TextInputType.text,
+    this.textInputType = TextInputType.text,  this.enable = true,
   }) : super(key: key);
 
   @override
@@ -132,6 +115,7 @@ class TextWithTextFieldSmokeWhiteWidget extends StatelessWidget {
           margin: const EdgeInsets.only(top: 5),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: TextField(
+            enabled: enable,
             controller: controller,
             decoration: const InputDecoration(
               border: InputBorder.none,
@@ -266,12 +250,13 @@ class ToolBarWidget extends StatelessWidget {
           children: [
             CustomCircularInkWell(
               onTap: () {
-                Get.back(result: "ishladi");
+                Get.back();
               },
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Image(
                   image: AssetImage(AssetRes.icBack),
+                  color: ColorRes.black,
                   height: 30,
                 ),
               ),

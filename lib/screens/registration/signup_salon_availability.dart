@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:cutfx_salon/bloc/singnup/sign_up_bloc.dart';
 import 'package:cutfx_salon/bloc/singnup/sign_up_state.dart';
-import 'package:cutfx_salon/model/slot/slot.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
@@ -11,15 +8,13 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class SignUpSalonAvailabilityWidget extends StatelessWidget {
   const SignUpSalonAvailabilityWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SignUpBloc signUpBloc = context.read<SignUpBloc>();
+    SignUpBloc signUpBloc = context.watch<SignUpBloc>();
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) {
         return SingleChildScrollView(
@@ -54,7 +49,7 @@ class SignUpSalonAvailabilityWidget extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () async {
-                              signUpBloc.onTimeClick(0, signUpBloc);
+                              signUpBloc.onTimeClick(0, signUpBloc, context);
                             },
                             child: Container(
                               decoration: const BoxDecoration(
@@ -100,7 +95,7 @@ class SignUpSalonAvailabilityWidget extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              signUpBloc.onTimeClick(1, signUpBloc);
+                              signUpBloc.onTimeClick(1, signUpBloc, context);
                             },
                             child: Container(
                               decoration: const BoxDecoration(
@@ -155,7 +150,7 @@ class SignUpSalonAvailabilityWidget extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              signUpBloc.onTimeClick(2, signUpBloc);
+                              signUpBloc.onTimeClick(2, signUpBloc, context);
                             },
                             child: Container(
                               decoration: const BoxDecoration(
@@ -201,7 +196,7 @@ class SignUpSalonAvailabilityWidget extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              signUpBloc.onTimeClick(3, signUpBloc);
+                              signUpBloc.onTimeClick(3, signUpBloc, context);
                             },
                             child: Container(
                               decoration: const BoxDecoration(
@@ -242,166 +237,166 @@ class SignUpSalonAvailabilityWidget extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.addBookingSlotsByWeekDays,
-                      style: kRegularTextStyle,
-                    ),
+                    // Text(
+                    //   AppLocalizations.of(context)!.addBookingSlotsByWeekDays,
+                    //   style: kRegularTextStyle,
+                    // ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .ifYouHaveAddedOnly2SlotsForMondayThen,
-                      style:
-                          kRegularTextStyle.copyWith(color: ColorRes.empress),
-                    ),
+                    // Text(
+                    //   AppLocalizations.of(context)!
+                    //       .ifYouHaveAddedOnly2SlotsForMondayThen,
+                    //   style:
+                    //       kRegularTextStyle.copyWith(color: ColorRes.empress),
+                    // ),
                   ],
                 ),
               ),
-              ListView.builder(
-                primary: false,
-                itemCount: DateFormat().dateSymbols.WEEKDAYS.length,
-                padding: const EdgeInsets.all(0),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  List<SlotData>? slots = signUpBloc
-                      .salonSlots[DateFormat().dateSymbols.WEEKDAYS[index]];
-                  return Container(
-                    color: ColorRes.smokeWhite2,
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 15),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              signUpBloc.salonSlots.keys
-                                  .toList()[index]
-                                  .toUpperCase(),
-                              style: kSemiBoldTextStyle.copyWith(
-                                fontSize: 14,
-                                letterSpacing: 1.5,
-                              ),
-                            ),
-                            const Spacer(),
-                            CustomCircularInkWell(
-                              onTap: () {
-                                if (signUpBloc.monFriFrom == null ||
-                                    signUpBloc.monFriTo == null ||
-                                    signUpBloc.satSunFrom == null ||
-                                    signUpBloc.satSunTo == null) {
-                                  AppRes.showSnackBar(
-                                      AppLocalizations.of(context)!
-                                          .pleaseCompleteAvailabilityFirst,
-                                      false);
-                                  return;
-                                }
-                                Get.bottomSheet(
-                                  AddSlotDialog(
-                                    nameOfDay: signUpBloc.salonSlots.keys
-                                        .toList()[index],
-                                    onTimeSlotClick: (timeSelect) {
-                                      signUpBloc.onSlotTimeClick(
-                                          index, timeSelect);
-                                    },
-                                    onClickSubmit: (timeOfDay, slotLimit) {
-                                      signUpBloc.onAddSlotClick(timeOfDay,
-                                          slotLimit, signUpBloc, index);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.add,
-                                style: kSemiBoldThemeTextStyle.copyWith(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: slots == null || slots.isEmpty ? 0 : 50,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: slots?.length ?? 0,
-                            itemBuilder: (context, index) {
-                              return Stack(
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    margin: const EdgeInsets.only(
-                                        right: 10, top: 7),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      color: ColorRes.smokeWhite3,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          AppRes.convert24HoursInto12Hours(
-                                            slots?[index].time,
-                                          ),
-                                          style: kBoldThemeTextStyle.copyWith(
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 2,
-                                        ),
-                                        Text(
-                                          '${slots?[index].bookingLimit} ${AppLocalizations.of(context)!.slots}',
-                                          style:
-                                              kRegularEmpressTextStyle.copyWith(
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 6,
-                                    child: CustomCircularInkWell(
-                                      onTap: () {
-                                        signUpBloc.deleteSlotBooking(
-                                            slots?[index], signUpBloc);
-                                      },
-                                      child: ClipOval(
-                                        child: Transform.rotate(
-                                          angle: 45 * pi / 180,
-                                          child: Container(
-                                            color: ColorRes.charcoal,
-                                            height: 18,
-                                            child: const Image(
-                                              image: AssetImage(
-                                                AssetRes.icPlus_,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+              // ListView.builder(
+              //   primary: false,
+              //   itemCount: DateFormat().dateSymbols.WEEKDAYS.length,
+              //   padding: const EdgeInsets.all(0),
+              //   shrinkWrap: true,
+              //   scrollDirection: Axis.vertical,
+              //   itemBuilder: (context, index) {
+              //     List<SlotData>? slots = signUpBloc
+              //         .salonSlots[DateFormat().dateSymbols.WEEKDAYS[index]];
+              //     return Container(
+              //       color: ColorRes.smokeWhite2,
+              //       margin: const EdgeInsets.only(top: 10),
+              //       padding: const EdgeInsets.symmetric(
+              //           horizontal: 15, vertical: 15),
+              //       child: Column(
+              //         children: [
+              //           Row(
+              //             children: [
+              //               Text(
+              //                 signUpBloc.salonSlots.keys
+              //                     .toList()[index]
+              //                     .toUpperCase(),
+              //                 style: kSemiBoldTextStyle.copyWith(
+              //                   fontSize: 14,
+              //                   letterSpacing: 1.5,
+              //                 ),
+              //               ),
+              //               const Spacer(),
+              //               CustomCircularInkWell(
+              //                 onTap: () {
+              //                   if (signUpBloc.monFriFrom == null ||
+              //                       signUpBloc.monFriTo == null ||
+              //                       signUpBloc.satSunFrom == null ||
+              //                       signUpBloc.satSunTo == null) {
+              //                     AppRes.showSnackBar(
+              //                         AppLocalizations.of(context)!
+              //                             .pleaseCompleteAvailabilityFirst,
+              //                         false);
+              //                     return;
+              //                   }
+              //                   Get.bottomSheet(
+              //                     AddSlotDialog(
+              //                       nameOfDay: signUpBloc.salonSlots.keys
+              //                           .toList()[index],
+              //                       onTimeSlotClick: (timeSelect) {
+              //                         signUpBloc.onSlotTimeClick(
+              //                             index, timeSelect);
+              //                       },
+              //                       onClickSubmit: (timeOfDay, slotLimit) {
+              //                         signUpBloc.onAddSlotClick(timeOfDay,
+              //                             slotLimit, signUpBloc, index);
+              //                       },
+              //                     ),
+              //                   );
+              //                 },
+              //                 child: Text(
+              //                   AppLocalizations.of(context)!.add,
+              //                   style: kSemiBoldThemeTextStyle.copyWith(
+              //                     fontSize: 15,
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           SizedBox(
+              //             height: slots == null || slots.isEmpty ? 0 : 50,
+              //             child: ListView.builder(
+              //               scrollDirection: Axis.horizontal,
+              //               itemCount: slots?.length ?? 0,
+              //               itemBuilder: (context, index) {
+              //                 return Stack(
+              //                   children: [
+              //                     Container(
+              //                       width: 100,
+              //                       margin: const EdgeInsets.only(
+              //                           right: 10, top: 7),
+              //                       padding: const EdgeInsets.symmetric(
+              //                         horizontal: 10,
+              //                       ),
+              //                       decoration: const BoxDecoration(
+              //                         color: ColorRes.smokeWhite3,
+              //                         borderRadius:
+              //                         BorderRadius.all(Radius.circular(5)),
+              //                       ),
+              //                       child: Column(
+              //                         crossAxisAlignment:
+              //                         CrossAxisAlignment.start,
+              //                         mainAxisAlignment:
+              //                         MainAxisAlignment.center,
+              //                         children: [
+              //                           Text(
+              //                             AppRes.convert24HoursInto12Hours(
+              //                               slots?[index].time,
+              //                             ),
+              //                             style: kBoldThemeTextStyle.copyWith(
+              //                               fontSize: 15,
+              //                             ),
+              //                           ),
+              //                           const SizedBox(
+              //                             height: 2,
+              //                           ),
+              //                           Text(
+              //                             '${slots?[index].bookingLimit} ${AppLocalizations.of(context)!.slots}',
+              //                             style:
+              //                             kRegularEmpressTextStyle.copyWith(
+              //                               fontSize: 13,
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     Positioned(
+              //                       right: 6,
+              //                       child: CustomCircularInkWell(
+              //                         onTap: () {
+              //                           signUpBloc.deleteSlotBooking(
+              //                               slots?[index], signUpBloc);
+              //                         },
+              //                         child: ClipOval(
+              //                           child: Transform.rotate(
+              //                             angle: 45 * pi / 180,
+              //                             child: Container(
+              //                               color: ColorRes.charcoal,
+              //                               height: 18,
+              //                               child: const Image(
+              //                                 image: AssetImage(
+              //                                   AssetRes.icPlus_,
+              //                                 ),
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 );
+              //               },
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         );

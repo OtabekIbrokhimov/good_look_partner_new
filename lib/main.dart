@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cutfx_salon/firebase_options.dart';
 import 'package:cutfx_salon/screens/welcome/welcome_screen.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
@@ -10,15 +12,19 @@ import 'package:get/route_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else if (Platform.isIOS) {
+    await Firebase.initializeApp();
+  }  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(
     const RestartWidget(
       child: MyApp(),
     ),
   );
 }
-
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -35,7 +41,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       locale: Locale(SharePref.selectedLanguage),
-      title: 'Cutfx Salon',
+      title: 'Good look partner',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorRes.white,
         textTheme: const TextTheme(

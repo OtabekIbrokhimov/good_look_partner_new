@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../manageServices/tab_bar_of_manage_service.dart';
 
@@ -24,8 +25,8 @@ class ChooseServiceScreen extends StatelessWidget {
 
           return Scaffold(
               body: ListView(shrinkWrap: true, children: [
-            const ToolBarWidget(
-              title: "Choose service",
+             ToolBarWidget(
+              title: AppLocalizations.of(context)!.chooseService,
             ),
             SizedBox(
               height: Get.height - 300,

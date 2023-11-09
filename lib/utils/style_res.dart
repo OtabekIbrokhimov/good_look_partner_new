@@ -62,7 +62,7 @@ const kRegularWhiteTextStyle = TextStyle(
 );
 
 const kRegularTextStyle = TextStyle(
-  color: ColorRes.neroDark,
+  color: ColorRes.black,
   fontFamily: AssetRes.fnProductSansRegular,
   fontSize: 16,
 );
@@ -117,10 +117,10 @@ ButtonStyle kButtonWhiteStyle = ButtonStyle(
 );
 
 ButtonStyle kButtonThemeStyle = ButtonStyle(
-  backgroundColor: MaterialStateProperty.all(ColorRes.themeColor),
+  backgroundColor: MaterialStateProperty.all(ColorRes.black),
   shape: MaterialStateProperty.all(
     const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10))),
   ),
-  overlayColor: MaterialStateProperty.all(ColorRes.transparent),
+  overlayColor: MaterialStateProperty.all(ColorRes.black),
 );

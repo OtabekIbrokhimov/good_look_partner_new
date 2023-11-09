@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cutfx_salon/bloc/edit/edit_profile_bloc.dart';
 import 'package:cutfx_salon/model/masters/master_responce.dart';
-import 'package:cutfx_salon/screens/add_master/add_time_screen.dart';
 import 'package:cutfx_salon/screens/add_master/choose_service_screen.dart';
 import 'package:cutfx_salon/screens/main/main_screen.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
@@ -17,7 +16,6 @@ import 'package:get/get.dart';
 
 class AddMasterScreen extends StatefulWidget {
   AddMasterScreen({super.key, this.master});
-
   Master? master;
 
   @override
@@ -70,10 +68,12 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                         ),
                                       ),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 15),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15),
                                       child: Text(
-                                        "Create master",
+                                        AppLocalizations.of(context)!
+                                            .createMaster,
                                         style: kBoldThemeTextStyle,
                                       ),
                                     ),
@@ -149,7 +149,8 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     TextWithTextFieldSmokeWhiteWidget(
-                                      title: "Full name",
+                                      title: AppLocalizations.of(context)!
+                                          .fullName,
                                       controller: editProfileBloc
                                           .fullNameTextController,
                                     ),
@@ -157,22 +158,45 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                 ),
                               ),
                             ),
-                            EditWidget(
-                              title: "Edit service",
-                              onTapEdit: () async {
-                                List<int> items = await Get.to(
-                                        () => const ChooseServiceScreen(),
-                                    arguments: editProfileBloc.ids);
-                                Get.log(items.toString());
-                                editProfileBloc.takeIds(items);
-                              },
-                            ),
-                            EditWidget(
-                              title: "Edit time",
-                              onTapEdit: () {
-                                Get.to(() => const AddTimeScreen());
-                              },
-                            ),
+                            SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                              EditWidget(
+                                title: AppLocalizations.of(context)!.editService,
+                                onTapEdit: () async {
+                                  List<int> items = await Get.to(
+                                          () => const ChooseServiceScreen(),
+                                      arguments: editProfileBloc.ids);
+                                  Get.log(items.toString());
+                                  editProfileBloc.takeIds(items);
+                                },
+                              ),
+                              EditWidget(
+                                title: AppLocalizations.of(context)!.manageWorkTime,
+                                onTapEdit: () {
+                                  editProfileBloc.onTapEdit();
+                                },
+                              ),
+                            ],),
+                           const SizedBox(height: 20,),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                             children: [
+                             EditWidget(
+                               title: AppLocalizations.of(context)!.manageFreeTime,
+                               onTapEdit: () {
+                                 // Get.to(() => const AddTimeScreen());
+                               },
+                             ),
+                             EditWidget(
+                               title: AppLocalizations.of(context)!.manageVocation,
+                               onTapEdit: () {
+                                 // Get.to(() => const AddTimeScreen());
+                               },
+                             ),
+                           ],),
+
                             SizedBox(height: Get.width / 2),
                             const Spacer(),
                             Padding(
@@ -186,7 +210,8 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                   child: TextButton(
                                     style: kButtonThemeStyle,
                                     onPressed: () {
-                                      editProfileBloc.createMaster(editProfileBloc.needCreate);
+                                      editProfileBloc.createMaster(
+                                          editProfileBloc.needCreate);
                                     },
                                     child: Text(
                                       AppLocalizations.of(context)!.submit,
@@ -220,32 +245,43 @@ class EditWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            title,
-            style: kBoldThemeTextStyle,
-          ),
-        ),
         InkWell(
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: BgRoundImageWidget(
-                image: AssetRes.icEdit,
-                onTap: () {
-                  onTapEdit();
-                },
-                height: 30,
-                width: 30,
-                imagePadding: 5,
-                bgColor: ColorRes.charcoal50,
-              ),
+          onTap: (){
+            onTapEdit();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            height: 50,
+            width: Get.width/2.3,
+            decoration: BoxDecoration(
+              color: ColorRes.themeColor,
+              borderRadius: BorderRadius.circular(15)
+            ),
+            child: Text(
+              title,
+style: kLightTextStyle.copyWith(color: Colors.white),
             ),
           ),
-        )
+        ),
+        // InkWell(
+        //   onTap: () {},
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(8.0),
+        //     child: Align(
+        //       alignment: Alignment.bottomRight,
+        //       child: BgRoundImageWidget(
+        //         image: AssetRes.icEdit,
+        //         onTap: () {
+        //           onTapEdit();
+        //         },
+        //         height: 30,
+        //         width: 30,
+        //         imagePadding: 5,
+        //         bgColor: ColorRes.charcoal50,
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     );
   }
