@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA2EVQD7A2qa3X-8G7Jylv0bA0gfDHqs-o',
-    appId: '1:448277654552:ios:f0c95eec917e2c1fa5a76d',
+    appId: '1:448277654552:ios:9d0bbd1765e29fd0a5a76d',
     messagingSenderId: '448277654552',
     projectId: 'good-look-23ad9',
     storageBucket: 'good-look-23ad9.appspot.com',
-    iosBundleId: 'uz.goodlook.salon',
+    iosBundleId: 'uz.goodlook.salon.uz',
   );
 }
