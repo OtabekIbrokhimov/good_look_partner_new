@@ -11,18 +11,12 @@ import '../../utils/app_res.dart';
 import '../../utils/shared_pref.dart';
 
 part 'direct_master_time_event.dart';
+
 part 'direct_master_time_state.dart';
 
 class DirectMasterBlock extends Bloc<DirectMasterEvent, DirectMasterTimeState> {
   DirectMasterBlock() : super(DirectMasterStateInitial()) {
-    // if (Get.arguments != null) {
-    //   CalendarList dateList = Get.arguments;
-    //   if (dateList.date!.isNotEmpty) {
-    //     takeTimeForResult(dateList, false);
-    //   }
-    // } else {
-    //   Get.log("mana muammo");
-    forRememberOldTimes();
+    forRememberOldTimes(Get.arguments);
     on<DirectMasterAddTimeEvent>((event, emit) {
       emit(DirectMasterAddTimeState());
     });
@@ -36,7 +30,7 @@ class DirectMasterBlock extends Bloc<DirectMasterEvent, DirectMasterTimeState> {
   bool needReload = true;
 
   void takeTimeForResult(CalendarList dateList, bool needUpdate) async {
-    mainList.date?.clear();
+     mainList.date?.clear();
     CalendarMainList mainListInternal = CalendarMainList(date: []);
     mainListInternal.date?.addAll([dateList]);
     Get.log("ikkalasi");
@@ -64,58 +58,61 @@ class DirectMasterBlock extends Bloc<DirectMasterEvent, DirectMasterTimeState> {
     }
     List<CalendarList> list2 = mainListInternal.date ?? [];
     if (needAdd == true) allInfo.date?.addAll(list2);
-
     sharePref.saveString(AppRes.calendarDates, jsonEncode(allInfo));
+    Get.log("saqladi +  ??  + ${mainList.toJson().toString()}plplp");
     mainList = allInfo;
     add(DirectMasterAddTimeEvent());
   }
 
-  void forRememberOldTimes() async {
-    if (mainList.date!.isEmpty) {
-      SharePref sharePref = await SharePref().init();
-      String dateString = sharePref.getString(AppRes.calendarDates) ?? "";
-      Get.log(dateString);
-      if (dateString.isNotEmpty) {
-        Map valueMap = json.decode(dateString);
-        for (int b = 0; b < valueMap['date'].length; b++) {
-          Get.log("$b");
-          CalendarList calendarList = CalendarList(date: []);
-          for (int i = 0; i < valueMap['date'][b]['date'].length; i++) {
-            calendarList.date?.add(CalendarDates(
-                start: valueMap['date'][b]['date'][i]['start'],
-                end: valueMap['date'][b]['date'][i]['end'],
-                date: valueMap['date'][b]['date'][i]['date']));
-          }
-          if (calendarList.date?.isNotEmpty ?? false) {
-            allInfo.date?.add(calendarList);
-          }
-        }
+  void forRememberOldTimes(List<CalendarDates> calendarDates) async {
+    CalendarList calendarList = CalendarList(date: calendarDates);
+    mainList.date?.add(calendarList);
 
-        sharePref.saveString(AppRes.calendarDates, jsonEncode(allInfo));
-        mainList = allInfo;
-      } else {
-        Get.log("return 2");
-        return;
-      }
-    } else {
-      Get.log("return 1");
-      return;
-    }
+    // if (mainList.date!.isEmpty) {
+    //   SharePref sharePref = await SharePref().init();
+    //   String dateString = sharePref.getString(AppRes.calendarDates) ?? "";
+    //   Get.log(dateString);
+    //   if (dateString.isNotEmpty) {
+    //     Map valueMap = json.decode(dateString);
+    //     for (int b = 0; b < valueMap['date'].length; b++) {
+    //       Get.log("$b");
+    //       CalendarList calendarList = CalendarList(date: []);
+    //       for (int i = 0; i < valueMap['date'][b]['date'].length; i++) {
+    //         calendarList.date?.add(CalendarDates(
+    //             start: valueMap['date'][b]['date'][i]['start'],
+    //             end: valueMap['date'][b]['date'][i]['end'],
+    //             date: valueMap['date'][b]['date'][i]['date']));
+    //       }
+    //       if (calendarList.date?.isNotEmpty ?? false) {
+    //         allInfo.date?.add(calendarList);
+    //       }
+    //     }
+    //
+    //     sharePref.saveString(AppRes.calendarDates, jsonEncode(allInfo));
+    //     mainList = allInfo;
+    //   } else {
+    //     Get.log("return 2");
+    //     return;
+    //   }
+    // } else {
+    //   Get.log("return 1");
+    //   return;
+    // }
   }
 
   void getToCalendar() async {
     Get.log("add bir marta ishladi");
     CalendarList sortDates = CalendarList(date: []);
-    int l = allInfo.date?.length ?? 0;
+    int l = mainList.date?.length ?? 0;
     for (int b = 0; b < l; b++) {
-      sortDates.date?.addAll(allInfo.date?[b].date ?? []);
+      sortDates.date?.addAll(mainList.date?[b].date ?? []);
     }
     Get.log("${sortDates}mana bor ma'lumot");
-
     add(DirectMasterAddTimeEvent());
     CalendarList? dateList = await Get.to(() => const CalendarScreen(),
         arguments: {"list": sortDates, "isAdd": true});
     if (dateList != null) {
+      Get.log(dateList.toString());
       takeTimeForResult(dateList, true);
     }
   }
@@ -125,6 +122,7 @@ class DirectMasterBlock extends Bloc<DirectMasterEvent, DirectMasterTimeState> {
     CalendarList? dateList = await Get.to(() => const CalendarScreen(),
         arguments: {"list": mainList.date?[index], "isAdd": false});
     if (dateList != null) {
+      Get.log("${dateList.date}");
       takeTimeForResult(dateList, false);
       deleteDay(index, isEdit: true);
     }
@@ -132,10 +130,8 @@ class DirectMasterBlock extends Bloc<DirectMasterEvent, DirectMasterTimeState> {
 
   void deleteDay(int index, {bool isEdit = false}) async {
     SharePref sharePref = await SharePref().init();
-    allInfo.date?.removeAt(index);
-    mainList = allInfo;
+    mainList.date?.removeAt(index);
     sharePref.saveString(AppRes.calendarDates, jsonEncode(mainList));
-
     add(DirectMasterAddTimeEvent());
     isEdit ? {} : Get.back();
   }

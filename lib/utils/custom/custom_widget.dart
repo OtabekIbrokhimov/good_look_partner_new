@@ -343,34 +343,68 @@ class CloseButtonWidget extends StatelessWidget {
     );
   }
 }
+Widget loadingImage(context, child, loadingProgress) {
+  if (loadingProgress == null) {
+    return child;
+  }
+  return const LoadingImage();
+}
+
+
+Widget errorBuilderForImage(context, error, stackTrace, {String name = '',bool isSalonImage = false, double fontSize = 50}) {
+
+  return isSalonImage?ImageNotFoundSalon(name: name): ImageNotFound(name: name,fontsize: fontSize,);
+}
 
 class ImageNotFound extends StatelessWidget {
   final Color? color;
-
-  const ImageNotFound({Key? key, this.color}) : super(key: key);
+  final Color? tintcolor;
+  final String name;
+  final double fontsize;
+  const ImageNotFound({
+    super.key,
+    this.color,
+    this.tintcolor, required this.name,  this.fontsize = 50
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color ?? ColorRes.smokeWhite,
+      color:ColorRes.fountainBlue,
       child: Center(
         child: Text(
-          ':-('.toUpperCase(),
+          name.isNotEmpty?name[0].toUpperCase():' '.toUpperCase(),
           style: kBoldThemeTextStyle.copyWith(
-            color: ColorRes.smokeWhite1,
-            fontSize: 50,
+            color: tintcolor ?? ColorRes.smokeWhite1,
+            fontSize: fontsize,
           ),
         ),
       ),
     );
   }
 }
+class ImageNotFoundSalon extends StatelessWidget {
+  final String name;
+  const ImageNotFoundSalon({
+    super.key,
+    required this.name,
+  });
 
-Widget loadingImage(context, child, loadingProgress) {
-  if (loadingProgress == null) {
-    return child;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color:ColorRes.fountainBlue,
+      child: Center(
+        child: Text(
+          name.isNotEmpty?name.toUpperCase():"",
+          style: kBoldThemeTextStyle.copyWith(
+            color:  ColorRes.greyD9,
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
   }
-  return const LoadingImage();
 }
 
 class ImageNotFoundOval extends StatelessWidget {
@@ -404,45 +438,21 @@ class ImageNotFoundOval extends StatelessWidget {
   }
 }
 
-Widget errorBuilderForImage(context, error, stackTrace) {
-  return const LoadingImage();
-}
-
-Widget loadingImageForCircle(context, child, loadingProgress) {
-  if (loadingProgress == null) {
-    return child;
-  }
-  return const LoadingImage(
-    fontSize: 20,
-  );
-}
-
-Widget errorBuilderForCircleImage(context, error, stackTrace) {
-  return const LoadingImage(
-    fontSize: 20,
-  );
-}
-
 class LoadingImage extends StatelessWidget {
   final Color? color;
-  final double? fontSize;
 
-  const LoadingImage({Key? key, this.color, this.fontSize}) : super(key: key);
+  const LoadingImage({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1 / 1,
-      child: Container(
-        color: color ?? ColorRes.smokeWhite1.withOpacity(.5),
-        child: Center(
-          child: Text(
-            '● ● ●'.toUpperCase(),
-            style: kBoldThemeTextStyle.copyWith(
-              color: ColorRes.charcoal50.withOpacity(.2),
-              fontSize: fontSize ?? 30,
-              letterSpacing: -2,
-            ),
+    return Container(
+      color: color ?? ColorRes.smokeWhite,
+      child: Center(
+        child: Text(
+          '...'.toUpperCase(),
+          style: kBoldThemeTextStyle.copyWith(
+            color: ColorRes.smokeWhite1,
+            fontSize: 50,
           ),
         ),
       ),

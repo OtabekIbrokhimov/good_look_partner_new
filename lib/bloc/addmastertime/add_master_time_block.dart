@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../model/calendar/calenda_list.dart';
 
 part 'add_master_time_event.dart';
+
 part 'add_master_time_state.dart';
 
 class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
@@ -24,7 +25,6 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
       emit(UpdateTimeState());
     });
   }
-
   bool isAdd = false;
   bool isFirstTime = true;
   String startTime = "00:00";
@@ -33,7 +33,6 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
   List<DateTime?> datas = [];
   CalendarList? oldDates;
   List<DateTime?> dataForCheck = [];
-
   void takeTime(List<DateTime?> data) {
     for (int i = 0; i < dataForCheck.length; i++) {
       for (int r = 0; r < data.length; r++) {
@@ -107,20 +106,25 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
     if (list.isNotEmpty) {
       Get.back(result: listt);
     } else {
-      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseSelectTime, false);
+      AppRes.showSnackBar(
+          AppLocalizations.of(Get.context!)!.pleaseSelectTime, false);
     }
   }
-  void selectTime(DateTime time, bool isStart){
-      if (isStart == true) {
-        startTime = '${formatTime(time.hour.toString())}:${formatTime(time.minute.toString())}';
-        Get.log("mana $endTime");
-      } else {
-        endTime = '${formatTime(time.hour.toString())}:${formatTime(time.minute.toString())}';
-        Get.log("mana $startTime");
-      }
-      add(AddTimeEvent());
-      Get.log('${time.hour.toString()}:${time.minute.toString()}');
+
+  void selectTime(DateTime time, bool isStart) {
+    if (isStart == true) {
+      startTime =
+          '${formatTime(time.hour.toString())}:${formatTime(time.minute.toString())}';
+      Get.log("mana $endTime");
+    } else {
+      endTime =
+          '${formatTime(time.hour.toString())}:${formatTime(time.minute.toString())}';
+      Get.log("mana $startTime");
+    }
+    add(AddTimeEvent());
+    Get.log('${time.hour.toString()}:${time.minute.toString()}');
   }
+
   String formatTime(String value) {
     if (value.length > 1) {
       return value;
@@ -128,5 +132,4 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
       return "0$value";
     }
   }
-
 }

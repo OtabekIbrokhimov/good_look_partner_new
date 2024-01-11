@@ -200,9 +200,8 @@ class AddServiceScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-
                         InkWell(
-                          onTap:(){
+                          onTap: () {
                             timePicking2(context, addServiceBloc.takeMinute);
                           },
                           child: TextWithTextFieldSmokeWhiteWidget(
@@ -474,15 +473,15 @@ class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: addServiceBloc.selectedCatId == categoryData.id
-                          ? ColorRes.lavender50
-                          : ColorRes.smokeWhite,
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(image: NetworkImage(
-                          '${ConstRes.itemBaseUrl}${categoryData.icon}'),
-                      fit: BoxFit.cover
-                      )
-                    ),
+                        color: addServiceBloc.selectedCatId == categoryData.id
+                            ? ColorRes.lavender50
+                            : ColorRes.catigoriesColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                '${ConstRes.itemBaseUrl}${categoryData.icon}'),
+                            fit: BoxFit.cover)),
                     margin: const EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
                       children: [
@@ -509,12 +508,8 @@ class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
                           padding: const EdgeInsets.only(bottom: 12),
                           child: Text(
                             '${categoryData.title}',
-                            style: kLightWhiteTextStyle.copyWith(
-                              color: addServiceBloc.selectedCatId ==
-                                      categoryData.id
-                                  ? ColorRes.themeColor
-                                  : ColorRes.darkGray,
-                              fontSize: 16,
+                            style: kRegularTextStyle.copyWith(
+                              fontSize: 12,
                             ),
                           ),
                         ),
@@ -530,51 +525,51 @@ class _SelectCategoryWidgetState extends State<SelectCategoryWidget> {
     );
   }
 }
-void timePicking2(BuildContext context,Function(String text) findHowLong) {
+
+void timePicking2(BuildContext context, Function(String text) findHowLong) {
   Get.bottomSheet(
-
       Container(
-      padding: const EdgeInsets.all(15),
-      height: Get.height / 2,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
+          padding: const EdgeInsets.all(15),
+          height: Get.height / 2,
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-
-              InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        Icons.close,
+                        color: ColorRes.black,
+                        size: 35,
+                      )),
+                ],
               ),
-
+              TimePickerSpinner(
+                time: DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day, 0),
+                minutesInterval: 15,
+                is24HourMode: true,
+                normalTextStyle:
+                    const TextStyle(fontSize: 24, color: Colors.grey),
+                highlightedTextStyle:
+                    const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+                spacing: 50,
+                itemHeight: 80,
+                isForce2Digits: true,
+                onTimeChange: (time) {
+                  int minutes = ((time.hour * 60) + time.minute);
+                  findHowLong(minutes.toString());
+                },
+              ),
             ],
-          ),
-          TimePickerSpinner(
-            time: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day,0),
-            minutesInterval: 15,
-            is24HourMode: true,
-            normalTextStyle:
-            const TextStyle(fontSize: 24, color: Colors.grey),
-            highlightedTextStyle:
-            const TextStyle(fontSize: 24, color: ColorRes.themeColor),
-            spacing: 50,
-            itemHeight: 80,
-            isForce2Digits: true,
-            onTimeChange: (time) {
-              int minutes= ((time.hour*60) + time.minute);
-            findHowLong (minutes.toString());
-            },
-          ),
-
-        ],
-      )),
-  enableDrag: false
-  );
+          )),
+      enableDrag: false);
 }
 
 class AddServiceGenderWidget extends StatefulWidget {

@@ -68,10 +68,10 @@ class MainScreen extends StatelessWidget {
                         const Spacer(),
                         BottomMenuItem(
                           image: AssetRes.icBooking,
-                          imageSize: 26,
+                          imageSize: 19,
                           menuIsSelected: selectedIndex == 0,
                           title: AppLocalizations.of(context)!.bookings,
-                          nonSelectedImageSize: 26,
+                          nonSelectedImageSize: 23,
                           onTap: () {
                             mainScreenBloc.onMenuClickEvent(0);
                           },
@@ -79,21 +79,21 @@ class MainScreen extends StatelessWidget {
                         const Spacer(),
                         BottomMenuItem(
                           image: AssetRes.icRequests,
-                          imageSize: 26,
+                          imageSize: 19,
                           menuIsSelected: selectedIndex == 1,
                           title: AppLocalizations.of(context)!.requests,
                           onTap: () {
                             mainScreenBloc.onMenuClickEvent(1);
                           },
-                          nonSelectedImageSize: 26,
+                          nonSelectedImageSize: 23,
                         ),
                         const Spacer(),
                         BottomMenuItem(
                           image: AssetRes.icMessage,
-                          imageSize: 20,
+                          imageSize: 19,
                           menuIsSelected: selectedIndex == 2,
                           title: AppLocalizations.of(context)!.message,
-                          nonSelectedImageSize: 20,
+                          nonSelectedImageSize: 18,
                           onTap: () {
                             mainScreenBloc.onMenuClickEvent(2);
                           },
@@ -101,10 +101,10 @@ class MainScreen extends StatelessWidget {
                         const Spacer(),
                         BottomMenuItem(
                           image: AssetRes.icNotification,
-                          imageSize: 22,
+                          imageSize: 19,
                           menuIsSelected: selectedIndex == 3,
                           title: AppLocalizations.of(context)!.notifications,
-                          nonSelectedImageSize: 20,
+                          nonSelectedImageSize: 18,
                           onTap: () {
                             mainScreenBloc.onMenuClickEvent(3);
                           },
@@ -112,10 +112,10 @@ class MainScreen extends StatelessWidget {
                         const Spacer(),
                         BottomMenuItem(
                           image: AssetRes.icSalon,
-                          imageSize: 20,
+                          imageSize: 19,
                           menuIsSelected: selectedIndex == 4,
                           title: AppLocalizations.of(context)!.mySalon,
-                          nonSelectedImageSize: 20,
+                          nonSelectedImageSize: 18,
                           onTap: () {
                             mainScreenBloc.onMenuClickEvent(4);
                           },

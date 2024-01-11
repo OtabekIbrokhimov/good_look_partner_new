@@ -108,13 +108,25 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                             )
                                                 : Image(
                                               height: double.infinity,
-                                              width: double.infinity,
-                                              image: NetworkImage(
-                                                  '${ConstRes.itemBaseUrl}${editProfileBloc.imageUrl}'),
-                                              fit: BoxFit.cover,
-                                              loadingBuilder: loadingImage,
-                                              errorBuilder: errorBuilderForImage,
-                                            ),
+                                                    width: double.infinity,
+                                                    image: NetworkImage(
+                                                        '${ConstRes.itemBaseUrl}${editProfileBloc.imageUrl}'),
+                                                    fit: BoxFit.cover,
+                                                    errorBuilder:
+                                                        (context, v, b) {
+                                                      return errorBuilderForImage(
+                                                          context, v, b,
+                                                          name: editProfileBloc
+                                                                  .fullNameTextController
+                                                                  .text ??
+                                                              "",
+                                                          isSalonImage: true);
+                                                    },
+                                                    loadingBuilder:
+                                                        (context, child, l) {
+                                                      return loadingImage(
+                                                          context, child, l);
+                                                    }),
                                             Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: Align(
@@ -146,7 +158,7 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 0),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     TextWithTextFieldSmokeWhiteWidget(
                                       title: AppLocalizations.of(context)!
@@ -158,46 +170,40 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                              EditWidget(
-                                title: AppLocalizations.of(context)!.editService,
-                                onTapEdit: () async {
-                                  List<int> items = await Get.to(
-                                          () => const ChooseServiceScreen(),
-                                      arguments: editProfileBloc.ids);
-                                  Get.log(items.toString());
-                                  editProfileBloc.takeIds(items);
-                                },
-                              ),
-                              EditWidget(
-                                title: AppLocalizations.of(context)!.manageWorkTime,
-                                onTapEdit: () {
-                                  editProfileBloc.onTapEdit();
-                                },
-                              ),
-                            ],),
-                           const SizedBox(height: 20,),
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                             children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            EditWidget(
+                              title: AppLocalizations.of(context)!.editService,
+                              onTapEdit: () async {
+                                List<int> items = await Get.to(
+                                    () => const ChooseServiceScreen(),
+                                    arguments: editProfileBloc.ids);
+                                Get.log(items.toString());
+                                editProfileBloc.takeIds(items);
+                              },
+                            ),
+                            EditWidget(
+                              title:
+                                  AppLocalizations.of(context)!.manageWorkTime,
+                              onTapEdit: () {
+                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageWorkTime,1);
+                              },
+                            ),
+                            EditWidget(
+                              title:
+                                  AppLocalizations.of(context)!.manageFreeTime,
+                              onTapEdit: () {
+                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageFreeTime,2);
+                              },
+                            ),
                              EditWidget(
-                               title: AppLocalizations.of(context)!.manageFreeTime,
-                               onTapEdit: () {
-                                 // Get.to(() => const AddTimeScreen());
+                              title:
+                                  AppLocalizations.of(context)!.manageVocation,
+                              onTapEdit: () {
+                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageVocation,3);
                                },
                              ),
-                             EditWidget(
-                               title: AppLocalizations.of(context)!.manageVocation,
-                               onTapEdit: () {
-                                 // Get.to(() => const AddTimeScreen());
-                               },
-                             ),
-                           ],),
-
-                            SizedBox(height: Get.width / 2),
                             const Spacer(),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -221,6 +227,7 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 30,)
                           ],
                         ))
                   ]),
@@ -242,47 +249,52 @@ class EditWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        InkWell(
-          onTap: (){
-            onTapEdit();
-          },
-          child: Container(
-            alignment: Alignment.center,
-            height: 50,
-            width: Get.width/2.3,
-            decoration: BoxDecoration(
-              color: ColorRes.themeColor,
-              borderRadius: BorderRadius.circular(15)
-            ),
-            child: Text(
-              title,
-style: kLightTextStyle.copyWith(color: Colors.white),
-            ),
+    return
+      Container(
+        padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  onTapEdit();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                 width: Get.width-20,
+                  decoration: BoxDecoration(
+                      color: ColorRes.themeColor,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Text(
+                    title,
+                    style: kLightTextStyle.copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+              // InkWell(
+              //   onTap: () {},
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Align(
+              //       alignment: Alignment.bottomRight,
+              //       child: BgRoundImageWidget(
+              //         image: AssetRes.icEdit,
+              //         onTap: () {
+              //           onTapEdit();
+              //         },
+              //         height: 30,
+              //         width: 30,
+              //         imagePadding: 5,
+              //         bgColor: ColorRes.charcoal50,
+              //       ),
+              //     ),
+              //   ),
+              // )
+            ],
           ),
-        ),
-        // InkWell(
-        //   onTap: () {},
-        //   child: Padding(
-        //     padding: const EdgeInsets.all(8.0),
-        //     child: Align(
-        //       alignment: Alignment.bottomRight,
-        //       child: BgRoundImageWidget(
-        //         image: AssetRes.icEdit,
-        //         onTap: () {
-        //           onTapEdit();
-        //         },
-        //         height: 30,
-        //         width: 30,
-        //         imagePadding: 5,
-        //         bgColor: ColorRes.charcoal50,
-        //       ),
-        //     ),
-        //   ),
-        // )
-      ],
-    );
+        );
+      
+   
   }
 }

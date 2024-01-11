@@ -445,13 +445,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
       return null;
     }
-    if (ownerImage == null) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseSelectOwnerImage,
-        false,
-      );
-      return null;
-    }
+    // if (ownerImage == null) {
+    //   AppRes.showSnackBar(
+    //     AppLocalizations.of(Get.context!)!.pleaseSelectOwnerImage,
+    //     false,
+    //   );
+    //   return null;
+    // }
     if (salonNameController.text.isEmpty) {
       AppRes.showSnackBar(
         AppLocalizations.of(Get.context!)!.pleaseEnterSalonName,
@@ -581,13 +581,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   }
 
   Future<Salon?> updateSalonImages() async {
-    if (salonImages.length < 3) {
-      AppRes.showSnackBar(
-        AppLocalizations.of(Get.context!)!.pleaseSelectMinimum3Images,
-        false,
-      );
-      return null;
-    }
+    // if (salonImages.length < 3) {
+    //   AppRes.showSnackBar(
+    //     AppLocalizations.of(Get.context!)!.pleaseSelectMinimum3Images,
+    //     false,
+    //   );
+    //   return null;
+    // }
     AppRes.showCustomLoader();
 
     return await ApiService().updateSalonDetails(

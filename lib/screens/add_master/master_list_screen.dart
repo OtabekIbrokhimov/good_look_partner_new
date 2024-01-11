@@ -279,8 +279,9 @@ class MasterItem extends StatelessWidget {
                 fit: BoxFit.cover,
                 height: 45,
                 width: 45,
-                loadingBuilder: loadingImageForCircle,
-                errorBuilder: errorBuilderForCircleImage,
+                  errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:fullName??"");},
+                  loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
+
               ),
             ),
           ),

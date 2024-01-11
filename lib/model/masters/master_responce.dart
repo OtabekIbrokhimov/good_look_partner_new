@@ -33,6 +33,8 @@ class Master {
   String? services;
   String? createdAt;
   String? updatedAt;
+  String? freetime;
+  String? vacationtime;
 
   Master(
       {this.id,
@@ -42,7 +44,9 @@ class Master {
       this.worktime,
       this.services,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.freetime,
+      this.vacationtime});
 
   Master.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -53,6 +57,8 @@ class Master {
     services = json['services'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    freetime = json['freetime'];
+    vacationtime = json['vacationtime'];
   }
 
   Map<String, dynamic> toJson() {
@@ -65,6 +71,8 @@ class Master {
     data['services'] = services;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    data['vacationtime'] = vacationtime;
+    data['freetime'] = freetime;
     return data;
   }
 }

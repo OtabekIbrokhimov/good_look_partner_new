@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cutfx_salon/bloc/login/login_bloc.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
@@ -6,7 +8,11 @@ import 'package:cutfx_salon/utils/style_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mask_input_formatter/mask_input_formatter.dart';
+
+import '../main/main_screen.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({Key? key}) : super(key: key);
@@ -22,6 +28,7 @@ class EmailLoginScreen extends StatelessWidget {
             LoginBloc loginBloc = context.read<LoginBloc>();
             return Stack(
               children: [
+
                 const Image(
                   image: AssetImage(AssetRes.bg1),
                   fit: BoxFit.cover,
@@ -142,6 +149,17 @@ class EmailLoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Visibility(
+                  visible: Platform.isIOS,
+                  child: Container(
+                      alignment: Alignment.topRight,
+                      margin: const EdgeInsets.all(40),
+                      child: TextButton(
+                          onPressed: () {
+                            Get.offAll(() => const MainScreen());
+                          },
+                          child: const Text("Skip",style: TextStyle(color: ColorRes.black),))),
+                ),
               ],
             );
           },
@@ -186,27 +204,31 @@ class TextWithTextFieldWidget extends StatelessWidget {
           ),
           margin: const EdgeInsets.only(top: 5),
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
+          child:Row(
             children: [
-               Text(
+              Text(
                 "+998",
                 style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
               ),
               Flexible(
-                child: TextField(
-                  inputFormatters: [
-                    MaskInputFormatter(mask: '#########'),
-                  ],
-                  keyboardType: TextInputType.phone,
-                  controller: controller,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2.8),
+                  child: TextField(
+                    inputFormatters: [
+                      MaskInputFormatter(mask: '#########'),
+                    ],
+                    keyboardType: TextInputType.phone,
+                    controller: controller,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    style:
+                    kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
+                    textCapitalization: TextCapitalization.characters,
                   ),
-                  style: kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
-                  textCapitalization: TextCapitalization.characters,
                 ),
               ),
-            //
+
             ],
           ),
         )

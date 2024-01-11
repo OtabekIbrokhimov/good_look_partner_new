@@ -43,7 +43,7 @@ class ItemManageService extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: checkIt(list, serviceData?.id ?? 0)
-                ? ColorRes.fountainBlue
+                ? ColorRes.darkGray
                 : ColorRes.smokeWhite,
             borderRadius: const BorderRadius.all(Radius.circular(15)),
           ),

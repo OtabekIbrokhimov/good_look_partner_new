@@ -50,9 +50,9 @@ class _WelComeScreenState extends State<WelComeScreen> {
     SharePref sharePref = await SharePref().init();
     AppRes.currency = sharePref.getSettings()?.data?.currency ?? '';
     await ApiService().fetchGlobalSettings();
-    await FirebaseMessaging.instance.subscribeToTopic('salons');
+   // await FirebaseMessaging.instance.subscribeToTopic('salons');
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
-      'cutfxsalon', // id
+      'GoodLook', // id
       'Notification', // title
       // 'This channel is used for bubbly notifications.', // description
       importance: Importance.max,
@@ -119,7 +119,6 @@ class _WelComeScreenState extends State<WelComeScreen> {
     // isLoading = true;
     setState(() {});
     String? token = await FirebaseMessaging.instance.getToken();
-
     SharePref sharedPref = await SharePref().init();
     sharedPref.saveString(ConstRes.deviceToken, token);
     Salon? salon1 = sharedPref.getSalon();

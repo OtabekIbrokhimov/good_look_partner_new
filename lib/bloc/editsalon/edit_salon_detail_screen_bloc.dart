@@ -9,6 +9,7 @@ import 'package:cutfx_salon/utils/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -176,10 +177,12 @@ class EditSalonDetailBloc
   }
 
   void onTapFetchLocation() {
+    Position? position;
     Get.to(
       () => const SelectLocationScreen(),
     )?.then((value) {
-      latLng = value;
+      position = value;
+      latLng = LatLng(position!.latitude, position!.longitude);
       add(FetchLocationEvent());
     });
   }

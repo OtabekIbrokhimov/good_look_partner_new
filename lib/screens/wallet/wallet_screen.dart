@@ -1,6 +1,7 @@
 import 'package:cutfx_salon/bloc/wallet/wallet_bloc.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/model/wallet/wallet_statement.dart';
+import 'package:cutfx_salon/screens/wallet/recharge_wallet_sheet.dart';
 import 'package:cutfx_salon/service/api_service.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/asset_res.dart';
@@ -68,6 +69,12 @@ class WalletScreen extends StatelessWidget {
                       const Spacer(),
                       TextButton(
                         onPressed: () async {
+                          Get.bottomSheet(
+                            const RechargeWalletSheet(),
+                            isScrollControlled: true,
+                            ignoreSafeArea: false,
+                          );
+
                           SharePref sharePref = await SharePref().init();
                           if ((sharePref.getSalon()?.data?.wallet?.toInt() ??
                                   0) <
@@ -77,11 +84,11 @@ class WalletScreen extends StatelessWidget {
                                       ?.minAmountPayoutSalon
                                       ?.toInt() ??
                                   0)) {
-                            AppRes.showSnackBar(
-                              AppLocalizations.of(Get.context!)!
-                                  .insufficientAmountToWithdraw,
-                              false,
-                            );
+                            // AppRes.showSnackBar(
+                            //   AppLocalizations.of(Get.context!)!
+                            //       .insufficientAmountToWithdraw,
+                            //   false,
+                            // );
                             return;
                           }
                           Get.bottomSheet(
@@ -116,7 +123,8 @@ class WalletScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            AppLocalizations.of(context)!.withdraw,
+                            "Recharge wallet",
+                            //""AppLocalizations.of(context)!.withdraw"",
                             style: kRegularWhiteTextStyle.copyWith(
                               fontSize: 16,
                             ),
@@ -214,25 +222,37 @@ class ItemWalletStatement extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      '${walletStatementData.transactionId} - ',
-                      style: kRegularTextStyle.copyWith(
-                        fontSize: 14,
-                        color: ColorRes.empress,
+                SizedBox(
+                  width: 220,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 140,
+                        child: Text(
+                          '${walletStatementData.transactionId} - ',
+                          style: kRegularTextStyle.copyWith(
+                            fontSize: 14,
+                            color: ColorRes.empress,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    Text(
-                      AppRes.getStringOfWalletByType(
-                          walletStatementData.type ?? 0),
-                      style: kRegularTextStyle.copyWith(
-                        color: AppRes.getColorOfWalletByType(
-                            walletStatementData.crOrDr ?? 0),
-                        fontSize: 15,
+                      SizedBox(
+                        width: 80,
+                        child: Text(
+                          AppRes.getStringOfWalletByType(
+                              walletStatementData.type ?? 0),
+                          style: kRegularTextStyle.copyWith(
+                            color: AppRes.getColorOfWalletByType(
+                                walletStatementData.crOrDr ?? 0),
+                            fontSize: 15,    overflow: TextOverflow.ellipsis,
+
+                          ),
+
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
@@ -241,7 +261,7 @@ class ItemWalletStatement extends StatelessWidget {
                   AppRes.formatDate(
                       AppRes.parseDate(walletStatementData.createdAt ?? '')),
                   style: kThinWhiteTextStyle.copyWith(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: ColorRes.empress,
                   ),
                 ),
@@ -249,11 +269,13 @@ class ItemWalletStatement extends StatelessWidget {
             ),
           ),
           Text(
+
             '${AppRes.getPlusOrMinusOfWalletByType(walletStatementData.crOrDr ?? 0)}${(walletStatementData.amount ?? 0).currency}',
             style: kRegularTextStyle.copyWith(
-              fontSize: 18,
+              fontSize: 16,
               color: ColorRes.empress,
             ),
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

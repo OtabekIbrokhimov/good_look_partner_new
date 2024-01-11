@@ -3,6 +3,7 @@ import Flutter
 import GoogleMaps
 import flutter_local_notifications
 import Firebase
+import YandexMapsMobile
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -10,7 +11,8 @@ import Firebase
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    GMSServices.provideAPIKey("AIzaSyDV_Jpvgc5O_-kYqqLu5GVMPIj2Kv2Xrq8")
+      YMKMapKit.setApiKey("b00283f6-30a9-406b-89fe-0c16bf88728c")
+          GMSServices.provideAPIKey("AIzaSyAb8apYhSa_wvkAtHgQPhGr7o4JRmPA3Yw")
              FirebaseApp.configure() //add this before the code below
              GeneratedPluginRegistrant.register(with: self)
          if #available(iOS 10.0, *) {

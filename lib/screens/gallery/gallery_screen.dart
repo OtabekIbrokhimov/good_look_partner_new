@@ -47,8 +47,8 @@ class GalleryScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             height: 45,
                             width: 45,
-                            loadingBuilder: loadingImageForCircle,
-                            errorBuilder: errorBuilderForCircleImage,
+                              errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:galleryBloc.salon?.data?.salonName??"",isSalonImage: true);},
+                              loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
                           ),
                         ),
                         const SizedBox(width: 10),

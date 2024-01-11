@@ -77,8 +77,8 @@ class ItemMessagesUsers extends StatelessWidget {
                   image: NetworkImage(
                     '${ConstRes.itemBaseUrl}${conversation.user?.image}',
                   ),
-                  errorBuilder: errorBuilderForCircleImage,
-                  loadingBuilder: loadingImageForCircle,
+                  errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:conversation.user?.username??"");},
+                  loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
                 ),
               ),
             ),

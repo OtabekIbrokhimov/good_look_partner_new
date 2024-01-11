@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>233010520838-cr7i9cla7a767lc8eubpfe03s89195nq.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.233010520838-cr7i9cla7a767lc8eubpfe03s89195nq</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAhRIrOqyLPNAXhicIUMJHfehyRQjtyeVs</string>
+	<string>AIzaSyAb8apYhSa_wvkAtHgQPhGr7o4JRmPA3Yw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>233010520838</string>
+	<string>448277654552</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.retrytech.cutfxSalon</string>
+	<string>uz.goodlook.salon.uz</string>
 	<key>PROJECT_ID</key>
-	<string>cutfx-27155</string>
+	<string>good-look-23ad9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cutfx-27155.appspot.com</string>
+	<string>good-look-23ad9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:233010520838:ios:0f51d4452daff0fca4b487</string>
+	<string>1:448277654552:ios:9d0bbd1765e29fd0a5a76d</string>
 </dict>
 </plist>

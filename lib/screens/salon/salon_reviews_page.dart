@@ -93,15 +93,14 @@ class SalonReviewsPage extends StatelessWidget {
                                   children: [
                                     ClipOval(
                                       child: SizedBox(
-                                        height: 50,
-                                        width: 50,
+                                        height: 55,
+                                        width: 55,
                                         child: Image(
                                           image: NetworkImage(
                                               '${ConstRes.itemBaseUrl}${salonReview.user?.profileImage}'),
                                           fit: BoxFit.cover,
-                                          loadingBuilder: loadingImageForCircle,
-                                          errorBuilder:
-                                              errorBuilderForCircleImage,
+                                            errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:salonReview.user?.firstName??"n",fontSize: 35);},
+                                            loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
                                         ),
                                       ),
                                     ),

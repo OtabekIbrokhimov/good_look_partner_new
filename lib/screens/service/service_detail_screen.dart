@@ -63,7 +63,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution ofletters, as opposed to using.\n\n The point of using Lorem Ipsumis that it has a more-or-less normal distribution ofletters, as opposed to using.',
+                        "",
                           style: kLightWhiteTextStyle.copyWith(
                             color: ColorRes.empress,
                             fontSize: 18,

@@ -86,7 +86,7 @@ class Data {
     date = json['date'];
     time = json['time'];
     duration = json['duration'];
-    services = json['services'];
+    services = json['services'].toString();
     isCouponApplied = json['is_coupon_applied'];
     couponTitle = json['coupon_title'];
     serviceAmount = json['service_amount'];

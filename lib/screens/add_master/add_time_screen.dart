@@ -52,17 +52,15 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                     ToolBarWidget(
                       title: widget.title,
                     ),
-                    SizedBox(
+                    directMasterBlock.mainList.date!.isEmpty?const SizedBox(): directMasterBlock.mainList.date!.first!.date!.isNotEmpty? SizedBox(
                       height: Get.height - 200,
                       child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount:
-                              directMasterBlock.mainList.date?.length ?? 0,
+                          itemCount: directMasterBlock.mainList.date?.length ?? 0,
                           itemBuilder: (context, index) {
                             return TimeInfoWidget(
                               startDate: directMasterBlock
-                                      .mainList.date?[index].date?[0].start ??
-                                  "",
+                                      .mainList.date?[index].date?[0].start ?? "",
                               day: directMasterBlock
                                       .mainList.date?[index].date?[0].date ??
                                   "",
@@ -77,7 +75,7 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                               },
                             );
                           }),
-                        ),
+                        ):SizedBox(),
                       ]));
             }));
   }

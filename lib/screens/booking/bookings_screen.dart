@@ -90,6 +90,7 @@ class BookingsScreen extends StatelessWidget {
                             );
                           },
                           child: Container(
+
                             decoration: BoxDecoration(
                               color: ColorRes.smokeWhite,
                               borderRadius: BorderRadius.circular(10),
@@ -106,7 +107,7 @@ class BookingsScreen extends StatelessWidget {
                                   Text(
                                     day.day.toString(),
                                     style: kBoldThemeTextStyle.copyWith(
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       color: ColorRes.empress,
                                     ),
                                   ),
@@ -114,7 +115,7 @@ class BookingsScreen extends StatelessWidget {
                                     DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
                                     style: kRegularThemeTextStyle.copyWith(
                                       color: ColorRes.empress,
-                                      fontSize: 12,
+                                      fontSize: 11,
                                       letterSpacing: 1,
                                     ),
                                   ),
@@ -130,7 +131,7 @@ class BookingsScreen extends StatelessWidget {
                     },
                     selectedBuilder: (context, day, focusedDay) {
                       return AspectRatio(
-                        aspectRatio: 1 / 1.2,
+                        aspectRatio: 1 / 1.5,
                         child: Container(
                           decoration: BoxDecoration(
                             color: ColorRes.smokeWhite,
@@ -189,7 +190,7 @@ class BookingsScreen extends StatelessWidget {
                                 Text(
                                   day.day.toString(),
                                   style: kBoldThemeTextStyle.copyWith(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     color: ColorRes.themeColor,
                                   ),
                                 ),
@@ -309,7 +310,7 @@ class BookingsScreen extends StatelessWidget {
                                     color: index == 0
                                         ? ColorRes.themeColor
                                         : ColorRes.empress,
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     letterSpacing: 1,
                                   ),
                                 ),
