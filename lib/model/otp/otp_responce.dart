@@ -25,8 +25,8 @@ class SendOtpResponce {
       );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "created": created,
-  };
+        "status": status,
+        "message": message,
+        "created": created,
+      };
 }

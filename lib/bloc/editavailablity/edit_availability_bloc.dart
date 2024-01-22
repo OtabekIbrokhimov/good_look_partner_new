@@ -32,6 +32,7 @@ class EditAvailabilityBloc
     );
     initData();
   }
+
   String startTime = "00:00";
   String endTime = "00:00";
   String? monFriFrom;
@@ -44,11 +45,6 @@ class EditAvailabilityBloc
   TimeOfDay? satSunToTimeOfDay;
   Salon? salonData;
   Map<String, List<SlotData>> salonSlots = {};
-
-
-
-
-
 
   void initData() async {
     SharePref sharePref = await SharePref().init();
@@ -103,58 +99,61 @@ class EditAvailabilityBloc
       return;
     }
     TimeOfDay? selectedTimeRTL;
-    await   Get.bottomSheet(Container(
-        padding: const EdgeInsets.all(15),
-        height: Get.height / 2,
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-
-                InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
-                ),
-
-              ],
-            ),
-
-            TimePickerSpinner(
-              time: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day,0),
-              minutesInterval: 15,
-              is24HourMode: true,
-              normalTextStyle:
-              const TextStyle(fontSize: 24, color: Colors.grey),
-              highlightedTextStyle:
-              const TextStyle(fontSize: 24, color: ColorRes.themeColor),
-              spacing: 50,
-              itemHeight: 80,
-              isForce2Digits: true,
-              onTimeChange: (time) {
-              selectedTimeRTL = TimeOfDay(hour: time.hour, minute: time.minute);
-              },
-            ),
-
-          ],
-        )),
-    enableDrag: false
-    ).then((value) {
+    await Get.bottomSheet(
+            Container(
+                padding: const EdgeInsets.all(15),
+                height: Get.height / 2,
+                color: Colors.white,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              color: ColorRes.black,
+                              size: 35,
+                            )),
+                      ],
+                    ),
+                    TimePickerSpinner(
+                      time: DateTime(DateTime.now().year, DateTime.now().month,
+                          DateTime.now().day, 0),
+                      minutesInterval: 15,
+                      is24HourMode: true,
+                      normalTextStyle:
+                          const TextStyle(fontSize: 24, color: Colors.grey),
+                      highlightedTextStyle: const TextStyle(
+                          fontSize: 24, color: ColorRes.themeColor),
+                      spacing: 50,
+                      itemHeight: 80,
+                      isForce2Digits: true,
+                      onTimeChange: (time) {
+                        selectedTimeRTL =
+                            TimeOfDay(hour: time.hour, minute: time.minute);
+                      },
+                    ),
+                  ],
+                )),
+            enableDrag: false)
+        .then((value) {
       if (selectedTimeRTL == null) return;
       if (type == 0) {
         monFriFromTimeOfDay = selectedTimeRTL;
         monFriFrom =
-        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+            '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
       } else if (type == 1) {
         monFriToTimeOfDay = selectedTimeRTL;
         monFriTo =
-        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-        if ((monFriFromTimeOfDay?.hour ?? 0) >= (monFriToTimeOfDay?.hour ?? 0)) {
+            '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+        if ((monFriFromTimeOfDay?.hour ?? 0) >=
+            (monFriToTimeOfDay?.hour ?? 0)) {
           monFriTo = null;
           monFriToTimeOfDay = null;
           AppRes.showSnackBar(
@@ -164,12 +163,13 @@ class EditAvailabilityBloc
       } else if (type == 2) {
         satSunFromTimeOfDay = selectedTimeRTL;
         satSunFrom =
-        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+            '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
       } else if (type == 3) {
         satSunToTimeOfDay = selectedTimeRTL;
         satSunTo =
-        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-        if ((satSunFromTimeOfDay?.hour ?? 0) >= (satSunToTimeOfDay?.hour ?? 0)) {
+            '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+        if ((satSunFromTimeOfDay?.hour ?? 0) >=
+            (satSunToTimeOfDay?.hour ?? 0)) {
           satSunTo = null;
           satSunToTimeOfDay = null;
           AppRes.showSnackBar(
@@ -179,9 +179,6 @@ class EditAvailabilityBloc
       }
       signUpBloc.add(EditTimeClickEvent(type));
     });
-
-
-
   }
 
   Future<void> onTapSubmit() async {

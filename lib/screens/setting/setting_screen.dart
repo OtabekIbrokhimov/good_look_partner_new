@@ -1,7 +1,6 @@
 import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/screens/add_master/master_list_screen.dart';
 import 'package:cutfx_salon/screens/bookinghistory/booking_history_screen.dart';
-import 'package:cutfx_salon/screens/changePassword/change_password.dart';
 import 'package:cutfx_salon/screens/changelanguage/change_language.dart';
 import 'package:cutfx_salon/screens/earning/earning_screen.dart';
 import 'package:cutfx_salon/screens/editAvailablity/edit_availablity_screen.dart';
@@ -14,6 +13,7 @@ import 'package:cutfx_salon/screens/payoutHistory/payout_history_screen.dart';
 import 'package:cutfx_salon/screens/wallet/wallet_screen.dart';
 import 'package:cutfx_salon/screens/web/web_view_screen.dart';
 import 'package:cutfx_salon/screens/welcome/welcome_screen.dart';
+import 'package:cutfx_salon/screens/work_request/work-request_screen.dart';
 import 'package:cutfx_salon/service/api_service.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
@@ -28,6 +28,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+
+import '../coupon_create/coupon_create_screen.dart';
+import '../master_payments/master_payments.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -96,6 +99,44 @@ class _SettingScreenState extends State<SettingScreen> {
                       height: 10,
                     ),
                     ItemSettingWidget(
+                      title: AppLocalizations.of(context)!.changeRole,
+                      onTap: () {
+                        // Get.to(() => const HelpFaqScreen());
+                      },
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
+                        title: AppLocalizations.of(context)!.withdrawalOfFunds,
+                        onTap: () =>
+                            {} //Get.to(() => const EditSalonDetailsScreen()),
+                        ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
+                      title: AppLocalizations.of(context)!.createCoupon,
+                      onTap: () => Get.to(() => const CouponCreateScreen()),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
+                      title: AppLocalizations.of(context)!.mastersAllowance,
+                      onTap: () => Get.to(() => const MAsterPaymentScreen()),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
+                      title: AppLocalizations.of(context)!.requests,
+                      onTap: () => Get.to(() => const WorkRequestScreen()),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    ItemSettingWidget(
                       title: AppLocalizations.of(context)!.editSalonDetails,
                       onTap: () => Get.to(() => const EditSalonDetailsScreen()),
                     ),
@@ -111,7 +152,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     ItemSettingWidget(
                       title:
-                      AppLocalizations.of(context)!.editAvailabilitySlots,
+                          AppLocalizations.of(context)!.editAvailabilitySlots,
                       onTap: () => Get.to(() => const EditAvailabilityScreen()),
                     ),
                     const SizedBox(
@@ -172,7 +213,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.termsOfUse,
                       onTap: () {
                         Get.to(
-                              () => const WebViewScreen(),
+                          () => const WebViewScreen(),
                           arguments: AppLocalizations.of(context)!.termsOfUse,
                         );
                       },
@@ -184,9 +225,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.privacyPolicy,
                       onTap: () {
                         Get.to(
-                              () => const WebViewScreen(),
+                          () => const WebViewScreen(),
                           arguments:
-                          AppLocalizations.of(context)!.privacyPolicy,
+                              AppLocalizations.of(context)!.privacyPolicy,
                         );
                       },
                     ),
@@ -197,7 +238,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: AppLocalizations.of(context)!.changeLanguage,
                       onTap: () {
                         Get.to(
-                              () => const ChangeLanguageScreen(),
+                          () => const ChangeLanguageScreen(),
                         );
                       },
                     ),
@@ -232,7 +273,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ConfirmationBottomSheet(
                             title: AppLocalizations.of(context)!.logOut,
                             description:
-                            AppLocalizations.of(context)!.logoutDec,
+                                AppLocalizations.of(context)!.logoutDec,
                             buttonText: AppLocalizations.of(context)!.continue_,
                             onButtonClick: () async {
                               showDialog(
@@ -262,9 +303,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         Get.bottomSheet(
                           ConfirmationBottomSheet(
                             title:
-                            AppLocalizations.of(context)!.deleteMyAccount,
+                                AppLocalizations.of(context)!.deleteMyAccount,
                             description:
-                            AppLocalizations.of(context)!.deleteDesc,
+                                AppLocalizations.of(context)!.deleteDesc,
                             buttonText: AppLocalizations.of(context)!.continue_,
                             onButtonClick: () {
                               AppRes.showCustomLoader();

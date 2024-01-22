@@ -42,14 +42,20 @@ class GalleryScreen extends StatelessWidget {
                         ),
                         Container(
                           child: Image(
-                            image: NetworkImage(
-                                '${ConstRes.itemBaseUrl}${galleryBloc.salon?.data?.images?[0].image ?? ''}'),
-                            fit: BoxFit.cover,
-                            height: 45,
-                            width: 45,
-                              errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:galleryBloc.salon?.data?.salonName??"",isSalonImage: true);},
-                              loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
-                          ),
+                              image: NetworkImage(
+                                  '${ConstRes.itemBaseUrl}${galleryBloc.salon?.data?.images?[0].image ?? ''}'),
+                              fit: BoxFit.cover,
+                              height: 45,
+                              width: 45,
+                              errorBuilder: (context, v, b) {
+                                return errorBuilderForImage(context, v, b,
+                                    name: galleryBloc.salon?.data?.salonName ??
+                                        "",
+                                    isSalonImage: true);
+                              },
+                              loadingBuilder: (context, child, l) {
+                                return loadingImage(context, child, l);
+                              }),
                         ),
                         const SizedBox(width: 10),
                         Column(

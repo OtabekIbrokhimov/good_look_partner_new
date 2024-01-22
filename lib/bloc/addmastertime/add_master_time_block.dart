@@ -1,14 +1,12 @@
 import 'package:cutfx_salon/model/calendar/calendar_date.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 import '../../model/calendar/calenda_list.dart';
 
 part 'add_master_time_event.dart';
-
 part 'add_master_time_state.dart';
 
 class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
@@ -25,6 +23,7 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
       emit(UpdateTimeState());
     });
   }
+
   bool isAdd = false;
   bool isFirstTime = true;
   String startTime = "00:00";
@@ -33,6 +32,7 @@ class AddMasterTimeBlock extends Bloc<AddServiceEvent, AddMasterTimeState> {
   List<DateTime?> datas = [];
   CalendarList? oldDates;
   List<DateTime?> dataForCheck = [];
+
   void takeTime(List<DateTime?> data) {
     for (int i = 0; i < dataForCheck.length; i++) {
       for (int r = 0; r < data.length; r++) {

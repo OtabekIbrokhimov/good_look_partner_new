@@ -89,6 +89,7 @@ class SalonData {
   List<Awards>? _awards;
   List<SlotData>? _slots;
   BankAccount? _bankAccount;
+
   SalonData({
     num? id,
     num? wallet,

@@ -7,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 part 'manage_awards_event.dart';
-
 part 'manage_awards_state.dart';
 
 class ManageAwardsBloc extends Bloc<ManageAwardsEvent, ManageAwardsState> {

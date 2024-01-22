@@ -109,9 +109,11 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                         ),
                                       ),
                                       Text(
-                                        AppRes.convertTimeForService(int.parse(
-                                            requestDetails?.data?.duration ??
-                                                '0'),context),
+                                        AppRes.convertTimeForService(
+                                            int.parse(requestDetails
+                                                    ?.data?.duration ??
+                                                '0'),
+                                            context),
                                         style: kLightTextStyle.copyWith(
                                           color: ColorRes.themeColor,
                                           fontSize: 16,
@@ -324,9 +326,9 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                       ),
                                                     ),
                                                     Text(
-
-                                                              requestDetails
-                                                                  .data?.time??"",
+                                                      requestDetails
+                                                              .data?.time ??
+                                                          "",
                                                       style:
                                                           kRegularThemeTextStyle
                                                               .copyWith(
@@ -355,7 +357,8 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                           int.parse(requestDetails
                                                                   .data
                                                                   ?.duration ??
-                                                              '0'),context),
+                                                              '0'),
+                                                          context),
                                                       style:
                                                           kRegularThemeTextStyle
                                                               .copyWith(
@@ -386,15 +389,14 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                           ),
                                           Column(
                                             children: List<Widget>.generate(
-
-                                                  1,
+                                              1,
                                               (index) {
                                                 return Container(
                                                   color: ColorRes.smokeWhite,
                                                   margin: const EdgeInsets.only(
                                                       bottom: 5),
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       horizontal: 15,
                                                       vertical: 15),
                                                   child: Row(
@@ -418,8 +420,7 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                             height: 2,
                                                           ),
                                                           Text(
-                                                            '${  requestDetails.data
-                                                                ?.services} | ${AppRes.convertTimeForService(00,context)}',
+                                                            '${requestDetails.data?.services} | ${AppRes.convertTimeForService(00, context)}',
                                                             style:
                                                                 kLightTextStyle
                                                                     .copyWith(
@@ -432,13 +433,14 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                       ),
                                                       const Spacer(),
                                                       Text(
-                                                        ((  requestDetails.data?.totalTaxAmount?.toInt() ??
+                                                        ((requestDetails.data
+                                                                        ?.totalTaxAmount
+                                                                        ?.toInt() ??
                                                                     0) -
                                                                 AppRes.calculateDiscountByPercentage(
-                                                                    requestDetails.data?.totalTaxAmount
-                                                                        ?.toInt() ??
+                                                                        requestDetails.data?.totalTaxAmount?.toInt() ??
                                                                             0,
-                                                                    requestDetails.data?.discountAmount?.toInt() ??
+                                                                        requestDetails.data?.discountAmount?.toInt() ??
                                                                             0)
                                                                     .toInt())
                                                             .currency,
@@ -455,7 +457,8 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                             ),
                                           ),
                                           Visibility(
-                                            visible: requestDetails.data?.couponTitle !=
+                                            visible: requestDetails
+                                                    .data?.couponTitle !=
                                                 null,
                                             child: Container(
                                               color: ColorRes.smokeWhite,
@@ -497,12 +500,12 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                         ),
                                                         padding:
                                                             const EdgeInsets
-                                                                    .symmetric(
+                                                                .symmetric(
                                                                 horizontal: 10,
                                                                 vertical: 3),
                                                         child: Text(
                                                           (requestDetails.data
-                                                                      ?.couponTitle??
+                                                                      ?.couponTitle ??
                                                                   '')
                                                               .toUpperCase(),
                                                           style:
@@ -546,7 +549,9 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                 ),
                                                 const Spacer(),
                                                 Text(
-                                                  (requestDetails.data?.subtotal ?? 0)
+                                                  (requestDetails
+                                                              .data?.subtotal ??
+                                                          0)
                                                       .currency,
                                                   style: kSemiBoldThemeTextStyle
                                                       .copyWith(
@@ -557,8 +562,8 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                             ),
                                           ),
                                           Column(
-                                            children: List<Widget>.generate(
-                                               1, (index) {
+                                            children: List<Widget>.generate(1,
+                                                (index) {
                                               return Container(
                                                 color: ColorRes.smokeWhite,
                                                 margin: const EdgeInsets.only(
@@ -570,8 +575,9 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                 child: Row(
                                                   children: [
                                                     Text(
-                                                      requestDetails.data
-                                                      ?.services ?? '',
+                                                      requestDetails
+                                                              .data?.services ??
+                                                          '',
                                                       style: kRegularTextStyle
                                                           .copyWith(
                                                         fontSize: 16,
@@ -579,8 +585,9 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                                     ),
                                                     const Spacer(),
                                                     Text(
-                                                      (  requestDetails.data
-                                                          ?.totalTaxAmount ?? 0)
+                                                      (requestDetails.data
+                                                                  ?.totalTaxAmount ??
+                                                              0)
                                                           .currency,
                                                       style:
                                                           kSemiBoldThemeTextStyle
@@ -715,7 +722,7 @@ class _RequestDetailsScreenState extends State<RequestDetailsScreen> {
                                     ),
                                   ),
                                   Visibility(
-                                    visible:  requestDetails.data?.status == 1,
+                                    visible: requestDetails.data?.status == 1,
                                     child: CustomCircularInkWell(
                                       onTap: () {
                                         Get.bottomSheet(CompleteBookingSheet(

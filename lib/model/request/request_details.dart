@@ -1,5 +1,3 @@
-
-
 import 'package:cutfx_salon/model/review/salon_review.dart';
 
 class RequestDetails {
@@ -53,28 +51,28 @@ class Data {
 
   Data(
       {this.id,
-        this.status,
-        this.bookingId,
-        this.completionOtp,
-        this.salonId,
-        this.userId,
-        this.date,
-        this.time,
-        this.duration,
-        this.services,
-        this.isCouponApplied,
-        this.couponTitle,
-        this.serviceAmount,
-        this.discountAmount,
-        this.subtotal,
-        this.totalTaxAmount,
-        this.payableAmount,
-        this.isRated,
-        this.createdAt,
-        this.updatedAt,
-        this.salon,
-        this.user,
-        this.review});
+      this.status,
+      this.bookingId,
+      this.completionOtp,
+      this.salonId,
+      this.userId,
+      this.date,
+      this.time,
+      this.duration,
+      this.services,
+      this.isCouponApplied,
+      this.couponTitle,
+      this.serviceAmount,
+      this.discountAmount,
+      this.subtotal,
+      this.totalTaxAmount,
+      this.payableAmount,
+      this.isRated,
+      this.createdAt,
+      this.updatedAt,
+      this.salon,
+      this.user,
+      this.review});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -99,7 +97,8 @@ class Data {
     updatedAt = json['updated_at'];
     salon = json['salon'] != null ? Salon.fromJson(json['salon']) : null;
     user = json['user'] != null ? User.fromJson(json['user']) : null;
-    review = json['review']!= null ? SalonReview.fromJson(json['review']) : null;
+    review =
+        json['review'] != null ? SalonReview.fromJson(json['review']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -170,36 +169,36 @@ class Salon {
 
   Salon(
       {this.id,
-        this.wallet,
-        this.lifetimeEarnings,
-        this.deviceType,
-        this.status,
-        this.topRated,
-        this.isNotification,
-        this.onVacation,
-        this.rating,
-        this.salonNumber,
-        this.phoneNumber,
-        this.salonName,
-        this.ownerName,
-        this.ownerPhoto,
-        this.salonAbout,
-        this.salonAddress,
-        this.salonPhone,
-        this.salonLat,
-        this.salonLong,
-        this.salonCategories,
-        this.genderServed,
-        this.monFriFrom,
-        this.monFriTo,
-        this.satSunFrom,
-        this.satSunTo,
-        this.deviceToken,
-        this.totalRejectedBookings,
-        this.totalCompletedBookings,
-        this.createdAt,
-        this.updatedAt,
-        this.images});
+      this.wallet,
+      this.lifetimeEarnings,
+      this.deviceType,
+      this.status,
+      this.topRated,
+      this.isNotification,
+      this.onVacation,
+      this.rating,
+      this.salonNumber,
+      this.phoneNumber,
+      this.salonName,
+      this.ownerName,
+      this.ownerPhoto,
+      this.salonAbout,
+      this.salonAddress,
+      this.salonPhone,
+      this.salonLat,
+      this.salonLong,
+      this.salonCategories,
+      this.genderServed,
+      this.monFriFrom,
+      this.monFriTo,
+      this.satSunFrom,
+      this.satSunTo,
+      this.deviceToken,
+      this.totalRejectedBookings,
+      this.totalCompletedBookings,
+      this.createdAt,
+      this.updatedAt,
+      this.images});
 
   Salon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -328,22 +327,22 @@ class User {
 
   User(
       {this.id,
-        this.isBlock,
-        this.identity,
-        this.firstName,
-        this.lastName,
-        this.phoneNumber,
-        this.profileImage,
-        this.isNotification,
-        this.deviceType,
-        this.deviceToken,
-        this.loginType,
-        this.wallet,
-        this.favouriteSalons,
-        this.favouriteServices,
-        this.couponsUsed,
-        this.createdAt,
-        this.updatedAt});
+      this.isBlock,
+      this.identity,
+      this.firstName,
+      this.lastName,
+      this.phoneNumber,
+      this.profileImage,
+      this.isNotification,
+      this.deviceType,
+      this.deviceToken,
+      this.loginType,
+      this.wallet,
+      this.favouriteSalons,
+      this.favouriteServices,
+      this.couponsUsed,
+      this.createdAt,
+      this.updatedAt});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -366,7 +365,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['is_block'] = isBlock;
     data['identity'] = identity;
@@ -387,6 +386,3 @@ class User {
     return data;
   }
 }
-
-
-

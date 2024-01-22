@@ -233,13 +233,14 @@ class ItemCategoryWidget extends StatelessWidget {
         margin: const EdgeInsets.only(right: 10, bottom: 10),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 3),
+            padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
             child: Text(
               categoryData?.title ?? '',
               overflow: TextOverflow.ellipsis,
               style: kSemiBoldTextStyle.copyWith(
                 fontSize: 16,
-                color: filterIsSelected ? ColorRes.themeColor : ColorRes.empress,
+                color:
+                    filterIsSelected ? ColorRes.themeColor : ColorRes.empress,
               ),
             ),
           ),

@@ -21,9 +21,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../utils/shared_pref.dart';
-import '../login/email_login_screen.dart';
-
 class SalonDetailsScreen extends StatefulWidget {
   const SalonDetailsScreen({Key? key}) : super(key: key);
 
@@ -38,7 +35,7 @@ class _SalonDetailsScreenState extends State<SalonDetailsScreen> {
   PageController pageController = PageController();
 
   @override
-  void initState(){
+  void initState() {
     scrollController.addListener(() {
       toolbarIsExpand = !(scrollController.offset >=
           scrollController.position.maxScrollExtent - 120);
@@ -69,7 +66,6 @@ class _SalonDetailsScreenState extends State<SalonDetailsScreen> {
                         TopBarOfSalonDetails(toolbarIsExpand: toolbarIsExpand),
                       ];
                     },
-
                     body: Column(
                       children: [
                         Container(
@@ -90,11 +86,12 @@ class _SalonDetailsScreenState extends State<SalonDetailsScreen> {
                             children: const [
                               SalonDetailsPage(),
                               SalonServicesPage(),
-                              MasterListScreen(needManage: false,),
+                              MasterListScreen(
+                                needManage: false,
+                              ),
                               SalonGalleryPage(),
                               SalonReviewsPage(),
                               SalonAwardsPage(),
-
                             ],
                           ),
                         ),
@@ -133,7 +130,6 @@ class _TabBarOfSalonDetailWidgetState extends State<TabBarOfSalonDetailWidget> {
       AppLocalizations.of(context)!.gallery,
       AppLocalizations.of(context)!.reviews,
       AppLocalizations.of(context)!.awards,
-
     ];
     return Container(
       height: 60,
@@ -407,7 +403,6 @@ class TopBarOfSalonDetails extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Text(
                               '${salon?.data?.salonName}',
                               style: kBoldThemeTextStyle,

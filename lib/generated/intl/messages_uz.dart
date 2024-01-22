@@ -28,10 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountNumber": MessageLookupByLibrary.simpleMessage("Hisob raqami"),
         "accountNumberDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("Hisob raqami mos kelmaydi"),
+        "active": MessageLookupByLibrary.simpleMessage("Faol"),
         "add": MessageLookupByLibrary.simpleMessage("Qo\'shish"),
         "addAward": MessageLookupByLibrary.simpleMessage("Mukofot qo\'shing"),
         "addBookingSlotsByWeekDays": MessageLookupByLibrary.simpleMessage(
             "Qo\'shish BookingSlotsByWeekDays"),
+        "addEntryToPROJOB":
+            MessageLookupByLibrary.simpleMessage("PRO JOBga yozuv qo\'shing"),
         "addImages": MessageLookupByLibrary.simpleMessage("Rasm qo\'shish"),
         "addService": MessageLookupByLibrary.simpleMessage("Xizmat qo\'shish"),
         "addSlot": MessageLookupByLibrary.simpleMessage("Slot qo\'shish"),
@@ -39,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Good Look Partner"),
         "apr": MessageLookupByLibrary.simpleMessage("apr"),
         "april": MessageLookupByLibrary.simpleMessage("aprel"),
+        "assalamuAlaikum":
+            MessageLookupByLibrary.simpleMessage("Assalomu alaykum"),
         "aug": MessageLookupByLibrary.simpleMessage("avg"),
         "august": MessageLookupByLibrary.simpleMessage("avgust"),
         "availability": MessageLookupByLibrary.simpleMessage("Mavjudligi"),
@@ -73,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tilni o\'zgartirish"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Parolni o\'zgartirish"),
+        "changeRole":
+            MessageLookupByLibrary.simpleMessage("Rolni o\'zgartirish"),
         "checkSmsCode":
             MessageLookupByLibrary.simpleMessage("Sms kodini tekshirish"),
         "chooseMasterWorkTime":
@@ -95,10 +102,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactDetail": MessageLookupByLibrary.simpleMessage("Aloqa raqami"),
         "contactUs":
             MessageLookupByLibrary.simpleMessage("Biz bilan bog\'laning"),
+        "continueAs":
+            MessageLookupByLibrary.simpleMessage("Davom etishni xohlaysizmi:"),
         "continue_": MessageLookupByLibrary.simpleMessage("Davom etish"),
         "couponDiscount":
             MessageLookupByLibrary.simpleMessage("Kupon chegirmasi"),
+        "createCoupon": MessageLookupByLibrary.simpleMessage("Kupon yaratish"),
         "createMaster": MessageLookupByLibrary.simpleMessage("Master yaratish"),
+        "createPROBUSINESSaccount": MessageLookupByLibrary.simpleMessage(
+            "PRO BIZNES hisobini yaratish"),
+        "createSalon": MessageLookupByLibrary.simpleMessage("Salon yaratish"),
         "dash": MessageLookupByLibrary.simpleMessage("-"),
         "date": MessageLookupByLibrary.simpleMessage("Sana"),
         "day": MessageLookupByLibrary.simpleMessage("kun"),
@@ -172,6 +185,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Parolingizni qayta o\'rnatish uchun\nsizga havola yuboriladigan elektron pochta manzilini kiriting."),
         "enterYourOneTimeCode": MessageLookupByLibrary.simpleMessage(
             "Bir martalik kodingizni kiriting"),
+        "experience": MessageLookupByLibrary.simpleMessage("Tajriba"),
         "feb": MessageLookupByLibrary.simpleMessage("fevral"),
         "february": MessageLookupByLibrary.simpleMessage("fevral"),
         "female": MessageLookupByLibrary.simpleMessage("Ayol"),
@@ -222,6 +236,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "locationFetched":
             MessageLookupByLibrary.simpleMessage("Joylashuv olindi"),
         "logOut": MessageLookupByLibrary.simpleMessage("Chiqish"),
+        "logOutAccount":
+            MessageLookupByLibrary.simpleMessage("Hisobingizdan chiqish"),
         "logoutDec":
             MessageLookupByLibrary.simpleMessage("Chiqishni xohlaysizmi?"),
         "male": MessageLookupByLibrary.simpleMessage("erkak"),
@@ -243,6 +259,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bajarildi deb belgilang"),
         "master": MessageLookupByLibrary.simpleMessage("Usta"),
         "masterList": MessageLookupByLibrary.simpleMessage("Asosiy ro\'yxat"),
+        "masterName": MessageLookupByLibrary.simpleMessage("Ustaning ismi"),
+        "mastersAllowance":
+            MessageLookupByLibrary.simpleMessage("Master to\'lovlari"),
         "may": MessageLookupByLibrary.simpleMessage("may"),
         "message": MessageLookupByLibrary.simpleMessage("Xabar"),
         "messages": MessageLookupByLibrary.simpleMessage("Xabarlar"),
@@ -253,6 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "months": MessageLookupByLibrary.simpleMessage("oy"),
         "mySalon": MessageLookupByLibrary.simpleMessage("Mening salonim"),
         "my_masters": MessageLookupByLibrary.simpleMessage("My masters"),
+        "name": MessageLookupByLibrary.simpleMessage("Ism:"),
         "navigate": MessageLookupByLibrary.simpleMessage("navigatsiya"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Yangi parol"),
         "newUserRegisterHere": MessageLookupByLibrary.simpleMessage(
@@ -269,6 +289,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "open": MessageLookupByLibrary.simpleMessage("Ochiq"),
         "orderRefund":
             MessageLookupByLibrary.simpleMessage("Buyurtmani qaytarish"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Muddati o\'tgan"),
         "ownerPhoto": MessageLookupByLibrary.simpleMessage("Egasining surati"),
         "password": MessageLookupByLibrary.simpleMessage("Parol"),
         "passwordDoesNotMatch":
@@ -379,6 +400,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bildirishnoma yuborish"),
         "qRScan": MessageLookupByLibrary.simpleMessage("QR Scan"),
         "qRScan1": MessageLookupByLibrary.simpleMessage("QR Scan"),
+        "qrscanning": MessageLookupByLibrary.simpleMessage("QR skanerlash"),
         "ratings": MessageLookupByLibrary.simpleMessage("Reytinglar"),
         "reEnterAccountNumber": MessageLookupByLibrary.simpleMessage(
             "Hisob raqamini qayta kiriting"),
@@ -390,6 +412,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Do\'koningizni bizda ro\'yxatdan o\'tkazing, mijozlar toping, uchrashuvlar belgilang va biznesingizni rivojlantiring."),
         "registration": MessageLookupByLibrary.simpleMessage("Registratsiya"),
+        "reject": MessageLookupByLibrary.simpleMessage("Rad etish"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rad etilgan"),
         "requestID":
             MessageLookupByLibrary.simpleMessage("So\'rov identifikatori"),
@@ -412,6 +435,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Salon sozlamalari"),
         "saturdaySunday":
             MessageLookupByLibrary.simpleMessage("shanba yakshanba"),
+        "save": MessageLookupByLibrary.simpleMessage("saqlash"),
+        "scanQRcode": MessageLookupByLibrary.simpleMessage(
+            "Bronlashuvingiz haqida batafsil ma\'lumotni tezroq olish uchun bandlovingizning QR kodini skanerlang."),
         "scanTheBookingQRToGetTheDetailsQuickly":
             MessageLookupByLibrary.simpleMessage(
                 "Batafsil ma\'lumotni\ntezda olish uchun bron qilish QR kodini skanerlang"),
@@ -425,6 +451,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("toifani tanlang"),
         "selectMonth": MessageLookupByLibrary.simpleMessage("Oyni tanlang"),
         "selectMsg": MessageLookupByLibrary.simpleMessage("Xabarni tanlang"),
+        "selectPROBUSINESSaccount": MessageLookupByLibrary.simpleMessage(
+            "PRO BUSINESS hisobini tanlang"),
+        "selectPROJOBentries": MessageLookupByLibrary.simpleMessage(
+            "PRO JOB yozuvlaridan tanlang"),
+        "selectSalon": MessageLookupByLibrary.simpleMessage("Salonni tanlang:"),
         "selectTime": MessageLookupByLibrary.simpleMessage("Vaqtni tanlang"),
         "selectTimeAfter":
             MessageLookupByLibrary.simpleMessage("Keyingi vaqtni tanlang"),
@@ -451,6 +482,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Muvaffaqiyatli qo\'shildi"),
         "successfullyDeleted":
             MessageLookupByLibrary.simpleMessage("muvaffaqiyatli o\'chirildi"),
+        "supplementAmount":
+            MessageLookupByLibrary.simpleMessage("Qo\'shimcha miqdor"),
         "swiftCode": MessageLookupByLibrary.simpleMessage("Swift Code"),
         "termsOfUse":
             MessageLookupByLibrary.simpleMessage("Foydalanish shartlari"),
@@ -463,6 +496,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Oladigan vaqt (soat)"),
         "timeItTakesMin":
             MessageLookupByLibrary.simpleMessage("kerakli vaqt (daqiqa)"),
+        "timeOfAction": MessageLookupByLibrary.simpleMessage("Harakat vaqti:"),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "tooLarge": MessageLookupByLibrary.simpleMessage("Juda katta..."),
         "topRated":
@@ -492,12 +526,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Siz hamyoningizni to\'liq yechib olmoqchimisiz?"),
         "withdrawTitle":
             MessageLookupByLibrary.simpleMessage("Bekor qilish so\'rovi"),
+        "withdrawalOfFunds":
+            MessageLookupByLibrary.simpleMessage("Mablag\'larni yechib olish"),
         "workTime": MessageLookupByLibrary.simpleMessage("Ish vaqti"),
         "years": MessageLookupByLibrary.simpleMessage("yil"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Kecha"),
         "yourFaceShouldBeVisibleCompletelyImageWithSpecsHeadphonesWillNotBeApproved":
             MessageLookupByLibrary.simpleMessage(
                 "Yuzingiz toʻliq koʻrinadigan boʻlishi kerak. Xususiyatlari va naushniklari bilan rasm maʼqullanmaydi."),
+        "yourProfession":
+            MessageLookupByLibrary.simpleMessage("Sizning kasbingiz"),
         "yourSalonHasBeenBanned": MessageLookupByLibrary.simpleMessage(
             "Sizning saloningiz taqiqlangan!"),
         "yourSalonHasBeenBannedBySuperAdminPleaseContact":

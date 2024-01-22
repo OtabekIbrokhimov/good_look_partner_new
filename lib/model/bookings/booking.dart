@@ -1,11 +1,8 @@
-
-
 import '../user/salon.dart';
 
 /// status : true
 /// message : "Data fetched successfully"
 /// data : [{"id":9,"status":1,"booking_id":"SRU682471RJH","completion_otp":8585,"salon_id":2,"user_id":2,"date":"2023-03-15","time":"0940","duration":"2 Hours","services":"Services","is_coupon_applied":1,"coupon_title":"COUPON25","discount_amount":10,"total_amount":25,"payable_amount":15,"is_rated":1,"created_at":"2022-11-30T11:44:19.000000Z","updated_at":"2022-12-01T11:22:05.000000Z","user":{"id":2,"is_block":0,"identity":"pkotadiya04@gmail.com","fullname":"Parth Patel","email":null,"phone_number":null,"profile_image":"uploads/user.JPG","is_notification":1,"device_type":2,"device_token":"device_token2","login_type":2,"wallet":565,"favourite_salons":"1,2,3","favourite_services":"1,2,3","coupons_used":",1,2,2","created_at":"2022-11-25T07:27:09.000000Z","updated_at":"2023-03-03T12:14:56.000000Z"}}]
-
 
 /// id : 9
 /// status : 1
@@ -27,7 +24,6 @@ import '../user/salon.dart';
 /// updated_at : "2022-12-01T11:22:05.000000Z"
 /// user : {"id":2,"is_block":0,"identity":"pkotadiya04@gmail.com","fullname":"Parth Patel","email":null,"phone_number":null,"profile_image":"uploads/user.JPG","is_notification":1,"device_type":2,"device_token":"device_token2","login_type":2,"wallet":565,"favourite_salons":"1,2,3","favourite_services":"1,2,3","coupons_used":",1,2,2","created_at":"2022-11-25T07:27:09.000000Z","updated_at":"2023-03-03T12:14:56.000000Z"}
 
-
 /// id : 2
 /// is_block : 0
 /// identity : "pkotadiya04@gmail.com"
@@ -45,8 +41,6 @@ import '../user/salon.dart';
 /// coupons_used : ",1,2,2"
 /// created_at : "2022-11-25T07:27:09.000000Z"
 /// updated_at : "2023-03-03T12:14:56.000000Z"
-
-
 
 ////
 class Booking {
@@ -104,27 +98,27 @@ class BookingData {
 
   BookingData(
       {this.id,
-        this.status,
-        this.bookingId,
-        this.completionOtp,
-        this.salonId,
-        this.userId,
-        this.date,
-        this.time,
-        this.duration,
-        this.services,
-        this.isCouponApplied,
-        this.couponTitle,
-        this.serviceAmount,
-        this.discountAmount,
-        this.subtotal,
-        this.totalTaxAmount,
-        this.payableAmount,
-        this.isRated,
-        this.createdAt,
-        this.updatedAt,
-        this.salonData,
-        this.user});
+      this.status,
+      this.bookingId,
+      this.completionOtp,
+      this.salonId,
+      this.userId,
+      this.date,
+      this.time,
+      this.duration,
+      this.services,
+      this.isCouponApplied,
+      this.couponTitle,
+      this.serviceAmount,
+      this.discountAmount,
+      this.subtotal,
+      this.totalTaxAmount,
+      this.payableAmount,
+      this.isRated,
+      this.createdAt,
+      this.updatedAt,
+      this.salonData,
+      this.user});
 
   BookingData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -147,7 +141,8 @@ class BookingData {
     isRated = json['is_rated'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    salonData = (json['salon_data'] != null ? SalonData.fromJson(json['salon']) : null);
+    salonData =
+        (json['salon_data'] != null ? SalonData.fromJson(json['salon']) : null);
     user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
@@ -182,7 +177,6 @@ class BookingData {
     return data;
   }
 }
-
 
 class Images {
   int? id;
@@ -233,22 +227,22 @@ class User {
 
   User(
       {this.id,
-        this.isBlock,
-        this.identity,
-        this.firstName,
-        this.lastName,
-        this.phoneNumber,
-        this.profileImage,
-        this.isNotification,
-        this.deviceType,
-        this.deviceToken,
-        this.loginType,
-        this.wallet,
-        this.favouriteSalons,
-        this.favouriteServices,
-        this.couponsUsed,
-        this.createdAt,
-        this.updatedAt});
+      this.isBlock,
+      this.identity,
+      this.firstName,
+      this.lastName,
+      this.phoneNumber,
+      this.profileImage,
+      this.isNotification,
+      this.deviceType,
+      this.deviceToken,
+      this.loginType,
+      this.wallet,
+      this.favouriteSalons,
+      this.favouriteServices,
+      this.couponsUsed,
+      this.createdAt,
+      this.updatedAt});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];

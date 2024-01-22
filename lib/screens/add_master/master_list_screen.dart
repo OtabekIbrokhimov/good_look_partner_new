@@ -81,7 +81,7 @@ class MasterListScreen extends StatelessWidget {
                               arguments: masters.masterList?.data?[index]);
                           if (l != null) {
                             masters.fetchMasters();
-                          }else{
+                          } else {
                             masters.fetchMasters();
                           }
                         });
@@ -115,17 +115,16 @@ class MasterItem2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       height: 90,
-      margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
       color: ColorRes.smokeWhite,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             radius: 40,
-           backgroundColor: Colors.grey,
-           backgroundImage: NetworkImage('${ConstRes.itemBaseUrl}$photo'),
+            backgroundColor: Colors.grey,
+            backgroundImage: NetworkImage('${ConstRes.itemBaseUrl}$photo'),
           ),
           const SizedBox(
             width: 10,
@@ -192,9 +191,10 @@ class MasterItem2 extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   Get.bottomSheet(ConfirmationBottomSheet(
-                                      title: AppLocalizations.of(context)!.delete,
-                                      description:
-                                      AppLocalizations.of(context)!.doYouWannaMaster,
+                                      title:
+                                          AppLocalizations.of(context)!.delete,
+                                      description: AppLocalizations.of(context)!
+                                          .doYouWannaMaster,
                                       buttonText: AppLocalizations.of(context)!
                                           .continue_,
                                       onButtonClick: () {
@@ -275,14 +275,17 @@ class MasterItem extends StatelessWidget {
                   topLeft: Radius.circular(10),
                   bottomLeft: Radius.circular(10)),
               child: Image(
-                image: NetworkImage('${ConstRes.itemBaseUrl}$photo'),
-                fit: BoxFit.cover,
-                height: 45,
-                width: 45,
-                  errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:fullName??"");},
-                  loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
-
-              ),
+                  image: NetworkImage('${ConstRes.itemBaseUrl}$photo'),
+                  fit: BoxFit.cover,
+                  height: 45,
+                  width: 45,
+                  errorBuilder: (context, v, b) {
+                    return errorBuilderForImage(context, v, b,
+                        name: fullName ?? "");
+                  },
+                  loadingBuilder: (context, child, l) {
+                    return loadingImage(context, child, l);
+                  }),
             ),
           ),
           Flexible(
@@ -327,10 +330,10 @@ class MasterItem extends StatelessWidget {
                           child: BgRoundImageWidget(
                             image: AssetRes.icRemove,
                             onTap: () {
-                              Get.bottomSheet(  ConfirmationBottomSheet(
+                              Get.bottomSheet(ConfirmationBottomSheet(
                                   title: AppLocalizations.of(context)!.delete,
-                                  description:
-                                  AppLocalizations.of(context)!.doYouWannaMaster,
+                                  description: AppLocalizations.of(context)!
+                                      .doYouWannaMaster,
                                   buttonText:
                                       AppLocalizations.of(context)!.continue_,
                                   onButtonClick: () {

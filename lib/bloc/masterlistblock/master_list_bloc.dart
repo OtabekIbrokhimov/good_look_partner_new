@@ -2,12 +2,12 @@ import 'package:cutfx_salon/model/status_message.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 import '../../model/masters/master_responce.dart';
 import '../../service/api_service.dart';
 import '../../utils/shared_pref.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'master_list_event.dart';
 part 'master_list_state.dart';
@@ -29,12 +29,13 @@ class MasterListBloc extends Bloc<MasterListEvent, MasterListState> {
   }
 
   void deleteMaster(String id) async {
-
     StatusMessage statusMessage = await ApiService().deleteMaster(id: id);
     if (statusMessage.status == true) {
       Get.back();
       AppRes.showSnackBar(
-          statusMessage.message ?? AppLocalizations.of(Get.context!)!.successfullyDeleted, true);
+          statusMessage.message ??
+              AppLocalizations.of(Get.context!)!.successfullyDeleted,
+          true);
       fetchMasters();
     } else {
       Get.back();

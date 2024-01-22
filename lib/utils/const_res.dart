@@ -56,8 +56,10 @@ class ConstRes {
   static const String createEmployee = '${baseUrl}master/addMaster';
   static const String editEmployee = '${baseUrl}master/editMaster';
   static const String deleteEmployee = '${baseUrl}master/deleteMaster';
-  static const String getEmployeesList = '${baseUrl}master/fetchActiveMasterList';
-  static const String fetchMasterList = '${baseUrl}master/fetchActiveMasterList';
+  static const String getEmployeesList =
+      '${baseUrl}master/fetchActiveMasterList';
+  static const String fetchMasterList =
+      '${baseUrl}master/fetchActiveMasterList';
   static String termsOfUseUrl = baseUrl.replaceAll('api/', 'termsOfUse');
   static String privacyPolicyUrl = baseUrl.replaceAll('api/', 'privacypolicy');
 
@@ -138,5 +140,6 @@ class ConstRes {
 
   static int salonId = -1;
 
-  static var authorisationKey = 'AAAAaF9uLBg:APA91bHuvhoCUhy73AlUuW3CdJQpRbLZ0IvN4uvKmYDcFzhNj3ptyCUCRGH38dMN4MkZBJzSTkrO_A83rHoEYInaB-nXgi5w4Vh9fGOTxUCAHNirFrkuU6pBRjxoNWWQdKmEFd673HsE';
+  static var authorisationKey =
+      'AAAAaF9uLBg:APA91bHuvhoCUhy73AlUuW3CdJQpRbLZ0IvN4uvKmYDcFzhNj3ptyCUCRGH38dMN4MkZBJzSTkrO_A83rHoEYInaB-nXgi5w4Vh9fGOTxUCAHNirFrkuU6pBRjxoNWWQdKmEFd673HsE';
 }

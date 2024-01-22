@@ -107,7 +107,9 @@ class EditSalonBankWidget extends StatelessWidget {
                             ),
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
-                              return  ImageNotFound(name: editBankBloc.holderNameController.text,);
+                              return ImageNotFound(
+                                name: editBankBloc.holderNameController.text,
+                              );
                             },
                           ),
                   ),

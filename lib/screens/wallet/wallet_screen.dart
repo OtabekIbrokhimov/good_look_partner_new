@@ -245,10 +245,9 @@ class ItemWalletStatement extends StatelessWidget {
                           style: kRegularTextStyle.copyWith(
                             color: AppRes.getColorOfWalletByType(
                                 walletStatementData.crOrDr ?? 0),
-                            fontSize: 15,    overflow: TextOverflow.ellipsis,
-
+                            fontSize: 15,
+                            overflow: TextOverflow.ellipsis,
                           ),
-
                         ),
                       ),
                     ],
@@ -269,7 +268,6 @@ class ItemWalletStatement extends StatelessWidget {
             ),
           ),
           Text(
-
             '${AppRes.getPlusOrMinusOfWalletByType(walletStatementData.crOrDr ?? 0)}${(walletStatementData.amount ?? 0).currency}',
             style: kRegularTextStyle.copyWith(
               fontSize: 16,

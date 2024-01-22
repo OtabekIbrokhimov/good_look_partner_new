@@ -18,10 +18,10 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       child: Image(
         image: const AssetImage("images/logo.png"),
-        width: Get.width*0.8,
+        width: Get.width * 0.8,
       ),
     );
   }
@@ -80,12 +80,14 @@ class TextWithTextFieldSmokeWhiteWidget extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? textInputType;
   final bool enable;
+
   const TextWithTextFieldSmokeWhiteWidget({
     Key? key,
     required this.title,
     this.isPassword,
     this.controller,
-    this.textInputType = TextInputType.text,  this.enable = true,
+    this.textInputType = TextInputType.text,
+    this.enable = true,
   }) : super(key: key);
 
   @override
@@ -343,6 +345,7 @@ class CloseButtonWidget extends StatelessWidget {
     );
   }
 }
+
 Widget loadingImage(context, child, loadingProgress) {
   if (loadingProgress == null) {
     return child;
@@ -350,10 +353,14 @@ Widget loadingImage(context, child, loadingProgress) {
   return const LoadingImage();
 }
 
-
-Widget errorBuilderForImage(context, error, stackTrace, {String name = '',bool isSalonImage = false, double fontSize = 50}) {
-
-  return isSalonImage?ImageNotFoundSalon(name: name): ImageNotFound(name: name,fontsize: fontSize,);
+Widget errorBuilderForImage(context, error, stackTrace,
+    {String name = '', bool isSalonImage = false, double fontSize = 50}) {
+  return isSalonImage
+      ? ImageNotFoundSalon(name: name)
+      : ImageNotFound(
+          name: name,
+          fontsize: fontSize,
+        );
 }
 
 class ImageNotFound extends StatelessWidget {
@@ -361,19 +368,21 @@ class ImageNotFound extends StatelessWidget {
   final Color? tintcolor;
   final String name;
   final double fontsize;
-  const ImageNotFound({
-    super.key,
-    this.color,
-    this.tintcolor, required this.name,  this.fontsize = 50
-  });
+
+  const ImageNotFound(
+      {super.key,
+      this.color,
+      this.tintcolor,
+      required this.name,
+      this.fontsize = 50});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color:ColorRes.fountainBlue,
+      color: ColorRes.fountainBlue,
       child: Center(
         child: Text(
-          name.isNotEmpty?name[0].toUpperCase():' '.toUpperCase(),
+          name.isNotEmpty ? name[0].toUpperCase() : ' '.toUpperCase(),
           style: kBoldThemeTextStyle.copyWith(
             color: tintcolor ?? ColorRes.smokeWhite1,
             fontSize: fontsize,
@@ -383,8 +392,10 @@ class ImageNotFound extends StatelessWidget {
     );
   }
 }
+
 class ImageNotFoundSalon extends StatelessWidget {
   final String name;
+
   const ImageNotFoundSalon({
     super.key,
     required this.name,
@@ -393,12 +404,12 @@ class ImageNotFoundSalon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color:ColorRes.fountainBlue,
+      color: ColorRes.fountainBlue,
       child: Center(
         child: Text(
-          name.isNotEmpty?name.toUpperCase():"",
+          name.isNotEmpty ? name.toUpperCase() : "",
           style: kBoldThemeTextStyle.copyWith(
-            color:  ColorRes.greyD9,
+            color: ColorRes.greyD9,
             fontSize: 24,
           ),
         ),

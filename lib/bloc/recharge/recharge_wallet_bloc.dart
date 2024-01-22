@@ -1,18 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
 
 import '../../model/setting/setting.dart';
 import '../../model/user/salon_user.dart';
-import '../../service/api_service.dart';
 import '../../utils/app_res.dart';
 import '../../utils/shared_pref.dart';
 
 part 'recharge_wallet_event.dart';
-
 part 'recharge_wallet_state.dart';
 
 class RechargeWalletBloc

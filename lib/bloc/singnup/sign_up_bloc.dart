@@ -20,7 +20,6 @@ import 'package:cutfx_salon/utils/const_res.dart';
 import 'package:cutfx_salon/utils/custom/custom_bottom_sheet.dart';
 import 'package:cutfx_salon/utils/custom/custom_dialog.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,7 +30,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../model/user/salon.dart';
-import '../../utils/style_res.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SharePref? sharePref;
@@ -191,7 +189,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     signUpBloc.add(SignUpOwnerPhotoEvent(xFile));
   }
 
-  void onTimeClick(int type, SignUpBloc signUpBloc,BuildContext context) async {
+  void onTimeClick(
+      int type, SignUpBloc signUpBloc, BuildContext context) async {
     if (type == 1 && monFriFrom == null) {
       AppRes.showSnackBar(
           AppLocalizations.of(Get.context!)!.pleaseSelectFromTimeFirst, false);
@@ -203,9 +202,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       return;
     }
     TimeOfDay? selectedTimeRTL;
-      Get.bottomSheet(
-
-          Container(
+    Get.bottomSheet(
+      Container(
           padding: const EdgeInsets.all(15),
           height: Get.height / 2,
           color: Colors.white,
@@ -216,72 +214,74 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-
-                     InkWell(
+                  InkWell(
                       onTap: () {
                         Get.back();
                       },
-                      child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
-                    ),
-
+                      child: const Icon(
+                        Icons.close,
+                        color: ColorRes.black,
+                        size: 35,
+                      )),
                 ],
               ),
               TimePickerSpinner(
                 minutesInterval: 15,
                 is24HourMode: true,
                 normalTextStyle:
-                const TextStyle(fontSize: 24, color: Colors.grey),
+                    const TextStyle(fontSize: 24, color: Colors.grey),
                 highlightedTextStyle:
-                const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+                    const TextStyle(fontSize: 24, color: ColorRes.themeColor),
                 spacing: 50,
                 itemHeight: 80,
                 isForce2Digits: true,
                 onTimeChange: (time) {
-                 selectedTimeRTL = TimeOfDay(hour: time.hour, minute: time.minute);
-                 add(SignUpTimeClickEvent(type));
-                 Get.log(time.toString()+ selectedTimeRTL.toString());
-                 if (selectedTimeRTL == null) return;
-                 if (type == 0) {
-                   monFriFromTimeOfDay = selectedTimeRTL;
-                   monFriFrom =
-                   '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-                 } else if (type == 1) {
-                   monFriToTimeOfDay = selectedTimeRTL;
-                   monFriTo =
-                   '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-                   if ((monFriFromTimeOfDay?.hour ?? 0) >= (monFriToTimeOfDay?.hour ?? 0)) {
-                     monFriTo = null;
-                     monFriToTimeOfDay = null;
-                     AppRes.showSnackBar(
-                         '${AppLocalizations.of(Get.context!)!.selectTimeAfter} $monFriFrom',
-                         false);
-                   }
-                 } else if (type == 2) {
-                   satSunFromTimeOfDay = selectedTimeRTL;
-                   satSunFrom =
-                   '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-                 } else if (type == 3) {
-                   satSunToTimeOfDay = selectedTimeRTL;
-                   satSunTo =
-                   '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
-                   if ((satSunFromTimeOfDay?.hour ?? 0) >= (satSunToTimeOfDay?.hour ?? 0)) {
-                     satSunTo = null;
-                     satSunToTimeOfDay = null;
-                     AppRes.showSnackBar(
-                         '${AppLocalizations.of(Get.context!)!.selectTimeAfter} $satSunFrom',
-                         false);
-                   }
-                 }
-                 Get.log("oxirigacha ishlagan");
-                 signUpBloc.add(SignUpTimeClickEvent(type));
+                  selectedTimeRTL =
+                      TimeOfDay(hour: time.hour, minute: time.minute);
+                  add(SignUpTimeClickEvent(type));
+                  Get.log(time.toString() + selectedTimeRTL.toString());
+                  if (selectedTimeRTL == null) return;
+                  if (type == 0) {
+                    monFriFromTimeOfDay = selectedTimeRTL;
+                    monFriFrom =
+                        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+                  } else if (type == 1) {
+                    monFriToTimeOfDay = selectedTimeRTL;
+                    monFriTo =
+                        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+                    if ((monFriFromTimeOfDay?.hour ?? 0) >=
+                        (monFriToTimeOfDay?.hour ?? 0)) {
+                      monFriTo = null;
+                      monFriToTimeOfDay = null;
+                      AppRes.showSnackBar(
+                          '${AppLocalizations.of(Get.context!)!.selectTimeAfter} $monFriFrom',
+                          false);
+                    }
+                  } else if (type == 2) {
+                    satSunFromTimeOfDay = selectedTimeRTL;
+                    satSunFrom =
+                        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+                  } else if (type == 3) {
+                    satSunToTimeOfDay = selectedTimeRTL;
+                    satSunTo =
+                        '${0.convert2Digits(selectedTimeRTL?.hourOfPeriod)}:${0.convert2Digits(selectedTimeRTL?.minute)} ${selectedTimeRTL?.period.name.toUpperCase()}';
+                    if ((satSunFromTimeOfDay?.hour ?? 0) >=
+                        (satSunToTimeOfDay?.hour ?? 0)) {
+                      satSunTo = null;
+                      satSunToTimeOfDay = null;
+                      AppRes.showSnackBar(
+                          '${AppLocalizations.of(Get.context!)!.selectTimeAfter} $satSunFrom',
+                          false);
+                    }
+                  }
+                  Get.log("oxirigacha ishlagan");
+                  signUpBloc.add(SignUpTimeClickEvent(type));
                 },
               ),
-
             ],
           )),
-        isScrollControlled: false,
-
-      );
+      isScrollControlled: false,
+    );
 
     // selectedTimeRTL = await showTimePicker(
     //   context: Get.context!,
@@ -315,7 +315,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     //     );
     //   },
     // );
-
   }
 
   void onAddSlotClick(TimeOfDay? timeOfDay, int slotLimit,

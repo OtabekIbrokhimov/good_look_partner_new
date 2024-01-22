@@ -21,6 +21,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     // 'ar',
     // 'da',
     // 'nl',
+    'ru',
     'en',
     // 'fr',
     // 'de',
@@ -33,7 +34,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     // 'nb',
     // 'pl',
     // 'pt',
-    'ru',
+
     // 'zh',
     // 'es',
     // 'th',
@@ -43,6 +44,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
   ];
   int? value = 0;
   List<String> languages = [
+    'Русский',
     // 'عربي',
     // 'dansk',
     // 'Nederlands',
@@ -58,7 +60,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     // 'Norsk Bokmal',
     // 'Polski',
     // 'Português',
-    'Русский',
+
     // '简体中文',
     // 'Español',
     // 'แบบไทย',
@@ -67,6 +69,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     'Uzbek'
   ];
   List<String> subLanguage = [
+    'Russian',
     // 'Arabic',
     // 'Danish',
     // 'Dutch',
@@ -82,7 +85,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
     // 'Norwegian Bokmal',
     // 'Polish',
     // 'Portuguese',
-    'Russian',
+
     // 'Simplified Chinese',
     // 'Spanish',
     // 'Thai',

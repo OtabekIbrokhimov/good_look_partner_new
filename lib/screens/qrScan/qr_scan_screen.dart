@@ -11,9 +11,14 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScanScreen extends StatefulWidget {
   final bool needResult;
+  final bool isBottomSheet;
   Function(String code)? function;
 
-  QrScanScreen({Key? key, this.needResult = false, this.function})
+  QrScanScreen(
+      {Key? key,
+      this.needResult = false,
+      this.function,
+      this.isBottomSheet = false})
       : super(key: key);
 
   @override
@@ -41,19 +46,18 @@ class _QrScanScreenState extends State<QrScanScreen> {
       backgroundColor: ColorRes.transparent,
       body: Column(
         children: [
-          ToolBarWidget(
-            title: AppLocalizations.of(context)!.qRScan,
+          Visibility(
+            visible: widget.isBottomSheet == false,
+            child: ToolBarWidget(
+              title: AppLocalizations.of(context)!.qRScan,
+            ),
           ),
           Expanded(
-            child: AspectRatio(
-              aspectRatio: 0.7,
+            child: SizedBox(
+              width: Get.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   Text(
                     AppLocalizations.of(context)!
                         .scanTheBookingQRToGetTheDetailsQuickly,
@@ -65,9 +69,10 @@ class _QrScanScreenState extends State<QrScanScreen> {
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        width: Get.width / 1.7,
-                        height: Get.width / 1.7,
+                        width: Get.width / 2.5,
+                        height: Get.width / 2.5,
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
                             border: Border.all(
                           color: ColorRes.themeColor,
                           width: 3,

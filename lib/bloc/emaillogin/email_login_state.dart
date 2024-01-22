@@ -9,6 +9,7 @@ class EmailLoginLoadingState extends EmailLoginState {}
 class UpdateEmailLoginState extends EmailLoginState {}
 
 class UpdateSmsState extends EmailLoginState {}
+
 class CheckSmsState extends EmailLoginState {}
 
 class EmailLoginResultState extends EmailLoginState {}

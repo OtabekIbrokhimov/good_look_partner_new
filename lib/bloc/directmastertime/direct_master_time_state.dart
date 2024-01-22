@@ -5,7 +5,5 @@ abstract class DirectMasterTimeState {}
 class DirectMasterStateInitial extends DirectMasterTimeState {}
 
 class DirectMasterAddTimeState extends DirectMasterTimeState {
-
-
   DirectMasterAddTimeState();
 }

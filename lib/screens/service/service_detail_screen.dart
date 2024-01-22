@@ -63,7 +63,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                        "",
+                          "",
                           style: kLightWhiteTextStyle.copyWith(
                             color: ColorRes.empress,
                             fontSize: 18,

@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 
 class SalonReviewsPage extends StatelessWidget {
   const SalonReviewsPage({Key? key}) : super(key: key);
@@ -96,12 +95,22 @@ class SalonReviewsPage extends StatelessWidget {
                                         height: 55,
                                         width: 55,
                                         child: Image(
-                                          image: NetworkImage(
-                                              '${ConstRes.itemBaseUrl}${salonReview.user?.profileImage}'),
-                                          fit: BoxFit.cover,
-                                            errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:salonReview.user?.firstName??"n",fontSize: 35);},
-                                            loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
-                                        ),
+                                            image: NetworkImage(
+                                                '${ConstRes.itemBaseUrl}${salonReview.user?.profileImage}'),
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, v, b) {
+                                              return errorBuilderForImage(
+                                                  context, v, b,
+                                                  name: salonReview
+                                                          .user?.firstName ??
+                                                      "n",
+                                                  fontSize: 35);
+                                            },
+                                            loadingBuilder:
+                                                (context, child, l) {
+                                              return loadingImage(
+                                                  context, child, l);
+                                            }),
                                       ),
                                     ),
                                     const SizedBox(
@@ -153,8 +162,8 @@ class SalonReviewsPage extends StatelessWidget {
                                             height: 5,
                                           ),
                                           Text(
-                                            salonReview.comment??"",
-                                             style:
+                                            salonReview.comment ?? "",
+                                            style:
                                                 kLightWhiteTextStyle.copyWith(
                                               color: ColorRes.empress,
                                               fontSize: 17,

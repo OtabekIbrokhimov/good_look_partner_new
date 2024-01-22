@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:cutfx_salon/model/bookings/booking.dart';
 import 'package:cutfx_salon/model/cat/categories.dart' as cat;
@@ -10,7 +9,7 @@ import 'package:cutfx_salon/model/faq/faqs.dart';
 import 'package:cutfx_salon/model/notification/notification.dart';
 import 'package:cutfx_salon/model/payout/payout_history.dart';
 import 'package:cutfx_salon/model/request/request_details.dart'
-    as request_details;
+as request_details;
 import 'package:cutfx_salon/model/rest/get_path.dart';
 import 'package:cutfx_salon/model/rest/rest_response.dart';
 import 'package:cutfx_salon/model/review/salon_review.dart';
@@ -23,6 +22,7 @@ import 'package:cutfx_salon/model/wallet/wallet_statement.dart';
 import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:cutfx_salon/utils/const_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -244,7 +244,7 @@ class ApiService {
     }, body: {
       "salon_id": id
     });
- Get.log(response.body);
+    Get.log(response.body);
     final responseJson = jsonDecode(response.body);
     return MasterList.fromJson(responseJson);
   }
@@ -317,10 +317,11 @@ class ApiService {
             ));
       }
     } else {
-      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
+      AppRes.showSnackBar(
+          AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
     }
     Get.log(phoneNumber + password);
-    if(phoneNumber == "998901313330"&&password == "111111"){
+    if (phoneNumber == "998901313330" && password == "111111") {
       ApiService()
           .salonRegistration(
         email: phoneNumber,
@@ -332,9 +333,9 @@ class ApiService {
           Get.off(() => const BanSalonInfoScreen());
         } else if (value.data?.bankAccount == null) {
           Get.off(() => RegistrationScreen(
-            phoneNumber: phoneNumber,
-            name: "",
-          ));
+                phoneNumber: phoneNumber,
+                name: "",
+              ));
         } else if (value.data?.status?.toInt() == 0) {
           Get.off(() => const SignUpDoneScreen());
           return;

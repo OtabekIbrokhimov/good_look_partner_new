@@ -142,7 +142,8 @@ class AppRes {
 
   static String formatDate(DateTime dateTime,
       {String pattern = 'dd MMM, yyyy - EEE - h:mm a', bool isUtc = true}) {
-    return DateFormat(pattern,AppLocalizations.of(Get.context!)!.en).format(isUtc ? dateTime.toLocal() : dateTime);
+    return DateFormat(pattern, AppLocalizations.of(Get.context!)!.en)
+        .format(isUtc ? dateTime.toLocal() : dateTime);
   }
 
   static DateTime parseDate(String dateTime,
@@ -190,7 +191,7 @@ class AppRes {
     return name;
   }
 
-  static String convertTimeForService(int min,BuildContext context) {
+  static String convertTimeForService(int min, BuildContext context) {
     if (min >= 60) {
       if (min == 60) {
         return '1' + AppLocalizations.of(Get.context!)!.hour;
@@ -209,26 +210,26 @@ class AppRes {
   static String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
     if (diff.inDays > 365) {
-      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? AppLocalizations.of(Get.context!)!.year  : AppLocalizations.of(Get.context!)!.years }";
+      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? AppLocalizations.of(Get.context!)!.year : AppLocalizations.of(Get.context!)!.years}";
     }
     if (diff.inDays > 30) {
-      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? AppLocalizations.of(Get.context!)!.month  : AppLocalizations.of(Get.context!)!.months }";
+      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? AppLocalizations.of(Get.context!)!.month : AppLocalizations.of(Get.context!)!.months}";
     }
     if (diff.inDays > 7) {
-      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? AppLocalizations.of(Get.context!)!.week  : AppLocalizations.of(Get.context!)!.weeks }";
+      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? AppLocalizations.of(Get.context!)!.week : AppLocalizations.of(Get.context!)!.weeks}";
     }
     if (diff.inDays > 0) {
       if (diff.inDays == 1) {
         return AppLocalizations.of(Get.context!)!.yesterday;
       }
       // ignore: prefer_interpolation_to_compose_strings
-      return "${diff.inDays}"+ AppLocalizations.of(Get.context!)!.day ;
+      return "${diff.inDays}" + AppLocalizations.of(Get.context!)!.day;
     }
     if (diff.inHours > 0) {
-      return "${diff.inHours} ${diff.inHours == 1 ?  AppLocalizations.of(Get.context!)!.hour : AppLocalizations.of(Get.context!)!.hours}";
+      return "${diff.inHours} ${diff.inHours == 1 ? AppLocalizations.of(Get.context!)!.hour : AppLocalizations.of(Get.context!)!.hours}";
     }
     if (diff.inMinutes > 0) {
-      return "${diff.inMinutes} ${diff.inMinutes == 1 ?  AppLocalizations.of(Get.context!)!.min :AppLocalizations.of(Get.context!)!.min }";
+      return "${diff.inMinutes} ${diff.inMinutes == 1 ? AppLocalizations.of(Get.context!)!.min : AppLocalizations.of(Get.context!)!.min}";
     }
     return AppLocalizations.of(Get.context!)!.justNow;
   }
@@ -284,7 +285,8 @@ class AppRes {
   static int? findSelectLanguageCode(List<String> languageCode) {
     return languageCode.indexOf(SharePref.selectedLanguage);
   }
-static  String formatTime(String value) {
+
+  static String formatTime(String value) {
     if (value.length > 1) {
       return value;
     } else {

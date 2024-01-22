@@ -1,8 +1,6 @@
-
 import 'package:cutfx_salon/utils/ext/num_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 import '../../bloc/recharge/recharge_wallet_bloc.dart';
@@ -28,7 +26,7 @@ class RechargeWalletSheet extends StatelessWidget {
           child: BlocBuilder<RechargeWalletBloc, RechargeWalletState>(
             builder: (context, state) {
               RechargeWalletBloc rechargeWalletBloc =
-              context.read<RechargeWalletBloc>();
+                  context.read<RechargeWalletBloc>();
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -69,7 +67,7 @@ class RechargeWalletSheet extends StatelessWidget {
                           decoration: const BoxDecoration(
                             color: ColorRes.lavender,
                             borderRadius:
-                            BorderRadius.all(Radius.circular(100)),
+                                BorderRadius.all(Radius.circular(100)),
                           ),
                           padding: const EdgeInsets.all(5),
                           child: const Icon(
@@ -226,10 +224,9 @@ class RechargeWalletSheet extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 12),
                               child: Text(
-                               // AppLocalizations.of(Get.context!)!
-                               //      .
-                                "other"
-                                    .toUpperCase(),
+                                // AppLocalizations.of(Get.context!)!
+                                //      .
+                                "other".toUpperCase(),
                                 style: kBoldThemeTextStyle.copyWith(
                                   fontSize: 14,
                                   color: rechargeWalletBloc.type == 3
@@ -245,21 +242,20 @@ class RechargeWalletSheet extends StatelessWidget {
                               decoration: const BoxDecoration(
                                 color: ColorRes.smokeWhite,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
+                                    BorderRadius.all(Radius.circular(10)),
                               ),
                               margin: const EdgeInsets.only(top: 10),
-                              padding:
-                               EdgeInsets.symmetric(horizontal: 15),
+                              padding: EdgeInsets.symmetric(horizontal: 15),
                               child: TextField(
                                 decoration: const InputDecoration(
-                                   hintText:
-                                   //AppLocalizations.of(Get.context!)!
-                                  //     .
-                                  "enterAmountOfYourChoice",
+                                  hintText:
+                                      //AppLocalizations.of(Get.context!)!
+                                      //     .
+                                      "enterAmountOfYourChoice",
                                   border: InputBorder.none,
                                 ),
                                 controller:
-                                rechargeWalletBloc.amountTextController,
+                                    rechargeWalletBloc.amountTextController,
                                 textAlign: TextAlign.center,
                                 keyboardType: TextInputType.number,
                                 style: kSemiBoldThemeTextStyle.copyWith(
@@ -280,11 +276,11 @@ class RechargeWalletSheet extends StatelessWidget {
                     child: TextButton(
                       style: kButtonThemeStyle,
                       onPressed: () {
-                       // rechargeWalletBloc.onContinueTap();
+                        // rechargeWalletBloc.onContinueTap();
                         Get.back();
                       },
                       child: const Text(
-                       // AppLocalizations.of(Get.context!)!.
+                        // AppLocalizations.of(Get.context!)!.
                         "proceed",
                         style: kRegularWhiteTextStyle,
                       ),

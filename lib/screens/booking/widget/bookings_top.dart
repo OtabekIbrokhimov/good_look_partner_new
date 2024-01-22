@@ -70,7 +70,6 @@ class _BookingsTopWidgetState extends State<BookingsTopWidget> {
                       const Image(
                         image: AssetImage(
                           AssetRes.icCalender,
-
                         ),
                         color: Colors.black,
                         height: 22,

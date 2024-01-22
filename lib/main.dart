@@ -5,7 +5,6 @@ import 'package:cutfx_salon/screens/welcome/welcome_screen.dart';
 import 'package:cutfx_salon/utils/color_res.dart';
 import 'package:cutfx_salon/utils/shared_pref.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,13 +18,15 @@ Future<void> main() async {
     );
   } else if (Platform.isIOS) {
     await Firebase.initializeApp();
-  }  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  }
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(
     const RestartWidget(
       child: MyApp(),
     ),
   );
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 

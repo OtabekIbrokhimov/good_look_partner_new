@@ -101,8 +101,7 @@ class ItemHistoryBooking extends StatelessWidget {
                                       ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                                   child: Center(
                                     child: Text(
-                                      AppRes.convert24HoursInto12Hours(
-                                          bookingData.time),
+                                      bookingData.time ?? "",
                                       style: kSemiBoldTextStyle.copyWith(
                                         color: ColorRes.white,
                                         fontSize: 16,
@@ -159,7 +158,8 @@ class ItemHistoryBooking extends StatelessWidget {
                               ),
                               Text(
                                 AppRes.convertTimeForService(
-                                    int.parse(bookingData.duration ?? '0'),context),
+                                    int.parse(bookingData.duration ?? '0'),
+                                    context),
                                 style: kLightTextStyle.copyWith(
                                   color: ColorRes.themeColor,
                                 ),

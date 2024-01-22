@@ -58,10 +58,12 @@ class AddServiceBloc extends Bloc<AddServiceEvent, AddServiceState> {
     categories = await ApiService().fetchSalonCategories();
     add(CategoryDataFetchedEvent());
   }
- void takeMinute(String minutes){
+
+  void takeMinute(String minutes) {
     timeItTakesController.text = minutes;
     add(CategoryDataFetchedEvent());
- }
+  }
+
   void selectCatId(int categoryId) {
     selectedCatId = categoryId;
   }

@@ -102,11 +102,12 @@ class ManageServiceBloc extends Bloc<ManageServiceEvent, ManageServiceState> {
         ids.removeAt(i);
         needAdd = false;
         Get.log("${ids}hnbjbjhjk");
-      } }
-if(needAdd) {
-  ids.add(id);
-  Get.log(ids.toString());
-}
+      }
+    }
+    if (needAdd) {
+      ids.add(id);
+      Get.log(ids.toString());
+    }
     add(TakeIdEvent());
     add(CategoryAllItemClickEvent());
     Get.log(ids.toString());

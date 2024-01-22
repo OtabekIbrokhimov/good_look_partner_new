@@ -71,15 +71,19 @@ class ItemMessagesUsers extends StatelessWidget {
                 width: 55,
                 height: 55,
                 child: Image(
-                  width: 55,
-                  height: 55,
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    '${ConstRes.itemBaseUrl}${conversation.user?.image}',
-                  ),
-                  errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:conversation.user?.username??"");},
-                  loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
-                ),
+                    width: 55,
+                    height: 55,
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      '${ConstRes.itemBaseUrl}${conversation.user?.image}',
+                    ),
+                    errorBuilder: (context, v, b) {
+                      return errorBuilderForImage(context, v, b,
+                          name: conversation.user?.username ?? "");
+                    },
+                    loadingBuilder: (context, child, l) {
+                      return loadingImage(context, child, l);
+                    }),
               ),
             ),
             const SizedBox(

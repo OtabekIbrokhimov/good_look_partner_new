@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +22,6 @@ class EmailLoginBloc extends Bloc<EmailLoginEvent, EmailLoginState> {
   bool needReset = false;
   bool needVerify = false;
 
-
-
   EmailLoginBloc() : super(EmailLoginInitial()) {
     on<UpdateEmailLoginEvent>((event, emit) async {
       emit(UpdateEmailLoginState());
@@ -33,15 +30,12 @@ class EmailLoginBloc extends Bloc<EmailLoginEvent, EmailLoginState> {
       emit(UpdateSmsState());
     });
 
-    on<CheckSmsCode>((event, emit)  {
+    on<CheckSmsCode>((event, emit) {
       // getMainPage(phoneNumber);
     });
-
-
-
   }
-  SendOtpResponce? sendOtpResponce;
 
+  SendOtpResponce? sendOtpResponce;
 
   void checkTime() {
     if (smsCodeTime < 60) {

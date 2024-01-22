@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mask_input_formatter/mask_input_formatter.dart';
 
 import '../main/main_screen.dart';
@@ -28,7 +27,6 @@ class EmailLoginScreen extends StatelessWidget {
             LoginBloc loginBloc = context.read<LoginBloc>();
             return Stack(
               children: [
-
                 const Image(
                   image: AssetImage(AssetRes.bg1),
                   fit: BoxFit.cover,
@@ -53,7 +51,8 @@ class EmailLoginScreen extends StatelessWidget {
                           ),
                           Text(
                             AppLocalizations.of(context)!.signInToContinue,
-                            style: kSemiBoldWhiteTextStyle.copyWith(color: ColorRes.black),
+                            style: kSemiBoldWhiteTextStyle.copyWith(
+                                color: ColorRes.black),
                           ),
                           const SizedBox(
                             height: 10,
@@ -62,9 +61,7 @@ class EmailLoginScreen extends StatelessWidget {
                             AppLocalizations.of(context)!
                                 .registerYourShopWithUsFindCustomersManageAppointmentsAnd,
                             style: kLightWhiteTextStyle.copyWith(
-                              fontSize: 15,
-                              color: ColorRes.black
-                            ),
+                                fontSize: 15, color: ColorRes.black),
                           ),
                           const SizedBox(
                             height: 35,
@@ -72,8 +69,7 @@ class EmailLoginScreen extends StatelessWidget {
                           TextWithTextFieldWidget(
                             isVisible: loginBloc.isVisiblePhone,
                             title: "Phone number",
-                            controller:
-                            loginBloc.phoneNumberTextController,
+                            controller: loginBloc.phoneNumberTextController,
                             changeVisiblity: () {
                               loginBloc.obuscurePhoneNumber();
                             },
@@ -109,7 +105,8 @@ class EmailLoginScreen extends StatelessWidget {
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.continue_,
-                                style: kLightTextStyle.copyWith(color: ColorRes.white),
+                                style: kLightTextStyle.copyWith(
+                                    color: ColorRes.white),
                               ),
                             ),
                           ),
@@ -158,7 +155,10 @@ class EmailLoginScreen extends StatelessWidget {
                           onPressed: () {
                             Get.offAll(() => const MainScreen());
                           },
-                          child: const Text("Skip",style: TextStyle(color: ColorRes.black),))),
+                          child: const Text(
+                            "Skip",
+                            style: TextStyle(color: ColorRes.black),
+                          ))),
                 ),
               ],
             );
@@ -204,7 +204,7 @@ class TextWithTextFieldWidget extends StatelessWidget {
           ),
           margin: const EdgeInsets.only(top: 5),
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child:Row(
+          child: Row(
             children: [
               Text(
                 "+998",
@@ -223,12 +223,11 @@ class TextWithTextFieldWidget extends StatelessWidget {
                       border: InputBorder.none,
                     ),
                     style:
-                    kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
+                        kRegularWhiteTextStyle.copyWith(color: ColorRes.black),
                     textCapitalization: TextCapitalization.characters,
                   ),
                 ),
               ),
-
             ],
           ),
         )

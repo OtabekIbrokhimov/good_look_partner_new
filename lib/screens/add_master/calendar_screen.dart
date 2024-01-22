@@ -1,8 +1,8 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:cutfx_salon/bloc/addmastertime/add_master_time_block.dart';
-import 'package:cutfx_salon/screens/add_master/add_master_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 
@@ -46,8 +46,7 @@ class CalendarScreen extends StatelessWidget {
                           child: TextButton(
                             style: const ButtonStyle(),
                             onPressed: () {
-                              timePicking2(context,addtime,true);
-
+                              timePicking2(context, addtime, true);
                             },
                             child: Text(
                               addtime.startTime,
@@ -72,7 +71,7 @@ class CalendarScreen extends StatelessWidget {
                           height: 50,
                           child: TextButton(
                             onPressed: () {
-                              timePicking2(context,addtime,false);
+                              timePicking2(context, addtime, false);
                             },
                             child: Text(
                               addtime.endTime,
@@ -85,7 +84,6 @@ class CalendarScreen extends StatelessWidget {
                   ],
                 ),
                 CalendarDatePicker2(
-
                   config: CalendarDatePicker2Config(
                     calendarType: CalendarDatePicker2Type.multi,
                     selectedRangeHighlightColor: ColorRes.fountainBlue,
@@ -111,8 +109,8 @@ class CalendarScreen extends StatelessWidget {
                         onPressed: () {
                           addtime.saveTime();
                         },
-                        child: const Text(
-                          "Save",
+                        child: Text(
+                          AppLocalizations.of(context)!.save,
                           style: kRegularWhiteTextStyle,
                         ),
                       ),
@@ -128,45 +126,45 @@ class CalendarScreen extends StatelessWidget {
   }
 
   void timePicking2(BuildContext context, AddMasterTimeBlock ok, bool isStart) {
-    Get.bottomSheet(Container(
-        padding: const EdgeInsets.all(15),
-        height: Get.height / 2,
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
+    Get.bottomSheet(
+        Container(
+            padding: const EdgeInsets.all(15),
+            height: Get.height / 2,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-
-                InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(Icons.close,color: ColorRes.black,size: 35,)
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: ColorRes.black,
+                          size: 35,
+                        )),
+                  ],
                 ),
-
+                TimePickerSpinner(
+                  minutesInterval: 15,
+                  is24HourMode: true,
+                  normalTextStyle:
+                      const TextStyle(fontSize: 24, color: Colors.grey),
+                  highlightedTextStyle:
+                      const TextStyle(fontSize: 24, color: ColorRes.themeColor),
+                  spacing: 50,
+                  itemHeight: 80,
+                  isForce2Digits: true,
+                  onTimeChange: (time) {
+                    ok.selectTime(time, isStart);
+                  },
+                ),
               ],
-            ),
-            TimePickerSpinner(
-              minutesInterval: 15,
-              is24HourMode: true,
-              normalTextStyle:
-                  const TextStyle(fontSize: 24, color: Colors.grey),
-              highlightedTextStyle:
-                  const TextStyle(fontSize: 24, color: ColorRes.themeColor),
-              spacing: 50,
-              itemHeight: 80,
-              isForce2Digits: true,
-              onTimeChange: (time) {
-                ok.selectTime(time, isStart);
-              },
-            ),
-
-          ],
-        )),
-    enableDrag: false
-    );
+            )),
+        enableDrag: false);
   }
 }

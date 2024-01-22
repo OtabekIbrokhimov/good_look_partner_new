@@ -10,6 +10,7 @@ import '../../bloc/directmastertime/direct_master_time_block.dart';
 import '../../utils/asset_res.dart';
 import '../../utils/custom/custom_bottom_sheet.dart';
 import '../main/main_screen.dart';
+
 class AddTimeScreen extends StatefulWidget {
   const AddTimeScreen({super.key, this.title = "Add time"});
 
@@ -32,7 +33,8 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
         create: (context) => DirectMasterBlock(),
         child: BlocBuilder<DirectMasterBlock, DirectMasterTimeState>(
             builder: (context, state) {
-            DirectMasterBlock directMasterBlock = context.read<DirectMasterBlock>();
+          DirectMasterBlock directMasterBlock =
+              context.read<DirectMasterBlock>();
           return Scaffold(
               backgroundColor: ColorRes.smokeWhite,
               floatingActionButton: FloatingActionButton(
@@ -52,32 +54,40 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                     ToolBarWidget(
                       title: widget.title,
                     ),
-                    directMasterBlock.mainList.date!.isEmpty?const SizedBox(): directMasterBlock.mainList.date!.first!.date!.isNotEmpty? SizedBox(
-                      height: Get.height - 200,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: directMasterBlock.mainList.date?.length ?? 0,
-                          itemBuilder: (context, index) {
-                            return TimeInfoWidget(
-                              startDate: directMasterBlock
-                                      .mainList.date?[index].date?[0].start ?? "",
-                              day: directMasterBlock
-                                      .mainList.date?[index].date?[0].date ??
-                                  "",
-                              endDate: directMasterBlock
-                                      .mainList.date?[index].date?[0].end ??
-                                  "",
-                              delete: () {
-                                directMasterBlock.deleteDay(index);
-                              },
-                              edit: () {
-                                directMasterBlock.edit(index);
-                              },
-                            );
-                          }),
-                        ):SizedBox(),
-                      ]));
-            }));
+                    directMasterBlock.mainList.date!.isEmpty
+                        ? const SizedBox()
+                        : directMasterBlock
+                                .mainList.date!.first!.date!.isNotEmpty
+                            ? SizedBox(
+                                height: Get.height - 200,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: directMasterBlock
+                                            .mainList.date?.length ??
+                                        0,
+                                    itemBuilder: (context, index) {
+                                      return TimeInfoWidget(
+                                        startDate: directMasterBlock.mainList
+                                                .date?[index].date?[0].start ??
+                                            "",
+                                        day: directMasterBlock.mainList
+                                                .date?[index].date?[0].date ??
+                                            "",
+                                        endDate: directMasterBlock.mainList
+                                                .date?[index].date?[0].end ??
+                                            "",
+                                        delete: () {
+                                          directMasterBlock.deleteDay(index);
+                                        },
+                                        edit: () {
+                                          directMasterBlock.edit(index);
+                                        },
+                                      );
+                                    }),
+                              )
+                            : SizedBox(),
+                  ]));
+        }));
   }
 }
 

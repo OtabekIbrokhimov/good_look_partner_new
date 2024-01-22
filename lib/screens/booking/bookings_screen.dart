@@ -30,7 +30,70 @@ class BookingsScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.dialog( QrScanScreen());
+            Get.bottomSheet(SafeArea(
+                bottom: false,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  width: Get.width,
+                  height: Get.height - 400,
+                  decoration: const BoxDecoration(
+                    color: ColorRes.white,
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(25)),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Container(
+                          height: 6,
+                          width: 106,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              color: ColorRes.greyD9),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Text(  AppLocalizations.of(context)!.qrscanning,
+                              style: kRegularTextStyle.copyWith(fontSize: 25)),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: const Icon(
+                              Icons.close,
+                              size: 30,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: 300,
+                        child: Text(
+                          AppLocalizations.of(context)!.scanQRcode,
+                          style: kRegularTextStyle.copyWith(fontSize: 15),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        width: Get.width,
+                        height: Get.height - 600,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: QrScanScreen(
+                          isBottomSheet: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                )));
           },
           backgroundColor: ColorRes.themeColor,
           child: const Image(
@@ -55,7 +118,6 @@ class BookingsScreen extends StatelessWidget {
                   height: 10,
                 ),
                 TableCalendar(
-
                   firstDay:
                       DateTime.utc(bookingsBloc.year, bookingsBloc.month, 1),
                   lastDay: DateTime.utc(
@@ -90,7 +152,6 @@ class BookingsScreen extends StatelessWidget {
                             );
                           },
                           child: Container(
-
                             decoration: BoxDecoration(
                               color: ColorRes.smokeWhite,
                               borderRadius: BorderRadius.circular(10),
@@ -112,7 +173,10 @@ class BookingsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
+                                    DateFormat('EE',
+                                            AppLocalizations.of(context)!.en)
+                                        .format(day)
+                                        .toUpperCase(),
                                     style: kRegularThemeTextStyle.copyWith(
                                       color: ColorRes.empress,
                                       fontSize: 11,
@@ -154,7 +218,10 @@ class BookingsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
+                                  DateFormat('EE',
+                                          AppLocalizations.of(context)!.en)
+                                      .format(day)
+                                      .toUpperCase(),
                                   style: kRegularThemeTextStyle.copyWith(
                                     color: ColorRes.empress,
                                     fontSize: 12,
@@ -195,7 +262,10 @@ class BookingsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
+                                  DateFormat('EE',
+                                          AppLocalizations.of(context)!.en)
+                                      .format(day)
+                                      .toUpperCase(),
                                   style: kRegularThemeTextStyle.copyWith(
                                     color: ColorRes.themeColor,
                                     fontSize: 12,
@@ -246,7 +316,10 @@ class BookingsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat('EE',AppLocalizations.of(context)!.en).format(day).toUpperCase(),
+                                    DateFormat('EE',
+                                            AppLocalizations.of(context)!.en)
+                                        .format(day)
+                                        .toUpperCase(),
                                     style: kRegularThemeTextStyle.copyWith(
                                       color: ColorRes.empress,
                                       fontSize: 12,
@@ -265,7 +338,6 @@ class BookingsScreen extends StatelessWidget {
                     },
                   ),
                   daysOfWeekHeight: 0,
-
                 ),
                 SizedBox(
                   height: 0,
@@ -437,7 +509,7 @@ class ItemBookings extends StatelessWidget {
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: Center(
                             child: Text(
-                         data.time ?? "",
+                              data.time ?? "",
                               style: kSemiBoldTextStyle.copyWith(
                                 color: ColorRes.white,
                                 fontSize: 16,
@@ -496,7 +568,7 @@ class ItemBookings extends StatelessWidget {
                         width: 60,
                         child: Text(
                           AppRes.convertTimeForService(
-                              int.parse(data.duration ?? '0'),context ),
+                              int.parse(data.duration ?? '0'), context),
                           style: kLightTextStyle.copyWith(
                             color: ColorRes.themeColor,
                           ),

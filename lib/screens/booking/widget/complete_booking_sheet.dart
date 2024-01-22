@@ -13,27 +13,28 @@ import '../../../utils/asset_res.dart';
 import '../../qrScan/qr_scan_screen.dart';
 
 class CompleteBookingSheet extends StatefulWidget {
-   CompleteBookingSheet({super.key, required this.requestDetails});
+  CompleteBookingSheet({super.key, required this.requestDetails});
+
   final RequestDetails requestDetails;
   TextEditingController textEditingController = TextEditingController();
+
   @override
   State<CompleteBookingSheet> createState() => _CompleteBookingSheetState();
 }
 
 class _CompleteBookingSheetState extends State<CompleteBookingSheet> {
+  void takeCode(String code) {
+    Get.log(code);
+    int second = 0;
+    setState(() {
+      widget.textEditingController.text = code;
+    });
+    Get.back();
+    return;
+  }
 
- void takeCode(String code){
-   Get.log(code);
-   int second = 0;
-   setState(() {
-     widget.textEditingController.text = code;
-   });
-   Get.back();
-   return;
- }
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       bottom: false,
       child: Container(
@@ -78,7 +79,7 @@ class _CompleteBookingSheetState extends State<CompleteBookingSheet> {
                 children: [
                   SizedBox(
                     height: 60,
-                    width: Get.width-70,
+                    width: Get.width - 70,
                     child: TextWithTextFieldSmokeWhiteWidget(
                       title: '',
                       controller: widget.textEditingController,
@@ -87,8 +88,8 @@ class _CompleteBookingSheetState extends State<CompleteBookingSheet> {
                   const Spacer(),
                   InkWell(
                     onTap: () async {
-                      Get.to(()=> QrScanScreen(needResult: true,function: takeCode));
-
+                      Get.to(() =>
+                          QrScanScreen(needResult: true, function: takeCode));
                     },
                     child: const Image(
                       image: AssetImage(
@@ -115,7 +116,8 @@ class _CompleteBookingSheetState extends State<CompleteBookingSheet> {
                     }
                     AppRes.showCustomLoader();
                     RestResponse restResponse = await ApiService()
-                        .completeBooking(widget.requestDetails.data?.bookingId ?? '',
+                        .completeBooking(
+                            widget.requestDetails.data?.bookingId ?? '',
                             widget.textEditingController.text);
                     if (!restResponse.status!) {
                       AppRes.hideCustomLoader();

@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:cutfx_salon/generated/l10n.dart';
-import 'package:cutfx_salon/model/calendar/CalendarMainList.dart';
-import 'package:cutfx_salon/model/calendar/calenda_list.dart';
 import 'package:cutfx_salon/model/status_message.dart';
 import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/service/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -20,7 +17,6 @@ import '../../utils/app_res.dart';
 import '../../utils/shared_pref.dart';
 
 part 'edit_profile_event.dart';
-
 part 'edit_profile_state.dart';
 
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
@@ -77,8 +73,8 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       id = master.id.toString() ?? '';
       fullNameTextController.text = master.fullname ?? "";
       dates = CalendarDates.decode(master.worktime ?? '');
-      freeDates = CalendarDates.decode(master.freetime??"");
-      wocDates = CalendarDates.decode(master.vacationtime??"");
+      freeDates = CalendarDates.decode(master.freetime ?? "");
+      wocDates = CalendarDates.decode(master.vacationtime ?? "");
       int services = master.services?.length ?? 0;
       ids.clear();
       for (int i = 0; i < services; i++) {
@@ -202,7 +198,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     SharePref sharePref = await SharePref().init();
     sharePref.saveString(AppRes.calendarDates, '');
     type = t;
-   var result = await Get.to(
+    var result = await Get.to(
         () => AddTimeScreen(
               title: title,
             ),

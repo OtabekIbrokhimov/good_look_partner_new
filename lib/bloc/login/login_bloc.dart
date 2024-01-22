@@ -6,8 +6,9 @@ import 'package:cutfx_salon/utils/app_res.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
+
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -44,10 +45,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         false,
       );
       return;
-    }else{
-
+    } else {
       SendOtpResponce? sendOtpResponce;
-      sendOtpResponce = await ApiService().otpSent(phoneNumber: '998${phoneNumberTextController.text}');
+      sendOtpResponce = await ApiService()
+          .otpSent(phoneNumber: '998${phoneNumberTextController.text}');
       if (sendOtpResponce.status == true) {
         AppRes.showSnackBar("We sent sms code", true);
         Get.to(() => SmsCodePage(
@@ -166,17 +167,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-
   void onChangedPinCodeWithName(String value, bool needName) {
-    if(needName == true&& fullNameTextController.text.isEmpty){
-      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterFullName, false);
+    if (needName == true && fullNameTextController.text.isEmpty) {
+      AppRes.showSnackBar(
+          AppLocalizations.of(Get.context!)!.pleaseEnterFullName, false);
       return;
     }
 
-    if (value.length ==  6 && value.isNumericOnly) {
+    if (value.length == 6 && value.isNumericOnly) {
       needVerify = true;
       add(UpdateEmailLoginEvent());
-    } else{
+    } else {
       needVerify = false;
       add(UpdateEmailLoginEvent());
     }
@@ -184,12 +185,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void checkTime(String phone) async {
     if (smsCodeTime < 60) {
-
       SendOtpResponce? sendOtpResponce;
       sendOtpResponce = await ApiService().otpSent(phoneNumber: phone);
-      if(sendOtpResponce.status == true){
-        AppRes.showSnackBar(sendOtpResponce.message??"", true);
-      }else{
+      if (sendOtpResponce.status == true) {
+        AppRes.showSnackBar(sendOtpResponce.message ?? "", true);
+      } else {
         AppRes.showSnackBar("try again", false);
       }
 
@@ -201,7 +201,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void getMainPage(String phone, bool needName) async {
     if (smsCodeController.text.length != 6) {
-      AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
+      AppRes.showSnackBar(
+          AppLocalizations.of(Get.context!)!.pleaseEnterSmsCode, false);
       return;
     } else {
       smsCode = smsCodeController.text;
@@ -211,8 +212,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           needName: needName,
           fullName: fullNameTextController.text);
 
-      if (verifyResponce == null ) {
-        AppRes.showSnackBar(AppLocalizations.of(Get.context!)!.checkSmsCode, false);
+      if (verifyResponce == null) {
+        AppRes.showSnackBar(
+            AppLocalizations.of(Get.context!)!.checkSmsCode, false);
       }
     }
   }

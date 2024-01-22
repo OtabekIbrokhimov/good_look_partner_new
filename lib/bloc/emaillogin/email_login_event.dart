@@ -7,4 +7,5 @@ class ContinueLoginEvent extends EmailLoginEvent {}
 class UpdateEmailLoginEvent extends EmailLoginEvent {}
 
 class UpdateSmsCodeTime extends EmailLoginEvent {}
+
 class CheckSmsCode extends EmailLoginEvent {}

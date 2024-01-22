@@ -3,8 +3,7 @@ import 'dart:convert';
 VerifyRequest VerifyRequestFromJson(String str) =>
     VerifyRequest.fromJson(json.decode(str));
 
-String VerifyRequestToJson(VerifyRequest data) =>
-    json.encode(data.toJson());
+String VerifyRequestToJson(VerifyRequest data) => json.encode(data.toJson());
 
 class VerifyRequest {
   String? userType;

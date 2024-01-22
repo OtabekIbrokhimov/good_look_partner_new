@@ -3,7 +3,6 @@ import 'package:cutfx_salon/service/api_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'payout_history_event.dart';
-
 part 'payout_history_state.dart';
 
 class PayoutHistoryBloc extends Bloc<PayoutHistoryEvent, PayoutHistoryState> {

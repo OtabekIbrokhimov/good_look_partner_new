@@ -60,12 +60,19 @@ class ChatScreen extends StatelessWidget {
                                   height: 45,
                                   width: 45,
                                   child: Image(
-                                    image: NetworkImage(
-                                        '${ConstRes.itemBaseUrl}${chatBloc.salonData?.profileImage ?? (chatBloc.conversation.user?.image ?? '')}'),
-                                    fit: BoxFit.cover,
-                                      errorBuilder:(context,v,b){return errorBuilderForImage(context,v,b,name:chatBloc.conversation.user?.username??"");},
-                                      loadingBuilder:(context,child,l){return loadingImage(context, child, l);}
-                                  ),
+                                      image: NetworkImage(
+                                          '${ConstRes.itemBaseUrl}${chatBloc.salonData?.profileImage ?? (chatBloc.conversation.user?.image ?? '')}'),
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, v, b) {
+                                        return errorBuilderForImage(
+                                            context, v, b,
+                                            name: chatBloc.conversation.user
+                                                    ?.username ??
+                                                "");
+                                      },
+                                      loadingBuilder: (context, child, l) {
+                                        return loadingImage(context, child, l);
+                                      }),
                                 ),
                               ),
                               const SizedBox(width: 10),

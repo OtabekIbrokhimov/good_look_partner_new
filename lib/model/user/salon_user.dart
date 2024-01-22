@@ -54,7 +54,6 @@ class UserData {
     String? identity,
     String? fullname,
     String? phoneNumber,
-
     String? profileImage,
     num? isNotification,
     num? deviceType,
@@ -134,7 +133,6 @@ class UserData {
     String? identity,
     String? fullname,
     String? phoneNumber,
-
     String? profileImage,
     num? isNotification,
     num? deviceType,
@@ -154,7 +152,6 @@ class UserData {
         identity: identity ?? _identity,
         fullname: fullname ?? _fullname,
         phoneNumber: phoneNumber ?? _phoneNumber,
-
         profileImage: profileImage ?? _profileImage,
         isNotification: isNotification ?? _isNotification,
         deviceType: deviceType ?? _deviceType,
@@ -178,8 +175,6 @@ class UserData {
   String? get fullname => _fullname;
 
   String? get phoneNumber => _phoneNumber;
-
-
 
   String? get profileImage => _profileImage;
 

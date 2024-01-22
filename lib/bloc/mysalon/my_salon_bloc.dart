@@ -2,7 +2,6 @@ import 'package:cutfx_salon/model/user/salon.dart';
 import 'package:cutfx_salon/service/api_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../screens/login/email_login_screen.dart';
 import '../../utils/shared_pref.dart';

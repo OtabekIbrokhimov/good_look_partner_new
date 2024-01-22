@@ -16,6 +16,7 @@ import 'package:get/get.dart';
 
 class AddMasterScreen extends StatefulWidget {
   AddMasterScreen({super.key, this.master});
+
   Master? master;
 
   @override
@@ -88,26 +89,30 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                         color: ColorRes.themeColor,
                                       ),
                                       padding: const EdgeInsets.all(1),
-                                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 15),
                                       child: ClipRRect(
-                                        borderRadius:
-                                        const BorderRadius.all(Radius.circular(20)),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20)),
                                         child: Stack(
                                           children: [
                                             editProfileBloc.imageFile != null
                                                 ? Image(
-                                              height: double.infinity,
-                                              width: double.infinity,
-                                              image: FileImage(
-                                                editProfileBloc.imageFile ??
-                                                    File('path'),
-                                              ),
-                                              fit: BoxFit.cover,
-                                              loadingBuilder: loadingImage,
-                                              errorBuilder: errorBuilderForImage,
-                                            )
+                                                    height: double.infinity,
+                                                    width: double.infinity,
+                                                    image: FileImage(
+                                                      editProfileBloc
+                                                              .imageFile ??
+                                                          File('path'),
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                    loadingBuilder:
+                                                        loadingImage,
+                                                    errorBuilder:
+                                                        errorBuilderForImage,
+                                                  )
                                                 : Image(
-                                              height: double.infinity,
+                                                    height: double.infinity,
                                                     width: double.infinity,
                                                     image: NetworkImage(
                                                         '${ConstRes.itemBaseUrl}${editProfileBloc.imageUrl}'),
@@ -128,14 +133,16 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                                           context, child, l);
                                                     }),
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Align(
-                                                alignment: Alignment.bottomRight,
+                                                alignment:
+                                                    Alignment.bottomRight,
                                                 child: BgRoundImageWidget(
                                                   image: AssetRes.icEdit,
                                                   onTap: () {
-                                                    editProfileBloc
-                                                        .add(ImageSelectClickEvent());
+                                                    editProfileBloc.add(
+                                                        ImageSelectClickEvent());
                                                   },
                                                   height: 30,
                                                   width: 30,
@@ -187,23 +194,32 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                               title:
                                   AppLocalizations.of(context)!.manageWorkTime,
                               onTapEdit: () {
-                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageWorkTime,1);
+                                editProfileBloc.onTapEdit(
+                                    AppLocalizations.of(context)!
+                                        .manageWorkTime,
+                                    1);
                               },
                             ),
                             EditWidget(
                               title:
                                   AppLocalizations.of(context)!.manageFreeTime,
                               onTapEdit: () {
-                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageFreeTime,2);
+                                editProfileBloc.onTapEdit(
+                                    AppLocalizations.of(context)!
+                                        .manageFreeTime,
+                                    2);
                               },
                             ),
-                             EditWidget(
+                            EditWidget(
                               title:
                                   AppLocalizations.of(context)!.manageVocation,
                               onTapEdit: () {
-                                editProfileBloc.onTapEdit(AppLocalizations.of(context)!.manageVocation,3);
-                               },
-                             ),
+                                editProfileBloc.onTapEdit(
+                                    AppLocalizations.of(context)!
+                                        .manageVocation,
+                                    3);
+                              },
+                            ),
                             const Spacer(),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -227,7 +243,9 @@ class _AddMasterScreenState extends State<AddMasterScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 30,)
+                            const SizedBox(
+                              height: 30,
+                            )
                           ],
                         ))
                   ]),
@@ -249,52 +267,49 @@ class EditWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-        padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  onTapEdit();
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                 width: Get.width-20,
-                  decoration: BoxDecoration(
-                      color: ColorRes.themeColor,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Text(
-                    title,
-                    style: kLightTextStyle.copyWith(color: Colors.white),
-                  ),
-                ),
+    return Container(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+            onTap: () {
+              onTapEdit();
+            },
+            child: Container(
+              alignment: Alignment.center,
+              height: 50,
+              width: Get.width - 20,
+              decoration: BoxDecoration(
+                  color: ColorRes.themeColor,
+                  borderRadius: BorderRadius.circular(15)),
+              child: Text(
+                title,
+                style: kLightTextStyle.copyWith(color: Colors.white),
               ),
-              // InkWell(
-              //   onTap: () {},
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(8.0),
-              //     child: Align(
-              //       alignment: Alignment.bottomRight,
-              //       child: BgRoundImageWidget(
-              //         image: AssetRes.icEdit,
-              //         onTap: () {
-              //           onTapEdit();
-              //         },
-              //         height: 30,
-              //         width: 30,
-              //         imagePadding: 5,
-              //         bgColor: ColorRes.charcoal50,
-              //       ),
-              //     ),
-              //   ),
-              // )
-            ],
+            ),
           ),
-        );
-      
-   
+          // InkWell(
+          //   onTap: () {},
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Align(
+          //       alignment: Alignment.bottomRight,
+          //       child: BgRoundImageWidget(
+          //         image: AssetRes.icEdit,
+          //         onTap: () {
+          //           onTapEdit();
+          //         },
+          //         height: 30,
+          //         width: 30,
+          //         imagePadding: 5,
+          //         bgColor: ColorRes.charcoal50,
+          //       ),
+          //     ),
+          //   ),
+          // )
+        ],
+      ),
+    );
   }
 }

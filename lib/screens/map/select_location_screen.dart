@@ -65,18 +65,21 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                   //     longitude: point.longitude.toDouble());
                 },
                 onMapCreated: (YandexMapController yandexMapController) async {
-                  setState(() {
+                  setState(() async {
+                    Location location = Location();
+                    await location.requestPermission();
                     mapObjects.add(PlacemarkMapObject(
                       onDrag: (obj, point) {},
                       opacity: 1,
                       mapId: const MapObjectId('useration'),
                       onTap: (icon, point) {
-                      findUser();
+                        findUser();
                         yandexMapController.moveCamera(
                             CameraUpdate.newCameraPosition(CameraPosition(
                                 target: Point(
                                     latitude: position?.latitude ?? 41.344517,
-                                    longitude: position?.longitude ?? 69.2714301),
+                                    longitude:
+                                        position?.longitude ?? 69.2714301),
                                 zoom: 20.0)));
                       },
                       point: Point(
@@ -154,11 +157,12 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                       if (position?.latitude != null ||
                           position?.longitude != null) {
                         Get.back(result: position);
-                        } else {
-                          AppRes.showSnackBar(
-                              AppLocalizations.of(context)!.locationNotFount,
-                              false);
-                        }
+                      } else {
+                        AppRes.showSnackBar(
+                            AppLocalizations.of(context)!.locationNotFount,
+                            false);
+                        findUser();
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor:
@@ -197,7 +201,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
         backgroundColor: ColorRes.themeColor,
         onPressed: () {
           if (isLoading) {
-         findUser();
+            findUser();
           }
         },
         child: !isLoading
@@ -226,10 +230,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
         return Future.error('Location services are disabled.');
       }
     }
-      position = await Geolocator.getCurrentPosition();
-      Get.log("${position?.latitude ?? 0} ${position?.longitude ?? 0} + maaa");
-      setState(() {
-      });
+    position = await Geolocator.getCurrentPosition();
+    Get.log("${position?.latitude ?? 0} ${position?.longitude ?? 0} + maaa");
+    setState(() {});
 
     //
     // void getLocation() async {

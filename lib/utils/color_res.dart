@@ -50,4 +50,5 @@ class ColorRes {
   static const green10 = Color(0x1a018115);
   static const grey = Color(0xffd9d9d9);
   static const catigoriesColor = Color(0xffF9F4E8);
+  static const textColor5757 = Color(0xff575757);
 }
